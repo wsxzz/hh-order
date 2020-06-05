@@ -1,0 +1,114 @@
+{
+	"pages": [{
+            "path" : "pages/index/index",
+            "style" : {
+				"navigationBarTitleText": "选择角色"
+			}
+        },{
+            "path" : "pages/test/test",
+            "style" : {
+				"navigationBarTitleText": "TEST"
+			}
+        },{
+            "path" : "pages/submitorder/submitorder",
+            "style" : {
+				"navigationStyle": "custom"
+			}
+        },{
+            "path" : "pages/Insuranceinstitutions/Insuranceinstitutions",
+            "style" : {
+				"navigationBarTitleText": "保险机构"
+			}
+        },{
+            "path" : "pages/manager-list/manager-list",
+            "style" : {
+				"navigationStyle": "custom"
+			}
+        },{
+            "path" : "pages/manager-list/search/search",
+            "style" : {
+				"navigationStyle": "custom"
+			}
+        },
+		{
+		    "path" : "pages/consultants-lists/consultants-lists",
+		    "style" : {
+				"navigationStyle": "custom"
+			}
+		},{
+            "path" : "pages/consultants-lists/search/search",
+            "style" : {
+				"navigationStyle": "custom"
+			}
+        },{
+            "path" : "pages/customer-order-details/customer-order-details",
+            "style" : {
+				"navigationStyle": "custom"
+			}
+        }
+        ,{
+            "path" : "pages/customer-infor/customer-infor",
+            "style" : {
+				"navigationStyle": "custom"
+			}
+        }
+        ,{
+            "path" : "pages/shop-Mall/shop-Mall",
+            "style" : {
+				"navigationBarTitleText": "商品"	
+			}
+        },{
+            "path" : "pages/shop-Mall/classification/classification",
+            "style" : {
+				"navigationBarTitleText": "分类"
+			}
+        },{
+            "path" : "pages/shop-Mall/carlist/carlist",
+            "style" : {
+				"navigationBarTitleText": "列表"
+			}
+        },{
+            "path" : "pages/shop-Mall/detailed/detailed",
+            "style" : {
+				"navigationBarTitleText": "车辆详情"
+			}
+        }
+        ,{
+            "path" : "pages/new-car-list/new-car-list",
+            "style" : {}
+        }
+        
+        ,{
+            "path" : "components/no-data/no-data",
+            "style" : {
+				// 没数据
+			}
+        }
+        ,{
+            "path" : "components/manager-list/manager-list",
+            "style" : {
+        		// 没数据
+        	}
+        }
+        
+        ,{
+            "path" : "components/manager-list/manager-list",
+            "style" : {}
+        }
+        
+        ,{
+            "path" : "components/screens-Dialog/screens-Dialog",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/consultants-lists/consultants-lists",
+            "style" : {}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#000000"
+	}
+}
