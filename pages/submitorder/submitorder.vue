@@ -297,6 +297,19 @@
 								<input type="text" value="1,000,000"/>
 							</view>
 						</view>
+						
+						
+						<view class="cell row">
+							<view class="notesL">
+								代<strong>收购置税</strong>
+							</view>
+							<!-- 默认是 -->
+							<view class="notesR right">
+								<button class="yybtn mini-btn on" size="mini" type="default">是</button>
+								<button class="yybtn mini-btn" size="mini" type="default">否</button>
+							</view>
+						</view>
+						<!-- 上面是的时候才出现 -->
 						<view class="cell row">
 							<view class="notesL">
 								收取方式
@@ -306,17 +319,6 @@
 								<button class="yybtn mini-btn" size="mini" type="default">多退少补</button>
 							</view>
 						</view>
-						
-						<view class="cell row">
-							<view class="notesL">
-								待收购置税
-							</view>
-							<view class="notesR right">
-								<button class="yybtn mini-btn on" size="mini" type="default">是</button>
-								<button class="yybtn mini-btn" size="mini" type="default">否</button>
-							</view>
-						</view>
-						
 						<view class="cell row">
 							<view class="notesL">
 								税率
@@ -566,6 +568,7 @@
 							<view class="notesR right">
 								<button class="yybtn mini-btn" size="mini" type="default">全款</button>
 								<button class="yybtn mini-btn on" size="mini" type="default">订金</button>
+								<button class="yybtn mini-btn" size="mini" type="default">定金</button>
 							</view>
 						</view>
 						
@@ -872,7 +875,7 @@
 				hasinsurance:false,
 				relatedOldOrder:false,//关联原有订单
 				title: 'picker',
-				relationshiparray: ['夫妻','亲戚','朋友','同事'],
+				relationshiparray: ['本人','夫妻','亲戚','朋友','同事'],
 				mortgageMethodArray:["等额本息还款","等额本金还款","其他"],
 				relationshipindex: 0,
 				time: '12:01',
