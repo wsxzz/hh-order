@@ -14,34 +14,34 @@
 		</view>
 		<view class="">
 			<view class="newcarlist_fv pad">
-				
-				<view class="uni-flex uni-row newcarcell_f">
-					<view class="uni-flex useravatar marR10" style="">
-						<image src="../../static/images/car.jpg" mode="widthFix"></image>
-					</view>
-					<view class="userinfo">
-						<view class="username">
-							谢宝新
+				<view  v-for="(item,index) in customerInforList" :key="index">
+					<view class="uni-flex uni-row newcarcell_f" @click="godetails(item.id)">
+						<view class="uni-flex useravatar marR10" style="">
+							<image src="../../static/images/car.jpg" mode="widthFix"></image>
 						</view>
-						<view class="listinfo">
-							<text class="title">意向车型</text>
-							<text class="value">福特 蒙迪欧 插电混动2.0L E-CVT智...</text>
-						</view>
-						<view class="listinfo">
-							<text class="title">无效原因</text>
-							<text class="value">购买竞品</text>
-						</view>
-						<view class="listinfo">
-							<text class="title">战败城市</text>
-							<text class="value">浙江省-杭州市</text>
-						</view>
-						<view class="listinfo">
-							<text class="title">申请时间</text>
-							<text class="value">2019-3-12 15:00</text>
+						<view class="userinfo">
+							<view class="username">
+								{{item.name}}
+							</view>
+							<view class="listinfo">
+								<text class="title">意向车型</text>
+								<text class="value">{{item.intendedModel}}</text>
+							</view>
+							<view class="listinfo">
+								<text class="title">无效原因</text>
+								<text class="value">{{item.invalidReason}}</text>
+							</view>
+							<view class="listinfo">
+								<text class="title">战败城市</text>
+								<text class="value">{{item.defeatedCity}}</text>
+							</view>
+							<view class="listinfo">
+								<text class="title">申请时间</text>
+								<text class="value">{{item.applicationTime}}</text>
+							</view>
 						</view>
 					</view>
 				</view>
-				
 			</view>
 			<view class="Finished-loading">
 				已全部加载完毕
@@ -54,11 +54,33 @@
 	export default {
 		data() {
 			return {
-				
+				customerInforList:[
+					{
+						id:0,
+						name:'谢宝新',
+						intendedModel:'福特 蒙迪欧 插电混动2.0L E-CVT智福特 蒙迪欧 插电混动2.0L E-CVT智',
+						invalidReason:'购买竞品',
+						defeatedCity:'浙江省-杭州市',
+						applicationTime:'2019-3-12 15:00',
+					},{
+						id:1,
+						name:'谢宝新',
+						intendedModel:'福特 蒙迪欧 插电混动2.0L E-CVT智福特 蒙迪欧 插电混动2.0L E-CVT智',
+						invalidReason:'购买竞品',
+						defeatedCity:'浙江省-杭州市',
+						applicationTime:'2019-3-12 15:00',
+					}
+				],
 			}
 		},
 		methods: {
-			
+			godetails(id){
+				console.log(id);
+				// 返回订单填写页面
+				uni.navigateTo({
+				    url: '../submitorder/submitorder?id='+id
+				});
+			},
 		}
 	}
 </script>

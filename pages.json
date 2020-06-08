@@ -1,13 +1,13 @@
 {
 	"pages": [{
+            "path" : "pages/test/test",
+            "style" : {
+				"navigationStyle": "custom"
+			}
+        },{
             "path" : "pages/index/index",
             "style" : {
 				"navigationBarTitleText": "选择角色"
-			}
-        },{
-            "path" : "pages/test/test",
-            "style" : {
-				"navigationBarTitleText": "TEST"
 			}
         },{
             "path" : "pages/submitorder/submitorder",
@@ -51,6 +51,11 @@
             "style" : {
 				"navigationStyle": "custom"
 			}
+        },{
+            "path" : "pages/customer-infor/search/search",
+            "style" : {
+				"navigationStyle": "custom"
+			}
         }
         ,{
             "path" : "pages/shop-Mall/shop-Mall",
@@ -73,11 +78,6 @@
 				"navigationBarTitleText": "车辆详情"
 			}
         }
-        ,{
-            "path" : "pages/new-car-list/new-car-list",
-            "style" : {}
-        }
-        
         ,{
             "path" : "components/no-data/no-data",
             "style" : {
@@ -104,6 +104,7 @@
             "path" : "components/consultants-lists/consultants-lists",
             "style" : {}
         }
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

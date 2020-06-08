@@ -1,171 +1,147 @@
 <template>
-	<view>
-		<!-- 订单列表 -->
-		<button type="default">test</button>
-		<label>
-			<checkbox :value="www" /><text>www</text>
-		</label>
-		<checkbox-group name="eee">
-			<label>
-				<checkbox :value="www" /><text>www</text>
-			</label>
-		</checkbox-group>
-		<uni-grid :column="consultantslists">
-			<uni-grid-item>www</uni-grid-item>
-			<uni-grid-item>www</uni-grid-item>
-		</uni-grid>
-		
-		<uni-list>
-			<uni-list-item title="www" note="eeee"></uni-list-item>
-			<uni-list-item title="www" note="eeee"></uni-list-item>
-		</uni-list>
-		
-		<label class="radio" >
-			<radio value="www" /><text>www</text>
-		</label>
-		<uni-swipe-action>
-			<uni-swipe-action-item :options="w">www</uni-swipe-action-item>
-		</uni-swipe-action>
-		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
-			<swiper-item>
-				<view class="swiper-item">111</view>
-			</swiper-item>
-			<swiper-item>
-				<view class="swiper-item">222</view>
-			</swiper-item>
-		</swiper>
-		<!-- <view v-for="(item,index) in dataList" :key="index">
-			
-		</view> -->
-		<!-- <template>
-			<div>
-		
-			</div>
-		</template>
-		
-		<script>
-			export default {
+	<view class="custom-header">
+		<view class="uniyy-page-head">
+		<hx-navbar
+		    :back="false" 
+		    :fixed="true"
+			:left-slot="false"
+			:right-slot="false">
+			<view class="ctn4">
+				<uni-search-bar radius="100" v-model="keyword" placeholder="自动显示隐藏" clearButton="auto" cancelButton="auto" @confirm="search" />
+			</view>
+		</hx-navbar>
+		</view>
+		<!-- 暂无数据 -->
+		<no-data :nodata="nodata"/>
+		<!-- 顾问列表 -->
+			<view v-if="!nodata" class="consultants-lists">
+				<view class="consultants-lists-cell" v-for="(item,i) in resultList" :key="i">
+					<view class="row ordernum">
+						<view class="col-2">
+							<text v-html="item.ordernum"></text>
+							<text class="date" v-html="item.time"></text>
+						</view>
+						<view class="col-2 right state" v-html="item.state"></view>
+					</view>
+					
+					
+					<view class="ordercontant row">
+						<view class="col-2">
+							<text v-html="item.name" class="ordername"></text>/{{item.sex == "女" ? "女士" : "男士"}}
+							
+						</view>
+						<view class="col-2 right">
+							<image class="orderphone" src="../../static/images/icons/icon-phone.png" mode="widthFix"></image>
+						</view>
+					</view>
+					<view class="carinfo" v-html="item.desc"></view>
+					<view class="row shopnumber">
+						<view class="col-2">
+							<text class="text">商品数量</text>
+							<text class="value"  v-html="item.number"></text>
+						</view>
+					</view>
+				</view>
 				
-			}
-		</script>
+			</view>
+	
 		
-		<style scoped>
-		
-		</style> -->
 	</view>
 </template>
 
 <script>
-	import filter from '@/utils/filter.js'
+	import consultantslists from '@/utils/mock/consultants-lists.json'
+	import htmlParser from '@/utils/htmlParser.js'
+	
 	export default {
 		data() {
 			return {
-				ordereditShow:false,
-				ordereditIndex:"",
-				consultantslists:[
-					{
-						"id":0,
-						"ordernum":"OS2018090200001",
-						"time":"2019-2-15 10:30",
-						"state":"经理审核中",
-						"name":"谢宝新",
-						"sex":"女",
-						"phone":"16021897306",
-						"desc":"蒙迪欧 插电混动2.0L E-CVT智尚版2018最新2018最新2018最新",
-						"number":"3"
-					},{
-						"id":1,
-						"ordernum":"OS2018090200001",
-						"time":"2019-2-15 10:30",
-						"state":"已完成",
-						"name":"数据",
-						"sex":"男",
-						"phone":"16021897306",
-						"desc":"蒙迪欧 插电混动2.0L E-CVT智尚版2018最新2018最新2018最新",
-						"number":"4"
-					},{
-						"id":2,
-						"ordernum":"OS2018090200001",
-						"time":"2019-2-15 10:30",
-						"state":"经理审核中",
-						"name":"谢宝新",
-						"sex":"女",
-						"phone":"16021897306",
-						"desc":"蒙迪欧 插电混动2.0L E-CVT智尚版2018最新2018最新2018最新",
-						"number":"5"
-					}
-				]
+				nodata:false,//暂无数据
+				consultantslists:[],
+				resultList: [],   //真正展示的数据，也就是筛选后的数据
+				keyword:'',
+				strings:'',
 			}
 		},
+		//在组件的created钩子函数中调用
+		created(){
+			this.consultantslists = consultantslists.data;//数据
+		},
 		methods: {
-			//
-			godetails(){
-				// uni.request({
-				// 	url: '',
-				// 	method: 'GET',
-				// 	data: {},
-				// 	success: res => {},
-				// 	fail: () => {},
-				// 	complete: () => {}
-				// });
-				
-				// uni.showToast({
-				// 	title: ''
-				// });
-				this.restoreInit();
-				uni.navigateTo({
-				    url: "../customer-order-details/customer-order-details?jiaose='1'",
-					// jiaose='1'顾问
-					// jiaose='0'经理
-				});
-			},
-			//拨打电话
-			makePhoneCall(phone){
-				console.log(phone)
-				uni.makePhoneCall({
-					phoneNumber: phone,
-					success: () => {
-						console.log("成功拨打电话")
-					}
-				})
-			},
-			// 隐藏所有弹框,弹框恢复所有初始状态
-			restoreInit(){
-				//隐藏所有订单操作
-				const tags = document.querySelectorAll('.ordereditbtn');
-				filter.hide(tags);
-			},
-			//打开订单操作的弹框
-			toggleorderedit(orderid){
-				if(orderid !== this.ordereditIndex){
-					this.ordereditIndex = orderid;//是否打开别的弹框
-					this.restoreInit();
+			search() {
+			    if (this.keyword.value == '') {   //如果没有输入内容，不让往下执行
+			      return
+			    }
+				debugger
+				console.log(this.keyword.value)
+			    this.resultList = []   //每次搜索对结果数组做初始化
+				const consultantslist = JSON.parse(JSON.stringify(this.consultantslists)) ;
+			    consultantslist.forEach((item) => {  //把初始数据进行遍历
+			    /**
+			      下面是把初始数据中的每一条数据的四个字段分别去和输入的内容进行匹配，
+			      如果某一字段中包含输入的内容，就往resultList中加
+			    **/
+				console.log(item);
+			      if (item.name.indexOf(this.keyword.value) > -1 ||
+			        item.ordernum.indexOf(this.keyword.value) > -1 ||
+			        item.number.indexOf(this.keyword.value) > -1 ||
+			        item.state.indexOf(this.keyword.value) > -1 ||
+			        item.desc.indexOf(this.keyword.value) > -1 ||
+			        item.time.indexOf(this.keyword.value) > -1 ||
+			        item.sex.indexOf(this.keyword.value) > -1) {
+			        this.resultList.push(item)
+			      }
+			    })
+				console.log(this.resultList)
+				console.log(this.consultantslists)
+				//将得到的每一条数据中的每一个字段进行处理,brightKeyword就是变高亮的方法
+				this.resultList.map((item) => {  //遍历
+				  item.name = this.brightKeyword(item.name)
+				  item.ordernum = this.brightKeyword(item.ordernum)
+				  item.number = this.brightKeyword(item.number)
+				  item.state = this.brightKeyword(item.state)
+				  item.desc = this.brightKeyword(item.desc)
+				  item.time = this.brightKeyword(item.time)
+				  item.sex = this.brightKeyword(item.sex)
+				}) 
+			    if (this.resultList.length == 0) {   //如果没有匹配结果，就显示提示信息
+			      this.nodata = true
+			    }
+			  },
+			  //字体高亮
+			  brightKeyword(val) {
+				  let keyword = this.keyword.value   //获取输入框输入的内容
+				  if (val.indexOf(keyword) !== -1) {  //判断这个字段中是否包含keyword
+					//如果包含的话，就把这个字段中的那一部分进行替换成html字符
+					let cheerio = require('cheerio')
+					console.log(keyword);
+					const $ = cheerio.load('<text style="color:#1371F7">'+keyword+'</text>', { _useHtmlParser2: true },{decodeEntities:false})
+					console.log($.html())
+					return val.replace(keyword, $.html())
+				  } else {
+					return val
+				  }
 				}
-				const state = document.querySelectorAll('.ordereditbtn')[orderid].style.display;
-				console.log(state);
-				if(state=="none"){
-					document.querySelectorAll('.ordereditbtn')[orderid].style.display = 'block'
-				}else{
-					document.querySelectorAll('.ordereditbtn')[orderid].style.display = 'none'
-				}
-				
-			},
-			// 编辑订单
-			changeOrder(){
-				this.restoreInit();
-			},
-			// 删除订单
-			deleteOrder(){
-				this.restoreInit();
-			},
-			
 		}
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	page{
 		background-color: #F5F5F5;
+	}
+.ctn4{
+		border-radius: 40px;
+		padding: 8upx 20upx;
+		// border: 1px solid #e3e3e3;
+		// background-color: #F9F9F9;
+		width: 100%;
+		display: flex;
+		line-height: 44rpx;
+		// margin: 0 10px;
+		.uni-searchbar{
+			width: 100%;
+		}
 	}
 	.consultants-lists{
 		background-color: #F5F5F5;

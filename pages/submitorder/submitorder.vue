@@ -90,7 +90,7 @@
 								带入值
 							</view>
 						</view>
-						<view class="cell row">
+						<view v-if="orderSources==='deliveryAgent'" class="cell row">
 							<view class="notesL Required">
 								<text class="Required-star">*</text>
 								代售组织
@@ -114,7 +114,7 @@
 			</view>
 		</view>
 		<!-- 关联原有订单 -->
-		<view class="related-old-order">
+		<view v-if="relatedOldOrder" class="related-old-order">
 			<view class="headtitle row">
 				<view class="headtitleL col-2">
 					关联原有订单
@@ -152,7 +152,7 @@
 					<text class="blueline"></text>
 				</view>
 				<view class="col-2 right">
-					<image class="blueline-icons" src="../../static/images/icons/icon-Line-qiehuan.png" mode="widthFix"></image>
+					<image @click="selectCustomers" class="blueline-icons" src="../../static/images/icons/icon-Line-qiehuan.png" mode="widthFix"></image>
 				</view>
 			</view>
 			<view class="content">
@@ -213,7 +213,7 @@
 								车主姓名
 							</view>
 							<view class="cellR col-2 right">
-								<input class="uni-input" value="网络" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
 							</view>
 						</view>
 						<view class="cell row">
@@ -221,7 +221,7 @@
 								车主电话
 							</view>
 							<view class="cellR col-2 right">
-								<input class="uni-input" value="网络" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
 							</view>
 						</view>
 						<view class="cell row">
@@ -229,7 +229,7 @@
 								证件类型
 							</view>
 							<view class="cellR col-2 right">
-								<input class="uni-input" value="网络" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
 							</view>
 						</view>
 						<view class="cell row">
@@ -237,7 +237,7 @@
 								证件号码
 							</view>
 							<view class="cellR col-2 right">
-								<input class="uni-input" value="网络" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
 							</view>
 						</view>
 					</view>
@@ -256,7 +256,7 @@
 					<image @click="goshop" class="blueline-icons" src="../../static/images/icons/icon-public-more2.png" mode="widthFix"></image>
 				</view>
 			</view>
-			<view class="commom-content">
+			<view v-if="hasCommodityInfor" class="commom-content">
 				<view class="content">
 					<view class="optionaltitle">
 						<label>
@@ -344,83 +344,133 @@
 			</view>
 		</view>
 		<!-- 商品非整车信息 -->
-		<view class="Commodity-infor-nonvehical">
+		<view  v-if="hasCommodityInfor" class="Commodity-infor-nonvehical" v-for="(items,x) in followCarinfo" :key="x">
 			<view class="commom-content">
 				<view class="content">
 					<view class="optionaltitle">
 						<label>
-							<checkbox value="vehicle"/><text class="txt">服务产品</text>
+							<checkbox value="vehicle"/><text class="txt">{{items.categoryname}}</text>
 						</label>
 					</view>
-					<view class="goodsinfolist">
-						<label class="checkboxs">
-							<checkbox value="vehicle"/>
-						</label>
-						<view class="uni-flex uni-row newcarcell_f">
-							<view class="uni-flex goodavatar marR10" style="">
-								<image src="../../static/images/car.jpg" mode="widthFix"></image>
-							</view>
-							<view class="carinfo">
-								<view class="carname">
-									配件 | 侧护登车踏板(A-SUV)
+					<view class="" v-for="(item,y) in followCarinfo[x].prolist" :key="y">
+						<view class="goodsinfolist">
+							<label class="checkboxs">
+								<checkbox value="vehicle"/>
+							</label>
+							<view class="uni-flex uni-row newcarcell_f">
+								<view class="uni-flex goodavatar marR10" style="">
+									<image src="../../static/images/car.jpg" mode="widthFix"></image>
 								</view>
-								<view class="listinfo">
-									<text class="title">产品型号</text>
-									<text class="value">23189492349285</text>
-								</view>
-								<view class="listinfo">
-									<text class="title">销售单位</text>
-									<text class="value">1,000,000</text>
-								</view>
-								<view class="listinfo">
-									<text class="title">销售价格</text>
-									<text class="value">1,000,000</text>
-								</view>
-								
-							</view>
-						</view>
-					</view>
-					<view class="">
-						<view class="row">
-							<view class="col-2">
-								成交单价
-							</view>
-							<view class="col-2 right">
-								2000元
-							</view>
-						</view>
-						<view class="row followCar">
-							<view class="col-2">
-								<text class="followCarbtn">随车</text>
-							</view>
-							<view class="col-2 right">
-								<!-- <uni-number-box :min="0" v-model="serviceProValue"  @change="bindChange"></uni-number-box> -->
-								<view class="number-box row">
-									<view class="reduce" @click="changenumber('reduce',serviceProValue)">
-										<text class="iconfont">&#xe603;</text>
+								<view class="carinfo">
+									<view class="carname">
+										 {{item.name}}
 									</view>
-									<view class="numberbox">
-										<text class="number">{{serviceProValue}}</text>
+									<view v-if="x===0">
+										<view class="listinfo">
+											<text class="title">产品型号</text>
+											<text class="value"> {{item.proModel}}</text>
+										</view>
+										<view class="listinfo">
+											<text class="title">销售单位</text>
+											<text class="value">{{item.salesUnit}}</text>
+										</view>
+										<view class="listinfo">
+											<text class="title">销售价格</text>
+											<text class="value">{{item.price}}</text>
+										</view>
 									</view>
-									<view class="increase"  @click="changenumber('increase','serviceProValue')">
-										<text class="iconfont">&#xe602;</text>
+									<view v-else-if="x===1">
+										<view class="listinfo">
+											<text class="title">机构来源</text>
+											<text class="value"> {{item.institutionalSources}}</text>
+										</view>
+										<view class="listinfo">
+											<text class="title">延保产品</text>
+											<text class="value">{{item.extendedWarrantyPro}}</text>
+										</view>
+										<view class="listinfo">
+											<text class="title">指导价格</text>
+											<text class="value">{{item.price}}</text>
+										</view>
+									</view>
+									
+									<view v-else-if="x===2">
+										<view class="listinfo">
+											<text class="title">销售价格</text>
+											<text class="value"> {{item.price}}</text>
+										</view>
+									</view>
+									
+									<view v-else-if="x===3">
+										<view class="listinfo">
+											<text class="title">销售价格</text>
+											<text class="value"> {{item.price}}</text>
+										</view>
+									</view>
+									
+									<view v-else-if="x===4">
+										<view class="listinfo">
+											<text class="title">代办金额</text>
+											<text class="value"> {{item.price}}</text>
+										</view>
+									</view>
+									
+									<view v-else-if="x===5">
+										<view class="listinfo">
+											<text class="title">商品面值</text>
+											<text class="value"> {{item.price}}</text>
+										</view>
+										<view class="listinfo">
+											<text class="title">销售价格</text>
+											<text class="value"> {{item.price}}</text>
+										</view>
 									</view>
 								</view>
-								
 							</view>
 						</view>
-						<view class="row">
-							<view class="subtotal right">
-								<text class="subtotaltxt">小计</text>
-								<text class="subtotalicon">¥</text>
-								<text class="subtotalmoney">2,000</text>
+						<view class="">
+							<view class="row">
+								<view class="col-2">
+									成交单价
+								</view>
+								<view class="col-2 right">
+									{{item.price}}元
+								</view>
+							</view>
+							<view class="row followCar">
+								<view class="col-2">
+									<text class="followCarbtn">随车</text>
+								</view>
+								<view class="col-2 numberright">
+									<view class="number-box row">
+										<view class="reduce" @click="changenumber('reduce',serviceProValue,'serviceProValue')">
+											<text class="iconfont">&#xe603;</text>
+										</view>
+										<view class="numberbox">
+											<text class="number">{{serviceProValue}}</text>
+										</view>
+										<view class="increase"  @click="changenumber('increase',serviceProValue,'serviceProValue')">
+											<text class="iconfont">&#xe602;</text>
+										</view>
+									</view>
+									
+								</view>
+							</view>
+							<view class="row">
+								<view class="subtotal right">
+									<text class="subtotaltxt">小计</text>
+									<text class="subtotalicon">¥</text>
+									<text class="subtotalmoney">2,000</text>
+								</view>
 							</view>
 						</view>
+						
 					</view>
 					
 				</view>
 			</view>
 		</view>
+		
 		<!-- 保险信息 -->
 		<view class="Insurance-infor">
 			<view class="blueline-title row">
@@ -595,7 +645,7 @@
 			</view>
 		</view>
 		<!-- 按揭项目 -->
-		<view v-if="hasmortgage" class="mortgage-pro">
+		<view v-if="paymentMethods==='mortgage'" class="mortgage-pro">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
 					按揭项目
@@ -732,7 +782,7 @@
 						</view>
 						<view class="cell row">
 							<view class="notesL">
-								交付方式
+								交付         
 							</view>
 							<view class="notesR right">
 								<button class="yybtn mini-btn on" size="mini" type="default">送货上门</button>
@@ -820,18 +870,88 @@
 				insurance:{},//保险信息
 				insuranceBtn:false,//保险按钮
 				hasinsurance:false,
+				relatedOldOrder:false,//关联原有订单
 				title: 'picker',
 				relationshiparray: ['夫妻','亲戚','朋友','同事'],
 				mortgageMethodArray:["等额本息还款","等额本金还款","其他"],
 				relationshipindex: 0,
 				time: '12:01',
 				paymentMethods:'cash',//付款方式（默认现金-cash）
-				hasmortgage:false,//按揭项目
 				orderTypes:'vehicle',//订单类型（默认值是整车）
 				vehicleTypes:'conventional',//车辆类型(默认值是常规)
 				orderSources:'offline',//订单来源(默认值是线下)
 				customerTypes:'personal',//客户类型(默认值是个人)
+				hasCommodityInfor:false,//商品的具体信息
+				carid:'',
 				serviceProValue:0,//商品信息的非整车内容（服务产品的数量）
+				extendedWarrantyProValue:0,//商品信息的非整车内容（延保产品的数量）
+				companyProValue:0,//商品信息的非整车内容（公司产品的数量）
+				packageProValue:0,//商品信息的非整车内容（套餐产品的数量）
+				agencySerValue:0,//商品信息的非整车内容（代办业务的数量）
+				cardSalesValue:0,//商品信息的非整车内容（卡券销售的数量）
+				followCarinfo:[
+					{//服务产品
+						categoryname:'服务产品',
+						prolist:[
+							{
+								name:'配件 | 侧护登车踏板(A-SUV)',
+								imgSrc:'',
+								proModel:'292039324',
+								salesUnit:'个人',
+								price:'2,000'
+							}
+						]	
+					},{//延保产品
+							categoryname:'延保产品',
+							prolist:[
+								{
+									name:'延保类型 | 中国人名财产保险股份有限公司江西省分公司南昌市分公超出…',
+									imgSrc:'',
+									institutionalSources:'机构来源内容超出一行显示…',
+									extendedWarrantyPro:'延保产品内容',
+									price:'2,000'
+								}
+							]
+					},{
+						categoryname:'公司产品',
+						prolist:[
+							{
+								name:'产品系列 | 产品名称',
+								imgSrc:'',
+								price:'2,000'
+							}
+						]
+					},{
+						categoryname:'套餐类型|套餐名称',
+						prolist:[
+							{
+								name:'产品系列 | 产品名称',
+								imgSrc:'',
+								price:'2,000'
+							}
+						]
+					},{
+						categoryname:'代办业务',
+						prolist:[
+							{
+								name:'收费类型 | 代办项目',
+								imgSrc:'',
+								price:'2,000'
+							}
+						]
+					},{
+							categoryname:'卡券销售',
+							prolist:[
+								{
+									name:'卡劵类型 | 卡券名称',
+									imgSrc:'',
+									price:'2,000'
+								}
+							]
+						
+					}
+					
+				]
 			}
 			},
 			onShow(object){
@@ -841,26 +961,19 @@
 					this.insurancevalue = res.insurancevalue;
 					console.log(this.insurancevalue)
 					// 无法操作data的数据，用缓存代替
-					// uni.setStorage({
-					//     key: 'insurancevalue',
-					//     data: res.insurancevalue,
-					//     success: function () {
-					//         console.log('success');
-					//     }
-					// });
 				    // 清除监听
 				    uni.$off('handClickgetInsurance');
 				})
 				
-				// uni.getStorage({
-				//     key: 'insurancevalue',
-				//     success: function (res) {
-				// 		this.insurancevalue = res.data;
-						
-				//     }
-				// });
-				
-				
+				//去商城页面获取选择的商品信息
+				uni.$on("handClickgetcarinfo", res => {
+				    console.log(res.carinfo);
+					this.carid = res.carid;
+					console.log(this.carid)
+					// 无法操作data的数据，用缓存代替
+				    // 清除监听
+				    uni.$off('handClickgetcarinfo');
+				})
 			},
 		    computed: {
 		        // 计算属性的 getter
@@ -881,6 +994,10 @@
 					this.hasinsurance = true;
 					this.getInsurance();
 					
+				},
+				carid(){
+					this.hasCommodityInfor = true;
+					// this.getInsurance();
 				}
 				
 			},
@@ -893,17 +1010,13 @@
 				paymentMethod(e){
 					console.log(e);//付款方式
 					this.paymentMethods = e;
-					switch (e){
-						case 'cash':
-							this.hasmortgage = false;
-							break;
-						case 'mortgage':
-							this.hasmortgage = true;
-							break;
-						case 'remit':
-							this.hasmortgage = false;
-							break;
-					}
+				},
+				//客户信息
+				selectCustomers(){
+					// 去客户列表页面
+					uni.navigateTo({
+					    url: '../customer-infor/customer-infor'
+					});
 				},
 				// 订单类型
 				orderType(e){
@@ -920,6 +1033,7 @@
 				orderSource(e){
 					console.log("车辆类型"+e);
 					this.orderSources = e;
+					
 				},
 				//客户类型
 				customerType(e){
@@ -927,16 +1041,14 @@
 					this.customerTypes = e;
 				},
 				//商品非整车（随车）
-				changenumber(type,value){
-					console.log(type);
-					console.log(value);
+				changenumber(type,value,name){
 					if(type==="reduce"&& value>0){//减少
-						// value--;
-						// this. = value--;
+						let values = value - 1;
+						this.$set(this,name,values);
+					}else if(type==="increase"){//增加
+						let values = value + 1;
+						this.$set(this,name,values);
 					}
-					// console.log(value)
-					// console.log(this.serviceProValue);
-					// console.log(value)
 				},
 				//保存订单
 				saveorder:function() {
@@ -1183,7 +1295,7 @@ page{
 								margin-bottom: 6upx;
 								.title{
 									display: inline-block;
-									width: 96upx;
+									width: 115upx;
 									color:#C3C3C3;
 									margin-right: 16upx;
 								}

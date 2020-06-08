@@ -1483,7 +1483,7 @@
 								margin-bottom: 6upx;
 								.title{
 									display: inline-block;
-									width: 96upx;
+									width: 115upx;
 									color:#C3C3C3;
 									margin-right: 16upx;
 								}

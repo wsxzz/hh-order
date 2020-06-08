@@ -38,12 +38,12 @@
 							<view class="edit-lists ordereditbtn" v-show="ordereditShow">
 								<text @click.stop="changeOrder(item.id)">变更订单</text>
 								<text @click.stop="changeOrder(item.id)">复制订单</text>
-								<view v-if="zsubStatus==='yes'">
+								<view v-if="screen==='yes'">
 									<text @click.stop="changeOrder(item.id)">追加订单</text>
 									<text @click.stop="changeOrder(item.id)">赠送订单</text>
 									<text @click.stop="changeOrder(item.id)">升级订单</text>
 								</view>
-								<view v-if="zsubStatus==='no'">
+								<view v-if="screen==='no'">
 								<text @click.stop="deleteOrder(item.id)">删除订单</text>
 								</view>
 							</view>
@@ -57,28 +57,19 @@
 </template>
 
 <script>
+	import consultantslists from '@/utils/mock/consultants-lists.json'//数据
 	import filter from '@/utils/filter.js'
 	export default {
 		props: {
-			zsubStatus: {//
+			screen: {//
 				type: String,
 				default: "no"
-			}
-		},
-		computed: {
-		    // switchStatus: function () {
-		    //   return this.status // 直接监听props里的status状态
-		    // }
-		},
-		watch: {
-			// zsubStatus(val) {
-			// 	console.log(val)
-			// }
-		},   
+			},
+		},  
 		data() {
 			return {
 				nodata:false,//暂无数据
-				subStatus:'on',//已提与未提按钮
+				screen:'',//已提与未提按钮
 				ordereditShow:false,
 				ordereditIndex:"",
 				consultantslists:[

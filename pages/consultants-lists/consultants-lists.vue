@@ -11,13 +11,25 @@
 				<uni-icons type="search" size="22" color="#666666" />
 				<text class="txt">输入搜索关键词</text>
 			</view>
-			<view class="main-right add center" @click="gosubmitorder">
-			    <text class="iconfont">&#xe66c;</text>
+			<view class="main-right add center" @click="add=!add">
+					<view class="iconfont">&#xe66c;</view>
+					
+			</view>
+			<!-- 下拉弹框 -->
+			<view v-show="add" class="dropdown">
+				<view class="options"  @click="gosubmitorder">
+					零售
+				</view>
+				<view class="options"  @click="goCollection">
+					收款申请单
+				</view>
+				<view class="options"  @click="goUsedcarevaluation">
+					二手车评估申请单
+				</view>
 			</view>
 		</hx-navbar>
-		
 		<!-- 筛选 -->
-		<view class="screen-bd" style="display: block;">
+		<view class="screen-bd">
 		<view class="screen-bd-in pad">
 			<view class="row ">
 			<view class="col-2">
@@ -55,9 +67,10 @@
 		</view>
 		<view class="mask" style="display: none;"></view>
 		</view>
+		
 		</view>
 		<!-- 顾问列表 -->
-		<consultants-lists @click="gocustodetail" />
+		<consultants-lists :screen="subStatus" @click="gocustodetail" />
 	</view>
 </template>
 
@@ -66,13 +79,30 @@
 		data() {
 			return {
 				subStatus:'',//已提与未提按钮
+				add:false,//头部的add按钮
 			}
 		},
 		methods: {
+			//新增订单
 			gosubmitorder(){
 				uni.navigateTo({
 				    url: "../submitorder/submitorder"
 				});
+				this.add = false;
+			},
+			//新增首款申请单
+			goCollection(){
+				uni.navigateTo({
+				    url: "../submitorder/submitorder"
+				});
+				this.add = false;
+			},
+			//新增二手车评估
+			goUsedcarevaluation(         ){
+				uni.navigateTo({
+				    url: "../submitorder/submitorder"
+				});
+				this.add = false;
 			},
 			gosearch(){
 				uni.navigateTo({
@@ -126,8 +156,25 @@
 				.iconfont{
 					font-size: 40upx;
 				}
+				
 			}
 			
+		}
+		.dropdown{
+			position: fixed;
+			top: 88upx;
+			right: 30upx;
+			width: 310upx;
+			background-color: #FFFFFF;
+			box-shadow: 10upx 5upx 5upx #F5F5F5;
+			border-radius: 10upx;
+			z-index: 10000;
+			.options{
+				color: #17212E;
+				font-size: 30upx;
+				padding: 18upx 30upx;
+				font-family: pingFangSC-regular;
+			}
 		}
 	}
 	.uni-navbar__header-btns-left{

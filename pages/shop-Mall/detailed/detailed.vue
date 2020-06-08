@@ -65,10 +65,14 @@
 		},
 		methods: {
 			// 立即添加
-			addcar(){
+			handClickgetcarinfo(){
 				// 跳回到信息填写页面
-				uni.redirectTo({
-				    url: '../../submitorder/submitorder'
+				// let carinfo = {
+				// 	"carid":"001"
+				// }
+				// uni.$emit("handClickgetcarinfo",carinfo);
+				uni.navigateBack({
+				    delta: 3
 				});
 			},
 		}
