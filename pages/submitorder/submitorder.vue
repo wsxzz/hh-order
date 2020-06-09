@@ -9,7 +9,7 @@
 			<view  slot="right" @click="saveorder">保存</view>
 		</hx-navbar>
 		</view>
-		<view class="baseinfo-content">
+		<view class="marB20">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
 					基本信息
@@ -20,9 +20,29 @@
 				</view>
 			</view>
 			
-			<view class="baseinfo-content commom-content">
+			<view class="marB20 commom-content">
 				<view class="content">
 					<view class="list">
+						<view class="cell row">
+							<view class="notesL">
+								订单类型
+							</view>
+							<view class="notesR right">
+								<button @click="orderType('vehicle')" :class="{'on': orderTypes==='vehicle'}" class="yybtn mini-btn" size="mini" type="default">整车</button>
+								<button @click="orderType('non-vehicle')" :class="{'on': orderTypes==='non-vehicle'}"  class="yybtn mini-btn" size="mini" type="default">非整车</button>
+							</view>
+						</view>
+						<view class="cell row">
+							<view class="notesL">
+								销售类型
+							</view>
+							<view class="notesR right turntootherpage">
+								<image class="icon-next" src="../../static/images/icons/icon-public-next.png" mode="widthFix"></image>
+								<picker @change="bindPickerChange" :value="salesTypeIndex" :range="salesTypeArray">
+									<view class="uni-input">{{salesTypeArray[salesTypeIndex]}}</view>
+								</picker>
+							</view>
+						</view>
 						<view class="cell row">
 							<view class="notesL">
 								付款方式
@@ -34,27 +54,8 @@
 							</view>
 						</view>
 						
-						<view class="cell row">
-							<view class="notesL">
-								销售类型
-							</view>
-							<view class="notesR right turntootherpage">
-								<image class="icon-next" src="../../static/images/icons/icon-public-next.png" mode="widthFix"></image>
-								<picker @change="bindPickerChange" :value="relationshipindex" :range="relationshiparray">
-									<view class="uni-input">{{relationshiparray[relationshipindex]}}</view>
-								</picker>
-							</view>
-						</view>
 						
-						<view class="cell row">
-							<view class="notesL">
-								订单类型
-							</view>
-							<view class="notesR right">
-								<button @click="orderType('vehicle')" :class="{'on': orderTypes==='vehicle'}" class="yybtn mini-btn" size="mini" type="default">整车</button>
-								<button @click="orderType('non-vehicle')" :class="{'on': orderTypes==='non-vehicle'}"  class="yybtn mini-btn" size="mini" type="default">非整车</button>
-							</view>
-						</view>
+						
 						<view class="cell row">
 							<view class="notesL">
 								车辆类型
@@ -74,6 +75,14 @@
 						</view>
 						<view class="cell row">
 							<view class="notesL">
+								活动名称
+							</view>
+							<view class="notesR right">
+								带入值
+							</view>
+						</view>
+						<view class="cell row">
+							<view class="notesL">
 								订单来源
 							</view>
 							<view class="notesR right">
@@ -82,14 +91,7 @@
 								<button @click="orderSource('deliveryAgent')" :class="{'on': orderSources==='deliveryAgent'}"  class="yybtn mini-btn" size="mini" type="default">代交车</button>
 							</view>
 						</view>
-						<view class="cell row">
-							<view class="notesL">
-								活动名称
-							</view>
-							<view class="notesR right">
-								带入值
-							</view>
-						</view>
+						
 						<view v-if="orderSources==='deliveryAgent'" class="cell row">
 							<view class="notesL Required">
 								<text class="Required-star">*</text>
@@ -145,7 +147,7 @@
 		</view>
 		
 		<!-- 客户信息 -->
-		<view class="customer-Infor">
+		<view  class="customer-Infor">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
 					客户信息
@@ -155,7 +157,7 @@
 					<image @click="selectCustomers" class="blueline-icons" src="../../static/images/icons/icon-Line-qiehuan.png" mode="widthFix"></image>
 				</view>
 			</view>
-			<view class="content">
+			<view v-if="customerInfordetail" class="content">
 				<view class="cell-headportrait row">
 					<view class="col-2 row">
 						<image class="character" src="../../static/images/character.png" mode="widthFix"></image>
@@ -172,7 +174,7 @@
 						客户电话
 					</view>
 					<view class="infoR col-2 right">
-						<input class="uni-input" value="18930766635" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+						<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
 					</view>
 				</view>
 				<view class="info row">
@@ -181,7 +183,7 @@
 						身份证号
 					</view>
 					<view class="infoR col-2 right">
-						<input class="uni-input" value="321027199304236728" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+						<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
 					</view>
 				</view>					
 				<view class="info row">
@@ -190,11 +192,12 @@
 						客户来源
 					</view>
 					<view class="infoR col-2 right">
-						<input class="uni-input" value="网络" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+						<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
 					</view>
 				</view>
 				<view class="info row">
-					<view class="infoL col-2 ">
+					<view class="infoL col-2 Required">
+						<text class="Required-star">*</text>
 						与车主关系
 					</view>
 					<view class="infoR col-2 right turntootherpage"><image class="icon-next" src="../../static/images/icons/icon-public-next.png" mode="widthFix"></image>
@@ -246,7 +249,7 @@
 			
 		</view>
 		<!-- 商品信息 -->
-		<view class="Commodity-infor">
+		<view class="Commodity-infor marB20">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
 					商品信息
@@ -256,7 +259,8 @@
 					<image @click="goshop" class="blueline-icons" src="../../static/images/icons/icon-public-more2.png" mode="widthFix"></image>
 				</view>
 			</view>
-			<view v-if="hasCommodityInfor" class="commom-content">
+			<!-- hasCommodityInfor -->
+			<view v-if="true" class="commom-content">
 				<view class="content">
 					<view class="optionaltitle">
 						<label>
@@ -346,7 +350,8 @@
 			</view>
 		</view>
 		<!-- 商品非整车信息 -->
-		<view  v-if="hasCommodityInfor" class="Commodity-infor-nonvehical" v-for="(items,x) in followCarinfo" :key="x">
+		<!-- hasCommodityInfor -->
+		<view  v-if="true" class="Commodity-infor-nonvehical marB20" v-for="(items,x) in followCarinfo" :key="x">
 			<view class="commom-content">
 				<view class="content">
 					<view class="optionaltitle">
@@ -442,6 +447,9 @@
 							<view class="row followCar">
 								<view class="col-2">
 									<text class="followCarbtn">随车</text>
+									
+									
+									<text  v-if="x===0 || x===2" class="stockinfo">库存 {{item.stock}}</text>
 								</view>
 								<view class="col-2 numberright">
 									<view class="number-box row">
@@ -477,7 +485,7 @@
 		<view class="Insurance-infor">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
-					保险信息
+					现保险信息
 					<text class="blueline"></text>
 				</view>
 				<view class="col-2 right">
@@ -486,10 +494,8 @@
 			</view>
 			
 			<view v-show="hasinsurance" class="">
-				<view class="Insurance-infor-title">				
-					<label>
-						<checkbox value="insuranceBtn" :checked="insuranceBtn"/><text> {{insurance.name}}</text>
-					</label>
+				<view class="Insurance-infor-title">	
+							{{insurance.name}}
 				</view>
 				<view class="Insurance-infor-list">
 					<view class="cell row">
@@ -547,11 +553,18 @@
 							<textarea value="snnskndkwl" placeholder="请填写" auto-height/>
 						</view>
 					</view>
+					<view class="row">
+						<view class="subtotal right">
+							<text class="subtotaltxt">小计</text>
+							<text class="subtotalicon">¥</text>
+							<text class="subtotalmoney">2,000</text>
+						</view>
+					</view>
 				</view>
 			</view>
 		</view>
 		<!-- 款项信息 -->
-		<view class="payment-infor">
+		<view class="payment-infor marB20">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
 					款项信息
@@ -559,22 +572,22 @@
 				</view>
 			</view>
 			<view class="commom-content">
-				<view class="content">
+				<view class="content marB20">
 					<view class="list">
 						<view class="cell row">
 							<view class="notesL">
 								订金方式
 							</view>
 							<view class="notesR right">
-								<button class="yybtn mini-btn" size="mini" type="default">全款</button>
-								<button class="yybtn mini-btn on" size="mini" type="default">订金</button>
-								<button class="yybtn mini-btn" size="mini" type="default">定金</button>
+								<button @click="depositMethod('fullPay')" :class="{'on': depositMethods==='fullPay'}" class="yybtn mini-btn" size="mini" type="default">全款</button>
+								<button @click="depositMethod('deposit1')" :class="{'on': depositMethods==='deposit1'}" class="yybtn mini-btn" size="mini" type="default">订金</button>
+								<button @click="depositMethod('deposit2')" :class="{'on': depositMethods==='deposit2'}" class="yybtn mini-btn" size="mini" type="default">定金</button>
 							</view>
 						</view>
 						
 						<view class="cell row">
 							<view class="notesL Required">
-								订金
+								{{depositMethods==='deposit2'? "定金" : "订金"}}
 							</view>
 							<view class="notesR right">
 								 <input class="uni-input" placeholder-style="color:#C3C3C3" placeholder="请填写" />
@@ -588,6 +601,10 @@
 								 <input class="uni-input" placeholder-style="color:#C3C3C3" placeholder="请填写" />
 							</view>
 						</view>
+					</view>
+					</view>
+					<view class="content">
+					<view class="list">
 						<view class="cell row">
 							<view class="notesL Required">
 								
@@ -648,34 +665,48 @@
 			</view>
 		</view>
 		<!-- 按揭项目 -->
-		<view v-if="paymentMethods==='mortgage'" class="mortgage-pro">
+		<view v-if="paymentMethods==='mortgage'" class="mortgage-pro marB20">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
 					按揭项目
 					<text class="blueline"></text>
 				</view>
-				<view class="col-2 right">
-					<image class="blueline-icons" src="../../static/images/icons/icon-Line-qiehuan.png" mode="widthFix"></image>
-				</view>
 			</view>
 			
+			<view class="commom-content marB20">
+				<view class="content">
+					<view class="list">
+						<view class="cell row">
+							<view class="notesL">
+								额度总计
+							</view>
+							<view class="notesR right">
+								¥100,000
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
 			<view class="commom-content">
 				<view class="content">
 					<view class="list">
+						<view class="cell split-title">
+							贷款信息
+						</view>
 						<view class="cell row">
 							<view class="notesL">
 								按揭类型
 							</view>
 							<view class="notesR right">
-								<button class="yybtn mini-btn on" size="mini" type="default">厂家</button>
-								<button class="yybtn mini-btn" size="mini" type="default">银行</button>
-								<button class="yybtn mini-btn" size="mini" type="default">其它</button>
+								<button  @click="mortgageType('manufactor')" :class="{'on': mortgageTypes==='manufactor'}" class="yybtn mini-btn" size="mini" type="default">厂家</button>
+								<button  @click="mortgageType('bank')" :class="{'on': mortgageTypes==='bank'}" class="yybtn mini-btn" size="mini" type="default">银行</button>
+								<button  @click="mortgageType('other')" :class="{'on': mortgageTypes==='other'}" class="yybtn mini-btn" size="mini" type="default">其它</button>
 							</view>
 						</view>
 						
 						<view class="cell row">
 							<view class="notesL">
-								机构名称
+								按揭机构
 							</view>
 							<view class="notesR right turntootherpage">
 								<image class="icon-next" src="../../static/images/icons/icon-public-next.png" mode="widthFix"></image>
@@ -690,29 +721,27 @@
 								机构来源
 							</view>
 							<view class="notesR right">
-								<button class="yybtn mini-btn on" size="mini" type="default">厂家</button>
-								<button class="yybtn mini-btn" size="mini" type="default">集团</button>
-								<button class="yybtn mini-btn" size="mini" type="default">单店</button>
+								<button  @click="institutionalSource('manufactor')" :class="{'on': institutionalSources==='manufactor'}"  class="yybtn mini-btn" size="mini" type="default">厂家</button>
+								<button  @click="institutionalSource('group')" :class="{'on': institutionalSources==='group'}"  class="yybtn mini-btn" size="mini" type="default">集团</button>
+								<button  @click="institutionalSource('singleStore')" :class="{'on': institutionalSources==='singleStore'}"  class="yybtn mini-btn" size="mini" type="default">单店</button>
 							</view>
 						</view>
 						<view class="cell row">
 							<view class="notesL">
-								按揭方式
+								首付比例
 							</view>
-							<view class="notesR right turntootherpage">
-								<image class="icon-next" src="../../static/images/icons/icon-public-next.png" mode="widthFix"></image>
-								<picker @change="bindPickerChange" :value="relationshipindex" :range="relationshiparray">
-									<view class="uni-input">{{mortgageMethodArray[relationshipindex]}}</view>
-								</picker>
+							<view class="notesR right unit">
+								<text class="icon-unit">%</text>
+								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
 							</view>
 						</view>
 						<view class="cell row">
-							<view class="notesL Required">
-								<text class="Required-star">*</text>
-								按揭金额
+							<view class="notesL">
+								贷款额度
 							</view>
-							<view class="notesR right">
-								 <input class="uni-input" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+							<view class="notesR right unit">
+								<text class="icon-unit">元</text>
+								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
 							</view>
 						</view>
 						<view class="cell row">
@@ -727,14 +756,25 @@
 							</view>
 						</view>
 						<view class="cell row">
-							<view class="notesL Required">
-								<text class="Required-star">*</text>
+							<view class="notesL">
 								按揭内容
 							</view>
 							<view class="notesR right">
-								 <input class="uni-input" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+								精品家装  整车
 							</view>
 						</view>
+						<view class="cell row">
+							<view class="notesL">
+								资质要求
+							</view>
+							<view class="notesR right turntootherpage">
+								<image class="icon-next" src="../../static/images/icons/icon-public-next.png" mode="widthFix"></image>
+								<picker @change="pickerChangeQualify" :value="qualificationRequireIndex" :range="qualificationRequireArray">
+									<view class="uni-input">{{qualificationRequireArray[qualificationRequireIndex]}}</view>
+								</picker>
+							</view>
+						</view>
+						
 						<view class="cell row">
 							<view class="notesL Required">
 								备注说明
@@ -749,18 +789,15 @@
 			</view>
 		</view>
 		<!-- 交付信息 -->
-		<view class="mortgage-pro">
+		<view class="marB20">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
 					交付信息
 					<text class="blueline"></text>
 				</view>
-				<view class="col-2 right">
-					<image class="blueline-icons" src="../../static/images/icons/icon-Line-qiehuan.png" mode="widthFix"></image>
-				</view>
 			</view>
 			
-			<view class="commom-content">
+			<view class="commom-content marB20">
 				<view class="content">
 					<view class="list">
 						<view class="cell row">
@@ -775,8 +812,7 @@
 							</view>
 						</view>
 						<view class="cell row">
-							<view class="notesL Required">
-								<text class="Required-star">*</text>
+							<view class="notesL">
 								交期备注
 							</view>
 							<view class="notesR right">
@@ -788,9 +824,9 @@
 								交付         
 							</view>
 							<view class="notesR right">
-								<button class="yybtn mini-btn on" size="mini" type="default">送货上门</button>
-								<button class="yybtn mini-btn" size="mini" type="default">展厅交付</button>
-								<button class="yybtn mini-btn" size="mini" type="default">邮寄</button>
+								<button  @click="deliveryMethod('doorstep')" :class="{'on': deliveryMethods==='doorstep'}" class="yybtn mini-btn" size="mini" type="default">送货上门</button>
+								<button  @click="deliveryMethod('exhibitionHall')" :class="{'on': deliveryMethods==='exhibitionHall'}" class="yybtn mini-btn" size="mini" type="default">展厅交付</button>
+								<button  @click="deliveryMethod('mail')" :class="{'on': deliveryMethods==='mail'}" class="yybtn mini-btn" size="mini" type="default">邮寄</button>
 							</view>
 						</view>
 						<view class="cell row">
@@ -798,22 +834,21 @@
 								地址类型
 							</view>
 							<view class="notesR right">
-								<button class="yybtn mini-btn on" size="mini" type="default">家庭</button>
-								<button class="yybtn mini-btn" size="mini" type="default">公司</button>
-								<button class="yybtn mini-btn" size="mini" type="default">其他</button>
+								<button @click="addressType('family')" :class="{'on': addressTypes==='family'}"  class="yybtn mini-btn" size="mini" type="default">家庭</button>
+								<button @click="addressType('company')" :class="{'on': addressTypes==='company'}"   class="yybtn mini-btn" size="mini" type="default">公司</button>
+								<button @click="addressType('other')" :class="{'on': addressTypes==='other'}"   class="yybtn mini-btn" size="mini" type="default">其他</button>
 							</view>
 						</view>
 						<view class="cell row">
-							<view class="notesL Required">
+							<view class="addressL">
 								取/送货地址
 							</view>
-							<view class="notesR right">
-								 <textarea value="备注两排效果备注两排效果备注两排效果备注两排效果" placeholder="请输入" />
+							<view class="addressR right">
+								 <textarea auto-height="96upx" value="备注两排效果备注两排效果备注两排效果备注两排效果" placeholder="" />
 							</view>
 						</view>
 						<view class="cell row">
-							<view class="notesL Required">
-								<text class="Required-star">*</text>
+							<view class="notesL">
 								邮编
 							</view>
 							<view class="notesR right">
@@ -825,24 +860,64 @@
 								联系人
 							</view>
 							<view class="notesR right">
-								<button class="yybtn mini-btn on" size="mini" type="default">客户</button>
-								<button class="yybtn mini-btn" size="mini" type="default">其他</button>
+								<button @click="contacts('customer')" :class="{'on': contactsman==='customer'}"  class="yybtn mini-btn" size="mini" type="default">客户</button>
+								<button @click="contacts('other')" :class="{'on': contactsman==='other'}"  class="yybtn mini-btn" size="mini" type="default">其他</button>
 							</view>
 						</view>
 						
 					</view>
 				</view>
 			</view>
+			<view class="commom-content">
+				<view class="content">
+					<view class="list">
+						<view class="cell split-title">
+							其他约定
+						</view>
+						<view class="cell row">
+							<view class="notesL">
+								与客户约定
+							</view>
+							<view class="notesR right">
+								<button @click="hasAgreement('yes')" :class="{'on': agreement==='yes'}"  class="yybtn mini-btn" size="mini" type="default">有</button>
+								<button @click="hasAgreement('no')" :class="{'on': agreement==='no'}"  class="yybtn mini-btn" size="mini" type="default">无</button>
+							</view>
+						</view>
+						<view class="cell row">
+							<view class="notesL">
+								备注
+							</view>
+						</view>
+						<view class="cell">
+							<textarea value="" width="100%"  maxlength="128" placeholder="请输入内容 (最多128个字)"/>
+						</view>
+						<view class="cell row">
+							<view class="notesL">
+								二手车置换
+							</view>
+							<view class="notesR right">
+								<button @click="hasUsedCar('yes')" :class="{'on': usedCar==='yes'}"   class="yybtn mini-btn" size="mini" type="default">有</button>
+								<button @click="hasUsedCar('no')" :class="{'on': usedCar==='no'}"   class="yybtn mini-btn" size="mini" type="default">无</button>
+							</view>
+						</view>
+						<view class="cell row">
+							<view class="notesL">
+								备注
+							</view>
+						</view>
+						<view class="cell">
+							<textarea value="" width="100%"  maxlength="128" placeholder="请输入内容 (最多128个字)"/>
+						</view>
+					</view>
+				</view>
+			</view>
 		</view>
 		<!-- 发票信息 -->
-		<view class="invoice-infor">
+		<view class="invoice-infor marB20">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
 					发票信息
 					<text class="blueline"></text>
-				</view>
-				<view class="col-2 right">
-					<image class="blueline-icons" src="../../static/images/icons/icon-Line-qiehuan.png" mode="widthFix"></image>
 				</view>
 			</view>
 			<view class="commom-content">
@@ -850,18 +925,68 @@
 					<view class="list">
 						<view class="cell row">
 							<view class="notesL">
-								机动车发票
+								发票总额
 							</view>
 							<view class="notesR right">
-								<button class="yybtn mini-btn on" size="mini" type="default">厂家</button>
-								<button class="yybtn mini-btn" size="mini" type="default">集团</button>
-								<button class="yybtn mini-btn" size="mini" type="default">单店</button>
+								¥100,000
 							</view>
 						</view>
+					<view class="cell row">
+						<view class="notesL">
+							机动车发票
+						</view>
+						<view class="notesR right">
+							<button @click="HasVehicleInvoice('yes')" :class="{'on': vehicleInvoice==='yes'}"   class="yybtn mini-btn" size="mini" type="default">是</button>
+							<button @click="HasVehicleInvoice('no')" :class="{'on': vehicleInvoice==='no'}"   class="yybtn mini-btn" size="mini" type="default">否</button>
+						</view>
+					</view>
+					<view class="cell row">
+							<view class="notesL">
+								普通发票
+							</view>
+							<view class="notesR right">
+								<button @click="HasGeneralInvoice('yes')" :class="{'on': generalInvoice==='yes'}"  class="yybtn mini-btn" size="mini" type="default">是</button>
+								<button @click="HasGeneralInvoice('no')" :class="{'on': generalInvoice==='no'}"  class="yybtn mini-btn" size="mini" type="default">否</button>
+							</view>
+					</view>
+					
 					</view>
 				</view>
 			</view>
 		</view>
+		<!-- 底部按钮 -->
+		<view class="bottomgroup">
+			<view class="row bottom-price">
+				<view class="col-2">
+					<view class="total">
+						合计 <text class="price-icon">¥</text>
+						<text class="price">1,320,000</text>
+					</view>
+					<view class="discount">
+						优惠金额¥200
+					</view>
+				</view>
+				<view class="col-2 right category">
+						商品种类: <text>4</text> 商品数量: <text>6</text>
+				</view>
+			</view>
+			<view class="row bottomgroupbtns">
+				<view class="col-2 selectAllbtn">
+					<label>
+						<checkbox value="SelectAll" checked="true"/><text class="txt">全选</text>
+					</label>
+				</view>
+				<view class="col-2 row ">
+					<view class="deletebtn">
+						删除
+					</view>
+					<view class="comfirmbtn">
+						确定
+					</view>
+				</view>
+			</view>
+		</view>
+		
 	</view>
 </template>
 
@@ -874,16 +999,31 @@
 				insuranceBtn:false,//保险按钮
 				hasinsurance:false,
 				relatedOldOrder:false,//关联原有订单
+				customerInfordetail:true,//客户信息
 				title: 'picker',
+				salesTypeArray:[],//销售类型
+				salesTypeIndex: 0,
 				relationshiparray: ['本人','夫妻','亲戚','朋友','同事'],
-				mortgageMethodArray:["等额本息还款","等额本金还款","其他"],
 				relationshipindex: 0,
+				mortgageMethodArray:["等额本息还款","等额本金还款","其他"],
+				qualificationRequireArray:['身份证','居住证','银行流水','房产'],//资质要求
+				qualificationRequireIndex:0,
 				time: '12:01',
 				paymentMethods:'cash',//付款方式（默认现金-cash）
 				orderTypes:'vehicle',//订单类型（默认值是整车）
 				vehicleTypes:'conventional',//车辆类型(默认值是常规)
 				orderSources:'offline',//订单来源(默认值是线下)
 				customerTypes:'personal',//客户类型(默认值是个人)
+				mortgageTypes:'bank',//按揭类型
+				institutionalSources:"manufactor",//机构来源
+				depositMethods:'deposit1',
+				deliveryMethods:'exhibitionHall',
+				addressTypes:'family',//地址类型
+				contactsman:'customer',//联系人
+				agreement:'no',//与客户约定
+				usedCar:'no',//二手车置换
+				vehicleInvoice:'no',//机动车发票
+				generalInvoice:'no',//普通发票
 				hasCommodityInfor:false,//商品的具体信息
 				carid:'',
 				serviceProValue:0,//商品信息的非整车内容（服务产品的数量）
@@ -900,6 +1040,7 @@
 								name:'配件 | 侧护登车踏板(A-SUV)',
 								imgSrc:'',
 								proModel:'292039324',
+								stock:'27',
 								salesUnit:'个人',
 								price:'2,000'
 							}
@@ -921,6 +1062,7 @@
 							{
 								name:'产品系列 | 产品名称',
 								imgSrc:'',
+								stock:'33',
 								price:'2,000'
 							}
 						]
@@ -1005,15 +1147,6 @@
 				
 			},
 		    methods: {
-				checkBox(e){
-					console.log(e+"-----"+this.insuranceBtn);
-					
-				},
-				//付款方式
-				paymentMethod(e){
-					console.log(e);//付款方式
-					this.paymentMethods = e;
-				},
 				//客户信息
 				selectCustomers(){
 					// 去客户列表页面
@@ -1021,11 +1154,15 @@
 					    url: '../customer-infor/customer-infor'
 					});
 				},
+				//付款方式
+				paymentMethod(e){
+					console.log(e);//付款方式
+					this.paymentMethods = e;
+				},
 				// 订单类型
 				orderType(e){
 					console.log("订单类型：是否是整车"+e);
 					this.orderTypes = e;
-					
 				},
 				//车辆类型
 				vehicleType(e){
@@ -1036,12 +1173,61 @@
 				orderSource(e){
 					console.log("车辆类型"+e);
 					this.orderSources = e;
-					
 				},
 				//客户类型
 				customerType(e){
 					console.log("客户类型"+e);
 					this.customerTypes = e;
+				},
+				//定金方式
+				depositMethod(e){
+					console.log("定金方式"+e);
+					this.depositMethods = e;
+				},
+				//交付方式
+				deliveryMethod(e){
+					console.log("交付方式"+e);
+					this.deliveryMethods = e;
+				},
+				//地址类型
+				addressType(e){
+					console.log("地址类型"+e);
+					this.addressTypes = e;
+				},
+				//联系人
+				contacts(e){
+					console.log("联系人"+e);
+					this.contactsman = e;
+				},
+				//与客户约定
+				hasAgreement(e){
+					console.log("与客户约定"+e);
+					this.agreement = e;
+				},
+				//按揭类型
+				mortgageType(e){
+					console.log("按揭类型"+e);
+					this.mortgageTypes = e;
+				},
+				//机构来源
+				institutionalSource(e){
+					console.log("机构来源"+e);
+					this.institutionalSources = e;
+				},
+				//二手车置换
+				hasUsedCar(e){
+					console.log("二手车置换"+e);
+					this.usedCar = e;
+				},
+				//机动车发票
+				HasVehicleInvoice(e){
+					console.log("机动车发票"+e);
+					this.vehicleInvoice = e;
+				},
+				//普通发票
+				HasGeneralInvoice(e){
+					console.log("普通发票"+e);
+					this.generalInvoice = e;
 				},
 				//商品非整车（随车）
 				changenumber(type,value,name){
@@ -1055,7 +1241,6 @@
 				},
 				//保存订单
 				saveorder:function() {
-					
 					// 返回列表页面
 					uni.navigateTo({
 					    url: '../consultants-lists/consultants-lists'
@@ -1092,36 +1277,14 @@
 		            console.log('picker发送选择改变，携带值为', e.target.value)
 		            this.relationshipindex = e.target.value
 		        },
-		        change01: function(e) {
-					console.log(e)
-		            // this.date = e.target.value
-		        },
-		        bindTimeChange: function(e) {
-		            this.time = e.target.value
-		        },
-				
-		        getDate(type) {
-		            const date = new Date();
-		            let year = date.getFullYear();
-		            let month = date.getMonth() + 1;
-		            let day = date.getDate();
-		
-		            if (type === 'start') {
-		                year = year - 60;
-		            } else if (type === 'end') {
-		                year = year + 2;
-		            }
-		            month = month > 9 ? month : '0' + month;;
-		            day = day > 9 ? day : '0' + day;
-		            return `${year}-${month}-${day}`;
-		        }
+				//资质要求
+				pickerChangeQualify: function(e) {
+				    console.log('picker发送选择改变，携带值为', e.target.value)
+				    this.qualificationRequireIndex = e.target.value
+				},
 		    },
 			mounted() {
-					let that = this;
-					that.$nextTick(function () {
-						//是经理还是顾问
-					  
-					})
+				
 			}
 	}
 </script>
@@ -1130,435 +1293,5 @@
 page{
 	background-color: #F5F5F5;
 }
-.blueline-title{
-		background-color: #FFFFFF;
-		border-bottom: 1upx solid #F5F5F5;
-		padding: 18upx 0;
-		padding-left: 50upx;
-		padding-right: 30upx;
-		position: relative;
-		color: #17212E;
-		font-family: pingFangSC-Medium;
-		.blueline-infor{
-			font-size: 34upx;
-			height: 48upx;
-			line-height: 48upx;
-		}
-		.blueline{
-			position: absolute;
-			top: 24upx;
-			left: 30upx;
-			width: 6upx;
-			height: 33upx;
-			border-radius: 3upx;
-			background-color: #1371F7;
-		}
-		.blueline-icons{
-			width: 48upx;
-			height: 48upx;
-		}
-	}
-.submitorder-content{
-	color: #17212E;
-	font-size: 30upx;
-	uni-button[size=mini].yybtn{
-		padding: 0 22upx;
-		font-size: 30upx;
-		height: 50upx;
-		line-height: 50upx;
-		border-radius: 50upx;
-		background-color: #F9F9F9;
-	}
-	uni-button[size=mini].yybtn+ uni-button[size=mini].yybtn{
-		margin-left: 20upx;
-	}
-	uni-button[size=mini].yybtn:after{
-		border: none;
-	}
-	uni-button[size=mini].on{
-		color: #1371F7;
-		background:rgba(19,113,247,0.08);
-		font-family: pingFangSC-Medium;
-	}
-	.turntootherpage,.unit{
-		position: relative;
-		padding-right: 46upx;
-		color: #70767F;
-		.icon-unit{
-			display: block;
-			position: absolute;
-			top: 0;
-			right: 0;
-			font-size:30upx ;
-			color: #70767F;
-			width: 40upx;
-			line-height: 38upx;
-			height: 38upx;
-		}
-		.icon-next,.icon-unit{
-			display: block;
-			position: absolute;
-			top: 4upx;
-			right: 0;
-			width: 40upx;
-			height: 38upx;
-			
-		}
-	}
-	
-	.uni-input{
-		padding: 0;
-		font-size: 30upx;
-	}
-	.commom-content{
-		.notesL{
-			width: 22%;
-			font-size: 30upx;
-		}
-		.Required{
-			position: relative!important;
-			.Required-star{
-				position: absolute!important;
-				top: 0upx!important;
-				left: -20upx!important;
-				color: red!important;
-			}
-		}
-		.notesR{
-			font-size: 30upx;
-			width: 78%;
-		}
-		.notesR{
-			uni-textarea{
-				width: 500upx;
-				height: auto;
-			}
-			
-		}
-		.content{
-			background-color: #FFFFFF;
-			padding: 0 30upx;
-			.optionaltitle{
-				padding:10upx 0 ;
-				border-bottom: 1upx solid #F5F5F5;
-				.txt{
-					color: #70767F;
-					font-size: 26upx;
-					margin-left:32upx ;
-				}
-			}
-			.list{
-				.cell{
-					
-					padding: 28upx 0;
-					border-bottom: 1upx solid #EFEFEF;
-				}
-				.cell:last-child{
-					border: none;
-				}
-				.remarks{
-					color: #70767F;
-					font-size: 20upx;
-				}
-			}
-			// 客户订单明细*****商品信息
-			.goodsinfolist{
-				background-color: #FFFFFF;
-				padding-top: 24upx;
-				padding-left: 80upx;
-				position: relative;
-				.checkboxs{
-					position: absolute;
-					left: 0;
-					top: 64upx;
-					width: 44upx;
-					height: 44upx;
-				}
-					.newcarcell_f{
-						margin-bottom: 26upx;
-						border-bottom: 1upx solid #F9F9F9;
-						.goodavatar{
-							width:156upx;
-							height: 116upx;
-							overflow: hidden;
-							-webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center;
-						}
-						.carinfo{
-							width:610upx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: flex-start;align-items: flex-start;
-							.carname{
-								font-size: 26upx;
-								color: #17212E;	
-								line-height: 36upx;
-								margin-bottom: 14upx;
-							}
-							.listinfo{
-								font-size: 24upx;
-								color: #70767F;
-								font-family: pingFangSC-regular;
-								margin-bottom: 6upx;
-								.title{
-									display: inline-block;
-									width: 115upx;
-									color:#C3C3C3;
-									margin-right: 16upx;
-								}
-							}
-							
-						}		
-					}
-				
-				
-				
-			}
-			
-		}
-	}
-	// 基本信息
-	.baseinfo-content{
-		margin-bottom: 20upx;
-	}
-	// 关联原有订单
-	.related-old-order{
-		background-color: #FFFFFF;
-		margin-bottom:20upx;
-		.headtitle{
-			padding: 24upx 30upx;
-			border-bottom:1upx solid #F5F5F5 ;
-			.headtitleL{
-				font-size: 30upx;
-				color: #17212E;
-				height: 48upx;
-				line-height: 48upx;
-			}
-			.icon-qiehuan{
-				height: 48upx;
-				width: 48upx;
-			}
-			
-		}
 		
-		.old-order-list{
-			color: #17212E;
-			.cell-1{
-				width: 100%;
-				height: 40upx;
-				margin-bottom: 24upx;
-				.ordernum{
-					float: left;
-					font-size: 26upx;
-				}
-				.orderstate{
-					float: right;
-					font-size: 26upx;
-					color: #F57C40;
-				}
-			}
-			.name{
-				font-family: pingFangSC-Medium;
-				margin-bottom: 16upx;
-				font-size: 34upx;
-			}
-			.carinfo{
-				font-size: 30upx;
-				margin-bottom: 24upx;
-				line-height: 42upx;	
-			}
-			.shopnums{
-				width: 100%;
-				height: 30upx;	
-				.nums{
-					float: left;
-					color: #70767F;
-					font-size: 26upx;
-					.num{
-						color: #17212E;
-					}
-				}
-				.date{
-					float: right;
-					font-size: 24upx;
-					color: #C3C3C3;
-				}
-			}
-		}
-		
-	}
-	
-	//客户信息
-	.customer-Infor{
-		background-color: #FFFFFF;
-		margin-bottom: 20upx;
-		.content{
-			padding: 0 30upx;
-			.cell-headportrait{
-				padding: 32upx 0;
-				border-bottom: 1upx solid #F5F5F5;
-				.character{
-					display: block;
-					width: 84upx;
-					height: 84upx;
-					border-radius: 50%;
-					margin-right: 20upx;
-				}
-				.name{
-					height: 84upx;
-					line-height: 84upx;
-					color: #17212E;
-					font-size: 34upx;
-					font-family: pingFangSC-Medium;
-				}
-			}
-			.info{
-				padding-top:26upx ;
-				padding-bottom:28upx ;
-				border-bottom: 1upx solid #F5F5F5;
-				.infoL{
-					color: #70767F;
-					font-size: 30upx;
-				}
-				.infoR{
-					color: #17212E;
-					font-size: 30upx;
-				}
-				.addressL{
-					width: 30%;
-				}
-				.Required{
-					position: relative!important;
-					.Required-star{
-						position: absolute!important;
-						top: 0upx!important;
-						left: -20upx!important;
-						color: red!important;
-					}
-				}
-				.addressR{
-					width: 70%;
-				}
-			}
-			.ownerinfo{
-				color: #17212E;
-				font-size: 26upx;
-				.title{
-					padding: 18upx 0;
-					border-bottom: 1upx solid #F5F5F5;
-				}
-				.list{
-					padding-top:26upx ;
-					.cell{
-						padding-bottom: 22upx;
-						.cellL{
-							color: #70767F;
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	//商品信息
-	.Commodity-infor{
-		margin-bottom: 20upx;
-	}
-	.Commodity-infor-nonvehical{
-		margin-bottom: 20upx;
-		.followCar{
-			padding-top: 60upx;
-			padding-bottom: 34upx;
-			border-bottom: 1upx solid #EFEFEF;
-		}
-		.followCarbtn{
-			display: inline-block;
-			width: 60upx;
-			height: 32upx;
-			line-height: 32upx;
-			text-align: center;
-			color: #C3C3C3;
-			font-size: 22upx;
-			border-radius: 4upx;
-			border: 1upx solid #E1E1E1;
-		}
-		.subtotal{
-			width: 100%;
-			padding: 18upx 0;
-			.subtotaltxt{
-				color: #70767F;
-				font-size: 20upx;
-				margin-right: 8upx;
-			}
-			.subtotalicon{
-				color: #F57C40;
-				font-size: 20upx;
-			}
-			.subtotalmoney{
-				color: #F57C40;
-				font-size: 34upx;
-			}
-		}
-		// 数字加减器
-		.number-box{
-			width: 170upx;
-			height: 44upx;
-			border: 2upx solid #E1E1E1;
-			border-radius: 2upx;
-			.reduce,.increase{
-				width: 50upx;
-				height: 42upx;
-				line-height: 42upx;
-				text-align: center;
-				.iconfont{
-					font-size:30upx ;
-					color: #17212E;
-				}
-			}
-			.numberbox{
-				font-size:26upx ;
-				color: #17212E;
-				width: 70upx;
-				text-align: center;
-				height: 42upx;
-				line-height: 42upx;
-				border-left: 2upx solid #E1E1E1;
-				border-right: 2upx solid #E1E1E1;
-			}
-		}
-	}
-	
-	//商品信息
-	.Insurance-infor{
-		background-color: #FFFFFF;
-		margin-bottom: 20upx;
-		.Insurance-infor-title{
-			padding: 22upx 30upx;
-			border-bottom: 1upx solid #EFEFEF;
-		}
-		.Insurance-infor-list{
-			padding-left:100upx ;
-			box-sizing: border-box;
-			.cell{
-				padding: 18upx 30upx;
-				border-bottom: 1upx solid #F5F5F5;
-				uni-view{
-					font-size: 26upx;
-				}
-				.cellR{
-					font-size: 30upx;
-					color: #70767F;
-				}
-				.tax-rate{
-					color: #70767F;
-				}
-				.view-policy{
-					color: #1371F7;
-				}
-			}
-		}
-	}
-}
-.payment-infor{
-	margin-bottom: 20upx;
-}
-.mortgage-pro{
-	margin-bottom: 20upx;
-}
 </style>

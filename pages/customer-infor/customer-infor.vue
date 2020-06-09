@@ -117,10 +117,13 @@
 				height: 84upx;
 				border-radius: 50%;
 				overflow: hidden;
-				// border: 1px solid #E80080;
 			}
 			.userinfo{
-				width:610upx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: flex-start;align-items: flex-start;
+				width:610upx;
+				-webkit-justify-content: center;
+				justify-content: center;
+				-webkit-align-items: flex-start;
+				align-items: flex-start;
 				.username{
 					font-size: 34upx;
 					color: #17212E;	

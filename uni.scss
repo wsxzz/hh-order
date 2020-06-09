@@ -74,3 +74,540 @@ $uni-color-subtitle: #555555; // 二级标题颜色
 $uni-font-size-subtitle:36rpx;
 $uni-color-paragraph: #3F536E; // 文章段落颜色
 $uni-font-size-paragraph:30rpx;
+ 
+/* -----------------------------------订单公共样式---------------------------------- */
+/* 文字尺寸 */
+$yy-order-font-size-sm:26upx;
+$yy-order-font-size-base:30upx;
+$yy-order-font-size-lg:34upx;
+/* 背景颜色 */
+$yy-order-bg-color:#ffffff;
+$yy-order-bg-color-grey:#f8f8f8;
+
+/* 文字颜色 */
+$yy-order-txt-base:#17212E;
+$yy-order-txt-blue:#1371F7;
+$yy-order-txt-grey:#70767F;
+$yy-order-txt-orange:#F57C40;
+
+// 浅灰色分割底线
+$yy-order-border-bottom: 1upx solid  #EFEFEF;
+
+// 订单填写页面
+.submitorder-content{
+	color: $yy-order-txt-base;
+	font-size: $yy-order-font-size-base;
+	// 基本的input
+	.uni-input{
+		padding: 0;
+		font-size: $yy-order-font-size-base;
+	}
+	// 蓝色竖杠标题
+	.blueline-title{
+		background-color: #FFFFFF;
+		border-bottom: $yy-order-border-bottom;
+		padding: 18upx 0;
+		padding-left: 50upx;
+		padding-right: 30upx;
+		position: relative;
+		color: $yy-order-txt-base;
+		font-family: pingFangSC-Medium;
+		.blueline-infor{
+			font-size: 34upx;
+			height: 48upx;
+			line-height: 48upx;
+		}
+		.blueline{
+			position: absolute;
+			top: 24upx;
+			left: 30upx;
+			width: 6upx;
+			height: 33upx;
+			border-radius: 3upx;
+			background-color: $yy-order-txt-blue;
+		}
+		.blueline-icons{
+			width: 48upx;
+			height: 48upx;
+		}
+	}
+	//选择按钮基本样式
+	uni-button[size=mini].yybtn{
+		padding: 0 22upx;
+		font-size: $yy-order-font-size-base;
+		height: 50upx;
+		line-height: 50upx;
+		border-radius: 50upx;
+		background-color: #F9F9F9;
+	}
+	uni-button[size=mini].yybtn+ uni-button[size=mini].yybtn{
+		margin-left: 20upx;
+	}
+	uni-button[size=mini].yybtn:after{
+		border: none;
+	}
+	uni-button[size=mini].on{
+		color: $yy-order-txt-blue;
+		background:rgba(19,113,247,0.08);
+		font-family: pingFangSC-Medium;
+	}
+	//订单底部
+	.bottomgroup{
+		.bottom-price{
+			background-color: #FFFFFF;
+			border-bottom: $yy-order-border-bottom;
+			padding: 20upx 30upx;
+			.total{
+				color: $yy-order-txt-grey;
+				font-size: 20upx;
+				.price-icon{
+					margin-left: 8upx;
+					color: $yy-order-txt-orange;
+				}
+				.price{
+					font-size:$yy-order-font-size-lg ;
+					color: $yy-order-txt-orange;
+					font-family: pingFangSC-Medium;
+				}
+			}
+			.discount{
+				color: #262626;
+			}
+			.category{
+				color: $yy-order-txt-grey;
+				font-size:24upx ;
+				.check{
+					margin-left: 16upx;
+					color: $yy-order-txt-blue;
+					font-size:24upx ;
+				}
+			}
+		}
+			
+		.bottomgroupbtns{
+			background-color: #FFFFFF;
+			
+			.selectAllbtn{
+				height: 98upx;
+				line-height: 98upx;
+				padding-left: 30upx;
+				font-size: $yy-order-font-size-base;
+			}
+			.deletebtn{
+				width: 40%;
+				text-align: center;
+				background-color: #F9F9F9;
+				color:$yy-order-txt-base ;
+				font-size: $yy-order-font-size-lg;
+				height: 98upx;
+				line-height: 98upx;
+			}
+			.comfirmbtn{
+				width: 60%;
+				text-align: center;
+				background-color: $yy-order-txt-blue;
+				color:#FFFFFF ;
+				font-size:$yy-order-font-size-lg;
+				height: 98upx;
+				line-height: 98upx;
+			}
+		}
+	}
+	// 基本样式
+	.commom-content{
+		.content{
+			background-color: $yy-order-bg-color;
+			padding: 0 30upx;
+			
+			// 带chekbox的标题
+			.optionaltitle{
+				padding:10upx 0 ;
+				border-bottom: $yy-order-border-bottom;
+				.txt{
+					color: $yy-order-txt-grey;
+					font-size: 26upx;
+					margin-left:32upx ;
+				}
+			}
+			// 基本list
+			.list{
+				// 专用分割标题
+				.split-title{
+					color: $yy-order-txt-grey;
+					font-size: 26upx;
+				}
+				.cell{
+					padding: 28upx 0;
+					border-bottom: $yy-order-border-bottom;
+					// 基本
+					.notesL{
+						width: 22%;
+						font-size: $yy-order-font-size-base;
+					}
+					.notesR{
+						font-size: $yy-order-font-size-base;
+						width: 78%;
+					}
+					// 地址
+					.addressL{
+						width: 24%;
+						font-size: $yy-order-font-size-base;
+					}
+					.addressR{
+						width: 76%;
+						box-sizing: border-box;
+						font-size: $yy-order-font-size-base;
+					}
+					// 必填
+					.Required{
+						position: relative!important;
+						.Required-star{
+							position: absolute!important;
+							top: 0upx!important;
+							left: -20upx!important;
+							color: red!important;
+						}
+					}
+				}
+				.cell:last-child{
+					border: none;
+				}
+				.remarks{
+					color: $yy-order-txt-grey;
+					font-size: 20upx;
+				}	
+			}	
+		}
+	}
+	// 右边箭头
+	.turntootherpage,.unit{
+		position: relative;
+		padding-right: 46upx;
+		color: $yy-order-txt-grey;
+		.icon-unit{
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			font-size:$yy-order-font-size-base;
+			color: $yy-order-txt-grey;
+			width: 40upx;
+			line-height: 38upx;
+			height: 38upx;
+		}
+		.icon-next,.icon-unit{
+			display: block;
+			position: absolute;
+			top: 4upx;
+			right: 0;
+			width: 40upx;
+			height: 38upx;
+		}
+	}	
+
+	// 客户订单明细*****商品信息
+	.goodsinfolist{
+		background-color: #FFFFFF;
+		padding-top: 24upx;
+		padding-left: 80upx;
+		position: relative;
+		.checkboxs{
+			position: absolute;
+			left: 0;
+			top: 64upx;
+			width: 44upx;
+			height: 44upx;
+		}
+		.newcarcell_f{
+			margin-bottom: 26upx;
+			border-bottom: 1upx solid #F9F9F9;
+			.goodavatar{
+				width:156upx;
+				height: 116upx;
+				overflow: hidden;
+				-webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center;
+			}
+			.carinfo{
+				width:610upx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: flex-start;align-items: flex-start;
+				.carname{
+					font-size: 26upx;
+					color: #17212E;	
+					line-height: 36upx;
+					margin-bottom: 14upx;
+				}
+				.listinfo{
+					font-size: 24upx;
+					color: #70767F;
+					font-family: pingFangSC-regular;
+					margin-bottom: 6upx;
+					.title{
+						display: inline-block;
+						width: 115upx;
+						color:#C3C3C3;
+						margin-right: 16upx;
+					}
+				}
+			}		
+		}
+	}
+	
+	// 关联原有订单
+	.related-old-order{
+		background-color: #FFFFFF;
+		margin-bottom:20upx;
+		.headtitle{
+			padding: 24upx 30upx;
+			border-bottom:1upx solid #F5F5F5 ;
+			.headtitleL{
+				font-size: 30upx;
+				color: #17212E;
+				height: 48upx;
+				line-height: 48upx;
+			}
+			.icon-qiehuan{
+				height: 48upx;
+				width: 48upx;
+			}
+			
+		}
+		
+		.old-order-list{
+			color: #17212E;
+			.cell-1{
+				width: 100%;
+				height: 40upx;
+				margin-bottom: 24upx;
+				.ordernum{
+					float: left;
+					font-size: 26upx;
+				}
+				.orderstate{
+					float: right;
+					font-size: 26upx;
+					color: #F57C40;
+				}
+			}
+			.name{
+				font-family: pingFangSC-Medium;
+				margin-bottom: 16upx;
+				font-size: 34upx;
+			}
+			.carinfo{
+				font-size: 30upx;
+				margin-bottom: 24upx;
+				line-height: 42upx;	
+			}
+			.shopnums{
+				width: 100%;
+				height: 30upx;	
+				.nums{
+					float: left;
+					color: #70767F;
+					font-size: 26upx;
+					.num{
+						color: #17212E;
+					}
+				}
+				.date{
+					float: right;
+					font-size: 24upx;
+					color: #C3C3C3;
+				}
+			}
+		}
+		
+	}
+	
+	//客户信息
+	.customer-Infor{
+		background-color: #FFFFFF;
+		margin-bottom: 20upx;
+		.content{
+			padding: 0 30upx;
+			.cell-headportrait{
+				padding: 32upx 0;
+				border-bottom: 1upx solid #F5F5F5;
+				.character{
+					display: block;
+					width: 84upx;
+					height: 84upx;
+					border-radius: 50%;
+					margin-right: 20upx;
+				}
+				.name{
+					height: 84upx;
+					line-height: 84upx;
+					color: #17212E;
+					font-size: 34upx;
+					font-family: pingFangSC-Medium;
+				}
+			}
+			.info{
+				padding-top:26upx ;
+				padding-bottom:28upx ;
+				border-bottom: 1upx solid #F5F5F5;
+				.infoL{
+					color: #70767F;
+					font-size: 30upx;
+				}
+				.infoR{
+					color: #17212E;
+					font-size: 30upx;
+				}
+				.addressL{
+					width: 30%;
+				}
+				.Required{
+					position: relative!important;
+					.Required-star{
+						position: absolute!important;
+						top: 0upx!important;
+						left: -20upx!important;
+						color: red!important;
+					}
+				}
+				.addressR{
+					width: 70%;
+				}
+			}
+			.ownerinfo{
+				color: #17212E;
+				font-size: 26upx;
+				.title{
+					padding: 18upx 0;
+					border-bottom: 1upx solid #F5F5F5;
+				}
+				.list{
+					padding-top:26upx ;
+					.cell{
+						padding-bottom: 22upx;
+						.cellL{
+							color: #70767F;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	//商品信息
+	.Commodity-infor-nonvehical{
+		.followCar{
+			padding-top: 60upx;
+			padding-bottom: 34upx;
+			border-bottom: 1upx solid #EFEFEF;
+		}
+		.followCarbtn{
+			display: inline-block;
+			width: 60upx;
+			height: 32upx;
+			line-height: 32upx;
+			text-align: center;
+			color: #C3C3C3;
+			font-size: 22upx;
+			border-radius: 4upx;
+			border: 1upx solid #E1E1E1;
+		}
+		.stockinfo{
+			margin-left: 20upx;
+			font-size: 26upx;
+			color: #70767F;
+		}
+		.subtotal{
+			width: 100%;
+			padding: 18upx 0;
+			.subtotaltxt{
+				color: #70767F;
+				font-size: 20upx;
+				margin-right: 8upx;
+			}
+			.subtotalicon{
+				color: #F57C40;
+				font-size: 20upx;
+			}
+			.subtotalmoney{
+				color: #F57C40;
+				font-size: 34upx;
+			}
+		}
+		// 数字加减器
+		.number-box{
+			width: 170upx;
+			height: 44upx;
+			border: 2upx solid #E1E1E1;
+			border-radius: 2upx;
+			.reduce,.increase{
+				width: 50upx;
+				height: 42upx;
+				line-height: 42upx;
+				text-align: center;
+				.iconfont{
+					font-size:30upx ;
+					color: #17212E;
+				}
+			}
+			.numberbox{
+				font-size:26upx ;
+				color: #17212E;
+				width: 70upx;
+				text-align: center;
+				height: 42upx;
+				line-height: 42upx;
+				border-left: 2upx solid #E1E1E1;
+				border-right: 2upx solid #E1E1E1;
+			}
+		}
+	}
+	
+	//商品信息
+	.Insurance-infor{
+		background-color: #FFFFFF;
+		margin-bottom: 20upx;
+		.Insurance-infor-title{
+			padding: 22upx 30upx;
+			border-bottom: 1upx solid #EFEFEF;
+		}
+		
+		.Insurance-infor-list{
+			padding:0 30upx ;
+			box-sizing: border-box;
+			.subtotal{
+				width: 100%;
+				padding: 18upx 0;
+				.subtotaltxt{
+					color: #70767F;
+					font-size: 20upx;
+					margin-right: 8upx;
+				}
+				.subtotalicon{
+					color: #F57C40;
+					font-size: 20upx;
+				}
+				.subtotalmoney{
+					color: #F57C40;
+					font-size: 34upx;
+				}
+			}
+			.cell{
+				padding: 18upx 30upx;
+				border-bottom: 1upx solid #F5F5F5;
+				uni-view{
+					font-size: 26upx;
+				}
+				.cellR{
+					font-size: 30upx;
+					color: #70767F;
+				}
+				.tax-rate{
+					color: #70767F;
+				}
+				.view-policy{
+					color: #1371F7;
+				}
+				
+				
+			}
+		}
+	}
+
+}

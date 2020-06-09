@@ -1,6 +1,9 @@
 /*
 修改uni-ui默认样式
 */
+uni-textarea{
+				width: 100%;
+			}
 uni-button[type=default] {
     color: #17212EFF;
     background-color: #EFEFEFFF;

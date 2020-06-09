@@ -49,6 +49,9 @@
 .marR40{
 	margin-right: 40upx;
 }
+.marB20{
+	margin-bottom: 20upx;
+}
 .h39{
 	height: 78upx;
 	line-height: 78upx;
@@ -131,4 +134,15 @@
 		height: 2upx;
 		transform: scaleY(0.5);
 }
-		
+
+/* 订单 */
+.blueline-title{
+	background-color: #FFFFFF;
+	border-bottom: 1upx solid #F5F5F5;
+	padding: 18upx 0;
+	padding-left: 50upx;
+	padding-right: 30upx;
+	position: relative;
+	color: #17212E;
+	font-family: pingFangSC-Medium;
+}

@@ -105,6 +105,13 @@
             "style" : {}
         }
         
+        ,{
+            "path" : "pages/submitorder/components/components",
+            "style" : {}
+        },{
+            "path" : "pages/submitorder/components/customerInfor",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
