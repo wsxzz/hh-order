@@ -106,10 +106,10 @@
         }
         
         ,{
-            "path" : "pages/submitorder/components/components",
+            "path" : "pages/submitorder/components/customerInfor",
             "style" : {}
         },{
-            "path" : "pages/submitorder/components/customerInfor",
+            "path" : "pages/submitorder/components/baseinfo",
             "style" : {}
         }
     ],

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 客户信息 -->
-		<view  class="customer-Infor">
+		<view class="customer-Infor">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
 					客户信息
@@ -11,12 +11,12 @@
 					<image @click="selectCustomers" class="blueline-icons" src="../../../static/images/icons/icon-Line-qiehuan.png" mode="widthFix"></image>
 				</view>
 			</view>
-			<!-- <view class="content">
+			<view v-if="customerTypes=='personal'" class="content">
 				<view class="cell-headportrait row">
 					<view class="col-2 row">
-						<image class="character" src="../../../static/images/icons/character.png" mode="widthFix"></image>
+						<image class="character" :src="customerInforDatas.img" mode="widthFix"></image>
 						<view class="name">
-							刘旭东
+							{{customerInforDatas.customerName}}
 						</view>
 					</view>
 					<view class="col-2 right turntootherpage"><image class="icon-next" src="../../../static/images/icons/icon-public-next.png" mode="widthFix"></image>
@@ -28,7 +28,7 @@
 						客户电话
 					</view>
 					<view class="infoR col-2 right">
-						<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+						<input class="uni-input" v-model="customerInforDatas.customerPhone" placeholder-style="color:#C3C3C3" placeholder="去选择" :disabled="modifyInfor"/>
 					</view>
 				</view>
 				<view class="info row">
@@ -37,7 +37,7 @@
 						身份证号
 					</view>
 					<view class="infoR col-2 right">
-						<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+						<input class="uni-input" v-model="customerInforDatas.customerCardNo"  value="" placeholder-style="color:#C3C3C3" placeholder="去选择"  :disabled="modifyInfor"/>
 					</view>
 				</view>					
 				<view class="info row">
@@ -46,7 +46,7 @@
 						客户来源
 					</view>
 					<view class="infoR col-2 right">
-						<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+						<input class="uni-input" v-model="customerInforDatas.customerSource"  value="" placeholder-style="color:#C3C3C3" placeholder="去选择"  :disabled="modifyInfor"/>
 					</view>
 				</view>
 				<view class="info row">
@@ -55,8 +55,8 @@
 						与车主关系
 					</view>
 					<view class="infoR col-2 right turntootherpage"><image class="icon-next" src="../../../static/images/icons/icon-public-next.png" mode="widthFix"></image>
-						<picker @change="bindPickerChange" :value="relationshipindex" :range="relationshiparray">
-							<view class="uni-input">{{relationshiparray[relationshipindex]}}</view>
+						<picker @change="bindPickerChange" :value="customerInforDatas.relationshipindex" :range="customerInforDatas.relationshiparray">
+							<view class="uni-input">{{customerInforDatas.relationshiparray[customerInforDatas.relationshipindex]}}</view>
 						</picker>
 					</view>
 				</view>
@@ -70,7 +70,7 @@
 								车主姓名
 							</view>
 							<view class="cellR col-2 right">
-								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+								<input class="uni-input"  v-model="customerInforDatas.carName"   placeholder-style="color:#C3C3C3" placeholder="去选择"  :disabled="modifyInfor"/>
 							</view>
 						</view>
 						<view class="cell row">
@@ -78,7 +78,7 @@
 								车主电话
 							</view>
 							<view class="cellR col-2 right">
-								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+								<input class="uni-input"  v-model="customerInforDatas.carPhone"  value="" placeholder-style="color:#C3C3C3" placeholder="去选择"  :disabled="modifyInfor"/>
 							</view>
 						</view>
 						<view class="cell row">
@@ -86,7 +86,7 @@
 								证件类型
 							</view>
 							<view class="cellR col-2 right">
-								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+								{{customerInforDatas.cardStyle}}
 							</view>
 						</view>
 						<view class="cell row">
@@ -94,34 +94,148 @@
 								证件号码
 							</view>
 							<view class="cellR col-2 right">
-								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
+								<input class="uni-input"  v-model="customerInforDatas.cardNo" value="" placeholder-style="color:#C3C3C3" placeholder="去选择"  :disabled="modifyInfor"/>
 							</view>
 						</view>
 					</view>
 				</view>
-			</view> -->
+			</view>
+			<view v-if="customerTypes=='company'" class="content">
+				<view class="cell-headportrait row">
+					<view class="col-2 row">
+						<image class="character" :src="customerInforDatas.img" mode="widthFix"></image>
+						<view class="name">
+							{{customerInforDatas.company}}
+						</view>
+					</view>
+					<view class="col-2 right turntootherpage"><image class="icon-next" src="../../../static/images/icons/icon-public-next.png" mode="widthFix"></image>
+					</view>
+				</view>
+				<view class="info row">
+					<view class="infoL col-2">
+						委托人姓名
+					</view>
+					<view class="infoR col-2 right">
+						<input class="uni-input" v-model="customerInforDatas.clientName" placeholder-style="color:#C3C3C3" placeholder="去选择"  :disabled="modifyInfor"/>
+					</view>
+				</view>
+				<view class="info row">
+					<view class="infoL col-2">
+						委托人电话
+					</view>
+					<view class="infoR col-2 right">
+						<input class="uni-input"  v-model="customerInforDatas.clientPhone"  value="" placeholder-style="color:#C3C3C3" placeholder="去选择"  :disabled="modifyInfor"/>
+					</view>
+				</view>
+				<view class="info row">
+					<view class="infoL col-2">
+						机构代码
+					</view>
+					<view class="infoR col-2 right">
+						<input class="uni-input"  v-model="customerInforDatas.organizationCode"  value="" placeholder-style="color:#C3C3C3" placeholder="去选择"  :disabled="modifyInfor"/>
+					</view>
+				</view>					
+				<view class="info row">
+					<view class="infoL col-2">
+						注册地址
+					</view>
+					<view class="infoR col-2 right">
+						<input class="uni-input"  v-model="customerInforDatas.registeredAddress"  value="" placeholder-style="color:#C3C3C3" placeholder="去选择"  :disabled="modifyInfor"/>
+					</view>
+				</view>
+				<view class="info row">
+					<view class="infoL col-2 Required">
+						<text class="Required-star">*</text>
+						委托关系
+					</view>
+					<view class="infoR col-2 right turntootherpage"><image class="icon-next" src="../../../static/images/icons/icon-public-next.png" mode="widthFix"></image>
+						<picker @change="bindPickerChange" :value="customerInforDatas.delegationindex" :range="customerInforDatas.delegationarray">
+							<view class="uni-input">{{customerInforDatas.delegationarray[customerInforDatas.delegationindex]}}</view>
+						</picker>
+					</view>
+				</view>
+				<view class="ownerinfo">
+					<view class="title">
+						上牌信息
+					</view>
+					<view class="list">
+						<view class="cell row">
+							<view class="cellL col-2">
+								公司名称
+							</view>
+							<view class="cellR col-2 right">
+								<input class="uni-input"  v-model="customerInforDatas.company"  value="" placeholder-style="color:#C3C3C3" placeholder="去选择"  :disabled="modifyInfor"/>
+							</view>
+						</view>
+						<view class="cell row">
+							<view class="cellL col-2">
+								营业执照
+							</view>
+							<view class="cellR col-2 right">
+								<input class="uni-input"  v-model="customerInforDatas.businessLicense"  value="" placeholder-style="color:#C3C3C3" placeholder="去选择"  :disabled="modifyInfor"/>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			
 		</view>
 		
 	</view>
 </template>
 
 <script>
-	/**
-	 * no-data 暂无数据
-	 * @description 列表没有数据时显示
+	/*
+	*
+	 * customerInfor 客户信息
+	 * @description 客户信息组件
 	 * @nodata = [true|false] 是否显示
 	 * @example <no-data text="true"></no-data>
 	 */
 	export default {
 		name: 'customerInfor',
 		props: {
-			// nodata: {
-			// 	type: Boolean,
-			// 	default: true
-			// }
+			customerTypes: {//客户类型
+				type: String,
+				default: 'personal'
+			},
+			modifyInfor: {//是否可以修改客户信息
+				type: Boolean,
+				default: true
+			}
+		},
+		watch: {
+		      customerInforDatas: {
+		       handler(newValue, oldValue) {
+		          console.log('我变化了', newValue, oldValue)
+				  this.$emit('customerInforValChange',this.customerInforDatas)
+		        },
+		        deep: true
+		      }
 		},
 		data() {
 			return {
+				customerInforDatas:{
+					img:'../../static/images/icons/character.png',//图标
+					customerName:'',//客户姓名
+					customerPhone:'',//客户电话
+					customerCardNo:'',//身份证号
+					customerSource:'',//客户来源
+					relationshiparray: ['本人','夫妻','亲戚','朋友','同事'],//与车主关系
+					relationshipindex:0,//与车主关系
+					carName:'',//车主姓名
+					carPhone:'',//车主电话
+					cardStyle:'身份证',//证件类型
+					cardNo:'',//证件号码
+					company:'',//公司名称
+					clientName:'',//委托人姓名
+					clientPhone:'',//委托人电话
+					organizationCode:'',//机构代码
+					registeredAddress:"",//注册地址
+					delegationarray: ['员工'],//委托关系
+					delegationindex:0,//委托关系
+					businessLicense:'',//营业执照
+				},
 				
 			}
 		},
@@ -144,76 +258,4 @@
 
 <style lang="scss" scoped>
 
-	//客户信息
-	.customer-Infor{
-		background-color: #FFFFFF;
-		margin-bottom: 20upx;
-		.content{
-			padding: 0 30upx;
-			.cell-headportrait{
-				padding: 32upx 0;
-				border-bottom: 1upx solid #F5F5F5;
-				.character{
-					display: block;
-					width: 84upx;
-					height: 84upx;
-					border-radius: 50%;
-					margin-right: 20upx;
-				}
-				.name{
-					height: 84upx;
-					line-height: 84upx;
-					color: #17212E;
-					font-size: 34upx;
-					font-family: pingFangSC-Medium;
-				}
-			}
-			.info{
-				padding-top:26upx ;
-				padding-bottom:28upx ;
-				border-bottom: 1upx solid #F5F5F5;
-				.infoL{
-					color: #70767F;
-					font-size: 30upx;
-				}
-				.infoR{
-					color: #17212E;
-					font-size: 30upx;
-				}
-				.addressL{
-					width: 30%;
-				}
-				.Required{
-					position: relative!important;
-					.Required-star{
-						position: absolute!important;
-						top: 0upx!important;
-						left: -20upx!important;
-						color: red!important;
-					}
-				}
-				.addressR{
-					width: 70%;
-				}
-			}
-			.ownerinfo{
-				color: #17212E;
-				font-size: 26upx;
-				.title{
-					padding: 18upx 0;
-					border-bottom: 1upx solid #F5F5F5;
-				}
-				.list{
-					padding-top:26upx ;
-					.cell{
-						padding-bottom: 22upx;
-						.cellL{
-							color: #70767F;
-						}
-					}
-				}
-			}
-		}
-	}
-	
 </style>

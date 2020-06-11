@@ -1,5 +1,6 @@
 <template>
 	<view class="custom-header">
+		<!-- 顾问列表 -->
 		<view class="uniyy-page-head">
 		<hx-navbar
 		    :back="false" 
@@ -7,192 +8,187 @@
 			:left-slot="false"
 			:right-slot="false">
 			<view class="ctn4">
-				<uni-search-bar radius="100" placeholder="自动显示隐藏" clearButton="auto" cancelButton="auto" @confirm="search" />
+				<uni-search-bar radius="100" v-model="keyword" placeholder="自动显示隐藏" clearButton="auto" cancelButton="auto" @confirm="search" />
 			</view>
 		</hx-navbar>
 		</view>
 		<!-- 暂无数据 -->
 		<no-data :nodata="nodata"/>
-		
-		<!-- 顾问列表 -->
-			<view class="consultants-lists">
-				<view class="consultants-lists-cell" v-for="(item,i) in consultantslists" :key="i">
-					<view class="row ordernum">
-						<view class="col-2">
-							{{item.ordernum}}
-							<text class="date">{{item.time}}</text>
+		<!-- 数据列表 -->
+		<view class="" v-if="!nodata" >
+			<view class="newcarlist_fv pad">
+				<view  v-for="(item,index) in resultList" :key="index">
+					<view class="uni-flex uni-row newcarcell_f" @click="godetails(item.id)">
+						<view class="uni-flex useravatar marR10" style="">
+							<image src="../../../static/images/car.jpg" mode="widthFix"></image>
 						</view>
-						<view class="col-2 right state">
-							{{item.state}}
-						</view>
-					</view>
-					
-					<view class="ordercontant row">
-						<view class="col-2">
-							<text class="ordername">{{item.name}}</text>/{{item.sex == "女" ? "女士" : "男士"}}
-							
-						</view>
-						<view class="col-2 right">
-							<image class="orderphone" src="../../../static/images/icons/icon-phone.png" mode="widthFix"></image>
-						</view>
-					</view>
-					<view class="carinfo">
-						{{item.desc}}
-					</view>
-					<view class="row shopnumber">
-						<view class="col-2">
-							<text class="text">商品数量</text>
-							<text class="value">{{item.number}}</text>
+						<view class="userinfo">
+							<view class="username">
+								{{item.name}}
+							</view>
+							<view class="listinfo">
+								<text class="title">意向车型</text>
+								<text class="value">{{item.intendedModel}}</text>
+							</view>
+							<view class="listinfo">
+								<text class="title">无效原因</text>
+								<text class="value">{{item.invalidReason}}</text>
+							</view>
+							<view class="listinfo">
+								<text class="title">战败城市</text>
+								<text class="value">{{item.defeatedCity}}</text>
+							</view>
+							<view class="listinfo">
+								<text class="title">申请时间</text>
+								<text class="value">{{item.applicationTime}}</text>
+							</view>
 						</view>
 					</view>
 				</view>
-				
 			</view>
-	
-		
+			<view class="Finished-loading">
+				已全部加载完毕
+			</view>
+		</view>
 	</view>
+
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				nodata:false,//暂无数据
-				consultantslists:[
-					{
-						"ordernum":"OS2018090200001",
-						"time":"2019-2-15 10:30",
-						"state":"经理审核中",
-						"name":"谢宝新",
-						"sex":"女",
-						"desc":"蒙迪欧 插电混动2.0L E-CVT智尚版2018最新2018最新2018最新",
-						"number":"3"
-					},{
-						"ordernum":"OS2018090200001",
-						"time":"2019-2-15 10:30",
-						"state":"已完成",
-						"name":"数据",
-						"sex":"男",
-						"desc":"蒙迪欧 插电混动2.0L E-CVT智尚版2018最新2018最新2018最新",
-						"number":"4"
-					},{
-						"ordernum":"OS2018090200001",
-						"time":"2019-2-15 10:30",
-						"state":"经理审核中",
-						"name":"谢宝新",
-						"sex":"女",
-						"desc":"蒙迪欧 插电混动2.0L E-CVT智尚版2018最新2018最新2018最新",
-						"number":"5"
+	import customerInforList from '@/utils/mock/customerInforData.json'
+	import htmlParser from '@/utils/htmlParser.js'
+		
+		export default {
+			data() {
+				return {
+					nodata:false,//暂无数据
+					customerInforList:[],
+					resultList: [],   //真正展示的数据，也就是筛选后的数据
+					keyword:'',
+					strings:'',
+				}
+			},
+			//在组件的created钩子函数中调用
+			created(){
+				this.customerInforList = customerInforList.data;//数据
+			},
+			methods: {
+				godetails(id){
+					console.log("订单的id是"+id);
+					// 返回订单填写页面
+					uni.navigateTo({
+					    url: '../submitorder/submitorder?id='+id
+					});
+				},
+				search() {
+				    if (this.keyword.value == '') {   //如果没有输入内容，不让往下执行
+				      return
+				    }
+					console.log("输入的关键字是"+this.keyword.value)
+				    this.resultList = []   //每次搜索对结果数组做初始化
+					const consultantslist = JSON.parse(JSON.stringify(this.customerInforList)) ;
+				    consultantslist.forEach((item) => {  //把初始数据进行遍历
+				    /**
+				      下面是把初始数据中的每一条数据的四个字段分别去和输入的内容进行匹配，
+				      如果某一字段中包含输入的内容，就往resultList中加
+				    **/
+				      if (item.name.indexOf(this.keyword.value) > -1 ||
+				        item.intendedModel.indexOf(this.keyword.value) > -1 ||
+				        item.invalidReason.indexOf(this.keyword.value) > -1 ||
+				        item.defeatedCity.indexOf(this.keyword.value) > -1 ||
+				        item.applicationTime.indexOf(this.keyword.value) > -1) {
+				        this.resultList.push(item)
+				      }
+				    })
+					console.log("筛选过后的列表是"+this.resultList)
+					console.log("所有的列表是"+this.customerInforList)
+					//将得到的每一条数据中的每一个字段进行处理,brightKeyword就是变高亮的方法
+					this.resultList.map((item) => {  //遍历
+					  item.name = this.brightKeyword(item.name)
+					  item.intendedModel = this.brightKeyword(item.intendedModel)
+					  item.invalidReason = this.brightKeyword(item.invalidReason)
+					  item.defeatedCity = this.brightKeyword(item.defeatedCity)
+					  item.applicationTime = this.brightKeyword(item.applicationTime)
+					}) 
+				    if (this.resultList.length == 0) {   //如果没有匹配结果，就显示提示信息
+				      this.nodata = true
+				    }
+				  },
+				  //字体高亮
+				  brightKeyword(val) {
+					  let keyword = this.keyword.value   //获取输入框输入的内容
+					  if (val.indexOf(keyword) !== -1) {  //判断这个字段中是否包含keyword
+						//如果包含的话，就把这个字段中的那一部分进行替换成html字符
+						let cheerio = require('cheerio')
+						const $ = cheerio.load('<text style="color:#1371F7">'+keyword+'</text>', { _useHtmlParser2: true },{decodeEntities:false})
+						return val.replace(keyword, $.html())
+					  } else {
+						return val
+					  }
 					}
-				]
 			}
-		},
-		methods: {
-			
 		}
-	}
-</script>
+	</script>
 
 <style lang="scss">
 	page{
-		background-color: #F5F5F5;
-	}
-.ctn4{
-		border-radius: 40px;
-		padding: 8upx 20upx;
-		// border: 1px solid #e3e3e3;
-		// background-color: #F9F9F9;
-		width: 100%;
-		display: flex;
-		line-height: 44rpx;
-		// margin: 0 10px;
-		.uni-searchbar{
-			width: 100%;
+			background-color: #F5F5F5;
 		}
-	}
-	.consultants-lists{
-		background-color: #F5F5F5;
-		padding: 0 30upx;
-		padding-top: 20upx;
-		box-sizing: border-box;
-		.consultants-lists-cell{
-			box-sizing: border-box;
-			margin-top: 20upx;
-			background-color: #FFFFFF;
-			border-radius: 8upx;
+	.ctn4{
+			border-radius: 40px;
+			padding: 8upx 20upx;
+			// border: 1px solid #e3e3e3;
+			// background-color: #F9F9F9;
 			width: 100%;
-			padding: 0 30upx;
-			color: #17212E;
-			font-size:26upx ;
-			.ordernum{
-				padding-top: 24upx;
-				.date{
-					color: #C3C3C3;
-					font-size:24upx;
-					display: block;
-				}
-				.state{
-					color:#F57C40;
-				}
+			display: flex;
+			line-height: 44rpx;
+			// margin: 0 10px;
+			.uni-searchbar{
+				width: 100%;
 			}
-			.ordercontant{
-				padding-top: 20upx ;
-				color: #70767F;
-				font-size: 22upx;
-				.ordername{
-					font-family:pingFangSC-Medium ;
-					color: #17212E;
+		}
+	.newcarlist_fv{
+		.newcarcell_f{
+			margin-bottom: 26upx;
+			border-bottom: 1upx solid #F9F9F9;
+			.useravatar{
+				width:84upx;
+				height: 84upx;
+				border-radius: 50%;
+				overflow: hidden;
+			}
+			.userinfo{
+				width:610upx;
+				-webkit-justify-content: center;
+				justify-content: center;
+				-webkit-align-items: flex-start;
+				align-items: flex-start;
+				.username{
 					font-size: 34upx;
+					color: #17212E;	
+					line-height: 48upx;
+					margin-bottom: 14upx;
+					font-family: pingFangSC-Medium;
 				}
-				.orderphone{
-					width: 48upx;
-				}
-			}
-			.carinfo{
-				padding-top: 16upx ;
-				display: block;
-				width: 630upx;
-				overflow: hidden;/*超出部分隐藏*/
-				white-space: nowrap;/*不换行*/
-				text-overflow:ellipsis;/*超出部分文字以...显示*/
-				font-size: 30upx;
-			}
-			.shopnumber{
-				padding-top: 16upx ;
-				.text{
-					margin-top: 8upx;
-					color: #70767F;
-				}
-				.value{
-					margin-top: 8upx;
-					font-family:pingFangSC-Medium ;
-				}
-				.edit-more-btn{
-					position: relative;
-					.icon-more{
-						width: 40upx;
+				.listinfo{
+					font-size: 26upx;
+					color: #17212E;
+					font-family: pingFangSC-regular;
+					margin-bottom: 14upx;
+					.title{
+						color:#70767F;
+						margin-right: 18upx;
 					}
-					.edit-lists{
-						position:absolute ;
-						z-index: 1;
-						top: 56upx;
-						right: 0;
-						background-color: #FFFFFF;
-						padding-top: 34upx;
-						border: 2upx dashed #70767F;
-						text{
-							text-align: center;
-							display: block;
-							padding:  0 32upx;
-							padding-bottom: 36upx;	
-							font-size: 30upx;
-						}
-					}
-					
 				}
 				
-			}
+			}		
 		}
-	}
 	
+	}
+	.Finished-loading{
+		text-align: center;
+		padding: 14upx 0;
+		color: #70767F;
+		font-size: 26upx;
+	}
 </style>

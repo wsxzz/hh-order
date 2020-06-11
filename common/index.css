@@ -1,4 +1,4 @@
-
+@charset "UTF-8";
 .uniyy-page-head{
 	position: fixed;
 	z-index: 100;
@@ -135,14 +135,491 @@
 		transform: scaleY(0.5);
 }
 
-/* 订单 */
-.blueline-title{
-	background-color: #FFFFFF;
-	border-bottom: 1upx solid #F5F5F5;
-	padding: 18upx 0;
-	padding-left: 50upx;
-	padding-right: 30upx;
-	position: relative;
-	color: #17212E;
-	font-family: pingFangSC-Medium;
+
+/* -----------------------------------订单公共样式---------------------------------- */
+/* 文字尺寸 */
+/* 背景颜色 */
+/* 文字颜色 */
+.submitorder-content {
+  color: #17212E;
+  font-size: 30upx;
+}
+.submitorder-content .uni-input {
+  padding: 0;
+  font-size: 30upx;
+}
+.submitorder-content .blueline-title {
+  background-color: #FFFFFF;
+  border-bottom: 1upx solid #EFEFEF;
+  padding: 18upx 0;
+  padding-left: 50upx;
+  padding-right: 30upx;
+  position: relative;
+  color: #17212E;
+  font-family: pingFangSC-Medium;
+}
+.submitorder-content .blueline-title .blueline-infor {
+  font-size: 34upx;
+  height: 48upx;
+  line-height: 48upx;
+}
+.submitorder-content .blueline-title .blueline {
+  position: absolute;
+  top: 24upx;
+  left: 30upx;
+  width: 6upx;
+  height: 33upx;
+  border-radius: 3upx;
+  background-color: #1371F7;
+}
+.submitorder-content .blueline-title .blueline-icons {
+  width: 48upx;
+  height: 48upx;
+}
+.submitorder-content uni-button[size=mini].yybtn {
+  padding: 0 22upx;
+  font-size: 30upx;
+  height: 50upx;
+  line-height: 50upx;
+  border-radius: 50upx;
+  background-color: #F9F9F9;
+}
+.submitorder-content uni-button[size=mini].yybtn + uni-button[size=mini].yybtn {
+  margin-left: 20upx;
+}
+.submitorder-content uni-button[size=mini].yybtn:after {
+  border: none;
+}
+.submitorder-content uni-button[size=mini].on {
+  color: #1371F7;
+  background: rgba(19, 113, 247, 0.08);
+  font-family: pingFangSC-Medium;
+}
+.submitorder-content .bottomgroup .bottom-price {
+  background-color: #FFFFFF;
+  border-bottom: 1upx solid #EFEFEF;
+  padding: 20upx 30upx;
+}
+.submitorder-content .bottomgroup .bottom-price .total {
+  color: #70767F;
+  font-size: 20upx;
+}
+.submitorder-content .bottomgroup .bottom-price .total .price-icon {
+  margin-left: 8upx;
+  color: #F57C40;
+}
+.submitorder-content .bottomgroup .bottom-price .total .price {
+  font-size: 34upx;
+  color: #F57C40;
+  font-family: pingFangSC-Medium;
+}
+.submitorder-content .bottomgroup .bottom-price .discount {
+  color: #262626;
+}
+.submitorder-content .bottomgroup .bottom-price .category {
+  color: #70767F;
+  font-size: 24upx;
+}
+.submitorder-content .bottomgroup .bottom-price .category .check {
+  margin-left: 16upx;
+  color: #1371F7;
+  font-size: 24upx;
+}
+.submitorder-content .bottomgroup .bottomgroupbtns {
+  background-color: #FFFFFF;
+}
+.submitorder-content .bottomgroup .bottomgroupbtns .selectAllbtn {
+  height: 98upx;
+  line-height: 98upx;
+  padding-left: 30upx;
+  font-size: 30upx;
+}
+.submitorder-content .bottomgroup .bottomgroupbtns .deletebtn {
+  width: 40%;
+  text-align: center;
+  background-color: #F9F9F9;
+  color: #17212E;
+  font-size: 34upx;
+  height: 98upx;
+  line-height: 98upx;
+}
+.submitorder-content .bottomgroup .bottomgroupbtns .comfirmbtn {
+  width: 60%;
+  text-align: center;
+  background-color: #1371F7;
+  color: #FFFFFF;
+  font-size: 34upx;
+  height: 98upx;
+  line-height: 98upx;
+}
+.submitorder-content .commom-content .content {
+  background-color: #ffffff;
+  padding: 0 30upx;
+}
+.submitorder-content .commom-content .content .optionaltitle {
+  padding: 10upx 0;
+  border-bottom: 1upx solid #EFEFEF;
+}
+.submitorder-content .commom-content .content .optionaltitle .txt {
+  color: #70767F;
+  font-size: 26upx;
+  margin-left: 32upx;
+}
+.submitorder-content .commom-content .content .list .split-title {
+  color: #70767F;
+  font-size: 26upx;
+}
+.submitorder-content .commom-content .content .list .cell {
+  padding: 28upx 0;
+  border-bottom: 1upx solid #EFEFEF;
+}
+.submitorder-content .commom-content .content .list .cell .notesL {
+  width: 22%;
+  font-size: 30upx;
+}
+.submitorder-content .commom-content .content .list .cell .notesR {
+  font-size: 30upx;
+  width: 78%;
+}
+.submitorder-content .commom-content .content .list .cell .addressL {
+  width: 24%;
+  font-size: 30upx;
+}
+.submitorder-content .commom-content .content .list .cell .addressR {
+  width: 76%;
+  box-sizing: border-box;
+  font-size: 30upx;
+}
+.submitorder-content .commom-content .content .list .cell .Required {
+  position: relative !important;
+}
+.submitorder-content .commom-content .content .list .cell .Required .Required-star {
+  position: absolute !important;
+  top: 0upx !important;
+  left: -20upx !important;
+  color: red !important;
+}
+.submitorder-content .commom-content .content .list .cell:last-child {
+  border: none;
+}
+.submitorder-content .commom-content .content .list .remarks {
+  color: #70767F;
+  font-size: 20upx;
+}
+.submitorder-content .turntootherpage, .submitorder-content .unit {
+  position: relative;
+  padding-right: 46upx;
+  color: #70767F;
+}
+.submitorder-content .turntootherpage .icon-unit, .submitorder-content .unit .icon-unit {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 30upx;
+  color: #70767F;
+  width: 40upx;
+  line-height: 38upx;
+  height: 38upx;
+}
+.submitorder-content .turntootherpage .icon-next, .submitorder-content .turntootherpage .icon-unit, .submitorder-content .unit .icon-next, .submitorder-content .unit .icon-unit {
+  display: block;
+  position: absolute;
+  top: 4upx;
+  right: 0;
+  width: 40upx;
+  height: 38upx;
+}
+.submitorder-content .goodsinfolist {
+  background-color: #FFFFFF;
+  padding-top: 24upx;
+  padding-left: 80upx;
+  position: relative;
+}
+.submitorder-content .goodsinfolist .checkboxs {
+  position: absolute;
+  left: 0;
+  top: 64upx;
+  width: 44upx;
+  height: 44upx;
+}
+.submitorder-content .goodsinfolist .newcarcell_f {
+  margin-bottom: 26upx;
+  border-bottom: 1upx solid #F9F9F9;
+}
+.submitorder-content .goodsinfolist .newcarcell_f .goodavatar {
+  width: 156upx;
+  height: 116upx;
+  overflow: hidden;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.submitorder-content .goodsinfolist .newcarcell_f .carinfo {
+  width: 610upx;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+.submitorder-content .goodsinfolist .newcarcell_f .carinfo .carname {
+  font-size: 26upx;
+  color: #17212E;
+  line-height: 36upx;
+  margin-bottom: 14upx;
+}
+.submitorder-content .goodsinfolist .newcarcell_f .carinfo .listinfo {
+  font-size: 24upx;
+  color: #70767F;
+  font-family: pingFangSC-regular;
+  margin-bottom: 6upx;
+}
+.submitorder-content .goodsinfolist .newcarcell_f .carinfo .listinfo .title {
+  display: inline-block;
+  width: 115upx;
+  color: #C3C3C3;
+  margin-right: 16upx;
+}
+.submitorder-content .related-old-order {
+  background-color: #FFFFFF;
+  margin-bottom: 20upx;
+}
+.submitorder-content .related-old-order .headtitle {
+  padding: 24upx 30upx;
+  border-bottom: 1upx solid #F5F5F5;
+}
+.submitorder-content .related-old-order .headtitle .headtitleL {
+  font-size: 30upx;
+  color: #17212E;
+  height: 48upx;
+  line-height: 48upx;
+}
+.submitorder-content .related-old-order .headtitle .icon-qiehuan {
+  height: 48upx;
+  width: 48upx;
+}
+.submitorder-content .related-old-order .old-order-list {
+  color: #17212E;
+}
+.submitorder-content .related-old-order .old-order-list .cell-1 {
+  width: 100%;
+  height: 40upx;
+  margin-bottom: 24upx;
+}
+.submitorder-content .related-old-order .old-order-list .cell-1 .ordernum {
+  float: left;
+  font-size: 26upx;
+}
+.submitorder-content .related-old-order .old-order-list .cell-1 .orderstate {
+  float: right;
+  font-size: 26upx;
+  color: #F57C40;
+}
+.submitorder-content .related-old-order .old-order-list .name {
+  font-family: pingFangSC-Medium;
+  margin-bottom: 16upx;
+  font-size: 34upx;
+}
+.submitorder-content .related-old-order .old-order-list .carinfo {
+  font-size: 30upx;
+  margin-bottom: 24upx;
+  line-height: 42upx;
+}
+.submitorder-content .related-old-order .old-order-list .shopnums {
+  width: 100%;
+  height: 30upx;
+}
+.submitorder-content .related-old-order .old-order-list .shopnums .nums {
+  float: left;
+  color: #70767F;
+  font-size: 26upx;
+}
+.submitorder-content .related-old-order .old-order-list .shopnums .nums .num {
+  color: #17212E;
+}
+.submitorder-content .related-old-order .old-order-list .shopnums .date {
+  float: right;
+  font-size: 24upx;
+  color: #C3C3C3;
+}
+.submitorder-content .customer-Infor {
+  background-color: #FFFFFF;
+  margin-bottom: 20upx;
+}
+.submitorder-content .customer-Infor .content {
+  padding: 0 30upx;
+}
+.submitorder-content .customer-Infor .content .cell-headportrait {
+  padding: 32upx 0;
+  border-bottom: 1upx solid #F5F5F5;
+}
+.submitorder-content .customer-Infor .content .cell-headportrait .character {
+  display: block;
+  width: 84upx;
+  height: 84upx;
+  border-radius: 50%;
+  margin-right: 20upx;
+}
+.submitorder-content .customer-Infor .content .cell-headportrait .name {
+  height: 84upx;
+  line-height: 84upx;
+  color: #17212E;
+  font-size: 34upx;
+  font-family: pingFangSC-Medium;
+}
+.submitorder-content .customer-Infor .content .info {
+  padding-top: 26upx;
+  padding-bottom: 28upx;
+  border-bottom: 1upx solid #F5F5F5;
+}
+.submitorder-content .customer-Infor .content .info .infoL {
+  color: #70767F;
+  font-size: 30upx;
+}
+.submitorder-content .customer-Infor .content .info .infoR {
+  color: #17212E;
+  font-size: 30upx;
+}
+.submitorder-content .customer-Infor .content .info .addressL {
+  width: 30%;
+}
+.submitorder-content .customer-Infor .content .info .Required {
+  position: relative !important;
+}
+.submitorder-content .customer-Infor .content .info .Required .Required-star {
+  position: absolute !important;
+  top: 0upx !important;
+  left: -20upx !important;
+  color: red !important;
+}
+.submitorder-content .customer-Infor .content .info .addressR {
+  width: 70%;
+}
+.submitorder-content .customer-Infor .content .ownerinfo {
+  color: #17212E;
+  font-size: 26upx;
+}
+.submitorder-content .customer-Infor .content .ownerinfo .title {
+  padding: 18upx 0;
+  border-bottom: 1upx solid #F5F5F5;
+}
+.submitorder-content .customer-Infor .content .ownerinfo .list {
+  padding-top: 26upx;
+}
+.submitorder-content .customer-Infor .content .ownerinfo .list .cell {
+  padding-bottom: 22upx;
+}
+.submitorder-content .customer-Infor .content .ownerinfo .list .cell .cellL {
+  color: #70767F;
+}
+.submitorder-content .Commodity-infor-nonvehical .followCar {
+  padding-top: 60upx;
+  padding-bottom: 34upx;
+  border-bottom: 1upx solid #EFEFEF;
+}
+.submitorder-content .Commodity-infor-nonvehical .followCarbtn {
+  display: inline-block;
+  width: 60upx;
+  height: 32upx;
+  line-height: 32upx;
+  text-align: center;
+  color: #C3C3C3;
+  font-size: 22upx;
+  border-radius: 4upx;
+  border: 1upx solid #E1E1E1;
+}
+.submitorder-content .Commodity-infor-nonvehical .stockinfo {
+  margin-left: 20upx;
+  font-size: 26upx;
+  color: #70767F;
+}
+.submitorder-content .Commodity-infor-nonvehical .subtotal {
+  width: 100%;
+  padding: 18upx 0;
+}
+.submitorder-content .Commodity-infor-nonvehical .subtotal .subtotaltxt {
+  color: #70767F;
+  font-size: 20upx;
+  margin-right: 8upx;
+}
+.submitorder-content .Commodity-infor-nonvehical .subtotal .subtotalicon {
+  color: #F57C40;
+  font-size: 20upx;
+}
+.submitorder-content .Commodity-infor-nonvehical .subtotal .subtotalmoney {
+  color: #F57C40;
+  font-size: 34upx;
+}
+.submitorder-content .Commodity-infor-nonvehical .number-box {
+  width: 170upx;
+  height: 44upx;
+  border: 2upx solid #E1E1E1;
+  border-radius: 2upx;
+}
+.submitorder-content .Commodity-infor-nonvehical .number-box .reduce, .submitorder-content .Commodity-infor-nonvehical .number-box .increase {
+  width: 50upx;
+  height: 42upx;
+  line-height: 42upx;
+  text-align: center;
+}
+.submitorder-content .Commodity-infor-nonvehical .number-box .reduce .iconfont, .submitorder-content .Commodity-infor-nonvehical .number-box .increase .iconfont {
+  font-size: 30upx;
+  color: #17212E;
+}
+.submitorder-content .Commodity-infor-nonvehical .number-box .numberbox {
+  font-size: 26upx;
+  color: #17212E;
+  width: 70upx;
+  text-align: center;
+  height: 42upx;
+  line-height: 42upx;
+  border-left: 2upx solid #E1E1E1;
+  border-right: 2upx solid #E1E1E1;
+}
+.submitorder-content .Insurance-infor {
+  background-color: #FFFFFF;
+  margin-bottom: 20upx;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-title {
+  padding: 22upx 30upx;
+  border-bottom: 1upx solid #EFEFEF;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list {
+  padding: 0 30upx;
+  box-sizing: border-box;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .subtotal {
+  width: 100%;
+  padding: 18upx 0;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .subtotal .subtotaltxt {
+  color: #70767F;
+  font-size: 20upx;
+  margin-right: 8upx;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .subtotal .subtotalicon {
+  color: #F57C40;
+  font-size: 20upx;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .subtotal .subtotalmoney {
+  color: #F57C40;
+  font-size: 34upx;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .cell {
+  padding: 18upx 30upx;
+  border-bottom: 1upx solid #F5F5F5;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .cell uni-view {
+  font-size: 26upx;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .cell .cellR {
+  font-size: 30upx;
+  color: #70767F;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .cell .tax-rate {
+  color: #70767F;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .cell .view-policy {
+  color: #1371F7;
 }

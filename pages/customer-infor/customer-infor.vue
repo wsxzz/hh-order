@@ -1,114 +1,146 @@
 <template>
 	<view class="custom-header">
-		<!-- 顾问列表 -->
 		<view class="uniyy-page-head">
-		<hx-navbar class="ctn4bd">
-		    <view class="ctn4">
-		        <uni-search-bar radius="100" placeholder="客户名称/手机号" clearButton="auto" cancelButton="auto" @confirm="search" />
-		    </view>
-		    <view  slot="right">
-				<text class="iconfont add">&#xe66c;</text>
-				<text class="iconfont">&#xe67f;</text>
+		<hx-navbar
+		    :back="false" 
+		    :fixed="true"
+			:left-slot="false"
+			:right-slot="false">
+			<view class="ctn4">
+				<uni-search-bar radius="100" v-model="keyword" placeholder="自动显示隐藏" clearButton="auto" cancelButton="auto" @confirm="search" />
 			</view>
 		</hx-navbar>
 		</view>
-		<view class="">
-			<view class="newcarlist_fv pad">
-				<view  v-for="(item,index) in customerInforList" :key="index">
-					<view class="uni-flex uni-row newcarcell_f" @click="godetails(item.id)">
-						<view class="uni-flex useravatar marR10" style="">
-							<image src="../../static/images/car.jpg" mode="widthFix"></image>
-						</view>
-						<view class="userinfo">
-							<view class="username">
-								{{item.name}}
+		<!-- 暂无数据 -->
+		<no-data :nodata="nodata"/>
+		<!-- 顾问列表 -->
+			<view v-if="!nodata">
+				<view class="newcarlist_fv pad">
+					<view  v-for="(item,i) in resultList" :key="i">
+						<view class="uni-flex uni-row newcarcell_f" @click="godetails(item.id)">
+							<view class="uni-flex useravatar marR10" style="">
+								<image src="../../static/images/car.jpg" mode="widthFix"></image>
 							</view>
-							<view class="listinfo">
-								<text class="title">意向车型</text>
-								<text class="value">{{item.intendedModel}}</text>
-							</view>
-							<view class="listinfo">
-								<text class="title">无效原因</text>
-								<text class="value">{{item.invalidReason}}</text>
-							</view>
-							<view class="listinfo">
-								<text class="title">战败城市</text>
-								<text class="value">{{item.defeatedCity}}</text>
-							</view>
-							<view class="listinfo">
-								<text class="title">申请时间</text>
-								<text class="value">{{item.applicationTime}}</text>
+							<view class="userinfo">
+								<view class="username">
+									<text v-html="item.name"></text>
+								</view>
+								<view class="listinfo row">
+									<text class="title">意向车型</text>
+									<text class="value intendedModelvalue" v-html="item.intendedModel"></text>
+								</view>
+								<view class="listinfo row">
+									<text class="title">无效原因</text>
+									<text class="value" v-html="item.invalidReason"></text>
+								</view>
+								<view class="listinfo row">
+									<text class="title">战败城市</text>
+									<text class="value"  v-html="item.defeatedCity"></text>
+								</view>
+								<view class="listinfo row">
+									<text class="title">申请时间</text>
+									<text class="value"  v-html="item.applicationTime"></text>
+								</view>
 							</view>
 						</view>
 					</view>
 				</view>
+				<view v-if="loadall" class="Finished-loading">
+					已全部加载完毕
+				</view>
 			</view>
-			<view class="Finished-loading">
-				已全部加载完毕
-			</view>
-		</view>
+	
+		
 	</view>
 </template>
 
 <script>
+	import consultantslists from '@/utils/mock/customerInforData.json'
+	import htmlParser from '@/utils/htmlParser.js'
+	
 	export default {
 		data() {
 			return {
-				customerInforList:[
-					{
-						id:0,
-						name:'谢宝新',
-						intendedModel:'福特 蒙迪欧 插电混动2.0L E-CVT智福特 蒙迪欧 插电混动2.0L E-CVT智',
-						invalidReason:'购买竞品',
-						defeatedCity:'浙江省-杭州市',
-						applicationTime:'2019-3-12 15:00',
-					},{
-						id:1,
-						name:'谢宝新',
-						intendedModel:'福特 蒙迪欧 插电混动2.0L E-CVT智福特 蒙迪欧 插电混动2.0L E-CVT智',
-						invalidReason:'购买竞品',
-						defeatedCity:'浙江省-杭州市',
-						applicationTime:'2019-3-12 15:00',
-					}
-				],
+				nodata:false,//暂无数据
+				loadall:false,
+				consultantslists:[],
+				resultList: [],   //真正展示的数据，也就是筛选后的数据
+				keyword:'',
+				strings:'',
 			}
 		},
+		//在组件的created钩子函数中调用
+		created(){
+			this.consultantslists = consultantslists.data;//数据
+		},
 		methods: {
-			godetails(id){
-				console.log(id);
-				// 返回订单填写页面
-				uni.navigateTo({
-				    url: '../submitorder/submitorder?id='+id
-				});
-			},
+			search() {
+			    if (this.keyword.value == '') {   //如果没有输入内容，不让往下执行
+			      return
+			    }
+				// debugger
+				console.log(this.keyword.value)
+			    this.resultList = []   //每次搜索对结果数组做初始化
+				const consultantslist = JSON.parse(JSON.stringify(this.consultantslists)) ;
+			    consultantslist.forEach((item) => {  //把初始数据进行遍历
+			    /**
+			      下面是把初始数据中的每一条数据的四个字段分别去和输入的内容进行匹配，
+			      如果某一字段中包含输入的内容，就往resultList中加
+			    **/
+				console.log(item);
+			      if (item.name.indexOf(this.keyword.value) > -1 ||
+					item.intendedModel.indexOf(this.keyword.value) > -1 ||
+					item.invalidReason.indexOf(this.keyword.value) > -1 ||
+					item.defeatedCity.indexOf(this.keyword.value) > -1 ||
+					item.applicationTime.indexOf(this.keyword.value) > -1 
+				   ) {
+			        this.resultList.push(item)
+			      }
+			    })
+				console.log(this.resultList)
+				console.log(this.consultantslists)
+				//将得到的每一条数据中的每一个字段进行处理,brightKeyword就是变高亮的方法
+				this.resultList.map((item) => {  //遍历
+				  item.name = this.brightKeyword(item.name)
+				  item.intendedModel = this.brightKeyword(item.intendedModel)
+				  item.invalidReason = this.brightKeyword(item.invalidReason)
+				  item.defeatedCity = this.brightKeyword(item.defeatedCity)
+				  item.applicationTime = this.brightKeyword(item.applicationTime)
+				}) 
+			    if (this.resultList.length == 0) {   //如果没有匹配结果，就显示提示信息
+			      this.nodata = true
+			    }
+			  },
+			  //字体高亮
+			  brightKeyword(val) {
+				  let keyword = this.keyword.value   //获取输入框输入的内容
+				  if (val.indexOf(keyword) !== -1) {  //判断这个字段中是否包含keyword
+					//如果包含的话，就把这个字段中的那一部分进行替换成html字符
+					let cheerio = require('cheerio')
+					console.log(keyword);
+					const $ = cheerio.load('<span style="color:#1371F7">'+keyword+'</span>', { _useHtmlParser2: true },{decodeEntities:false})
+					console.log($.html())
+					return val.replace(keyword, $.html())
+				  } else {
+					return val
+				  }
+				}
 		}
 	}
 </script>
 
 <style lang="scss">
-	.ctn4bd{
-		.ctn4{
-				border-radius: 40px;
-				padding: 8upx 20upx;
-				// border: 1px solid #e3e3e3;
-				// background-color: #F9F9F9;
-				width: 100%;
-				display: flex;
-				line-height: 44rpx;
-				// margin: 0 10px;
-				.uni-searchbar{
-					width: 100%;
-				}
-				
-			}
-			.iconfont{
-				font-size: 40upx;
-			}
-			.add{
-				margin-right: 30upx;
-			}
+.ctn4{
+		border-radius: 40px;
+		padding: 8upx 20upx;
+		width: 100%;
+		display: flex;
+		line-height: 44rpx;
+		.uni-searchbar{
+			width: 100%;
+		}
 	}
-	.newcarlist_fv{
+.newcarlist_fv{
 		.newcarcell_f{
 			margin-bottom: 26upx;
 			border-bottom: 1upx solid #F9F9F9;
@@ -139,6 +171,14 @@
 					.title{
 						color:#70767F;
 						margin-right: 18upx;
+						display: inline-block;
+					}
+					.intendedModelvalue{
+						display: inline-block;
+						width: 400upx;
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
 					}
 				}
 				
@@ -151,5 +191,5 @@
 		padding: 14upx 0;
 		color: #70767F;
 		font-size: 26upx;
-	}
+	}	
 </style>

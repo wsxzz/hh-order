@@ -9,480 +9,17 @@
 			<view  slot="right" @click="saveorder">保存</view>
 		</hx-navbar>
 		</view>
-		<view class="marB20">
-			<view class="blueline-title row">
-				<view class="col-2 blueline-infor">
-					基本信息
-					<text class="blueline"></text>
-				</view>
-				<view class="col-2 right">
-					<image class="blueline-icons" src="../../static/images/icons/icon-Line-qiehuan.png" mode="widthFix"></image>
-				</view>
-			</view>
-			
-			<view class="marB20 commom-content">
-				<view class="content">
-					<view class="list">
-						<view class="cell row">
-							<view class="notesL">
-								订单类型
-							</view>
-							<view class="notesR right">
-								<button @click="orderType('vehicle')" :class="{'on': orderTypes==='vehicle'}" class="yybtn mini-btn" size="mini" type="default">整车</button>
-								<button @click="orderType('non-vehicle')" :class="{'on': orderTypes==='non-vehicle'}"  class="yybtn mini-btn" size="mini" type="default">非整车</button>
-							</view>
-						</view>
-						<view class="cell row">
-							<view class="notesL">
-								销售类型
-							</view>
-							<view class="notesR right turntootherpage">
-								<image class="icon-next" src="../../static/images/icons/icon-public-next.png" mode="widthFix"></image>
-								<picker @change="bindPickerChange" :value="salesTypeIndex" :range="salesTypeArray">
-									<view class="uni-input">{{salesTypeArray[salesTypeIndex]}}</view>
-								</picker>
-							</view>
-						</view>
-						<view class="cell row">
-							<view class="notesL">
-								付款方式
-							</view>
-							<view class="notesR right">
-								<button @click="paymentMethod('cash')" :class="{'on': paymentMethods==='cash'}" class="yybtn mini-btn" size="mini" type="default">现金消费</button>
-								<button @click="paymentMethod('mortgage')"  :class="{'on': paymentMethods==='mortgage'}"  class="yybtn mini-btn" size="mini" type="default">按揭消费</button>
-								<button @click="paymentMethod('remit')"  :class="{'on': paymentMethods==='remit'}"  class="yybtn mini-btn" size="mini" type="default">代收业务</button>
-							</view>
-						</view>
-						
-						
-						
-						<view class="cell row">
-							<view class="notesL">
-								车辆类型
-							</view>
-							<view class="notesR right">
-								<button @click="vehicleType('conventional')"  :class="{'on': vehicleTypes==='conventional'}"  class="yybtn mini-btn" size="mini" type="default">常规</button>
-								<button @click="vehicleType('stock')" :class="{'on': vehicleTypes==='stock'}"  class="yybtn mini-btn" size="mini" type="default">库存</button>
-							</view>
-						</view>
-						<view class="cell row">
-							<view class="notesL">
-								订单渠道
-							</view>
-							<view class="notesR right">
-								带入值
-							</view>
-						</view>
-						<view class="cell row">
-							<view class="notesL">
-								活动名称
-							</view>
-							<view class="notesR right">
-								带入值
-							</view>
-						</view>
-						<view class="cell row">
-							<view class="notesL">
-								订单来源
-							</view>
-							<view class="notesR right">
-								<button @click="orderSource('on-line')"  :class="{'on': orderSources==='on-line'}"  class="yybtn mini-btn" size="mini" type="default">线上</button>
-								<button @click="orderSource('offline')"  :class="{'on': orderSources==='offline'}"  class="yybtn mini-btn" size="mini" type="default">线下</button>
-								<button @click="orderSource('deliveryAgent')" :class="{'on': orderSources==='deliveryAgent'}"  class="yybtn mini-btn" size="mini" type="default">代交车</button>
-							</view>
-						</view>
-						
-						<view v-if="orderSources==='deliveryAgent'" class="cell row">
-							<view class="notesL Required">
-								<text class="Required-star">*</text>
-								代售组织
-							</view>
-							<view class="notesR right">
-								 <input class="uni-input" placeholder-style="color:#C3C3C3" placeholder="请填写" />
-							</view>
-						</view>
-						<view class="cell row">
-							<view class="notesL">
-								客户类型
-							</view>
-							<view class="notesR right">
-								<button @click="customerType('personal')" :class="{'on': customerTypes==='personal'}"  class="yybtn mini-btn" size="mini" type="default">个人</button>
-								<button @click="customerType('company')" :class="{'on': customerTypes==='company'}"  class="yybtn mini-btn" size="mini" type="default">单位</button>
-								
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
+		 <!-- 基本信息 -->
+		 <baseinfo @childValChange="getbaseinfoData" ref="baseinfoItem"></baseinfo>
 		<!-- 关联原有订单 -->
-		<view v-if="relatedOldOrder" class="related-old-order">
-			<view class="headtitle row">
-				<view class="headtitleL col-2">
-					关联原有订单
-				</view>
-				<view class="col-2 right">
-					<image class="icon-qiehuan" src="../../static/images/icons/icon-Line-qiehuan.png" mode="widthFix"></image>
-				</view>
-			</view>
-			<view class="old-order-list pad">
-				<view class="cell-1">
-					<text class="ordernum">OS2018090200001</text>
-					<text class="orderstate">已完成</text>
-				</view>
-				<view class="name">
-					谢宝新
-				</view>
-				<view class="carinfo">
-					蒙迪欧 插电混动2.0L E-CVT智尚版2018款
-				</view>
-				<view class="shopnums">
-					<text class="nums">
-						商品数量
-						<text class="num">3</text>
-					</text>
-					<text class="date">2019-2-15 10:30:09</text>
-				</view>
-			</view>
-		</view>
-		
+		 <relatedOldOrder :hasrelatedOldOrder="hasrelatedOldOrder" ref="relatedOldOrderItem"></relatedOldOrder>
 		<!-- 客户信息 -->
-		<view  class="customer-Infor">
-			<view class="blueline-title row">
-				<view class="col-2 blueline-infor">
-					客户信息
-					<text class="blueline"></text>
-				</view>
-				<view class="col-2 right">
-					<image @click="selectCustomers" class="blueline-icons" src="../../static/images/icons/icon-Line-qiehuan.png" mode="widthFix"></image>
-				</view>
-			</view>
-			<view v-if="customerInfordetail" class="content">
-				<view class="cell-headportrait row">
-					<view class="col-2 row">
-						<image class="character" src="../../static/images/character.png" mode="widthFix"></image>
-						<view class="name">
-							刘旭东
-						</view>
-					</view>
-					<view class="col-2 right turntootherpage"><image class="icon-next" src="../../static/images/icons/icon-public-next.png" mode="widthFix"></image>
-					</view>
-				</view>
-				<view class="info row">
-					<view class="infoL col-2 Required">
-								<text class="Required-star">*</text>
-						客户电话
-					</view>
-					<view class="infoR col-2 right">
-						<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
-					</view>
-				</view>
-				<view class="info row">
-					<view class="infoL col-2 Required">
-								<text class="Required-star">*</text>
-						身份证号
-					</view>
-					<view class="infoR col-2 right">
-						<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
-					</view>
-				</view>					
-				<view class="info row">
-					<view class="infoL col-2 Required">
-								<text class="Required-star">*</text>
-						客户来源
-					</view>
-					<view class="infoR col-2 right">
-						<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
-					</view>
-				</view>
-				<view class="info row">
-					<view class="infoL col-2 Required">
-						<text class="Required-star">*</text>
-						与车主关系
-					</view>
-					<view class="infoR col-2 right turntootherpage"><image class="icon-next" src="../../static/images/icons/icon-public-next.png" mode="widthFix"></image>
-						<picker @change="bindPickerChange" :value="relationshipindex" :range="relationshiparray">
-							<view class="uni-input">{{relationshiparray[relationshipindex]}}</view>
-						</picker>
-					</view>
-				</view>
-				<view class="ownerinfo">
-					<view class="title">
-						车主信息
-					</view>
-					<view class="list">
-						<view class="cell row">
-							<view class="cellL col-2">
-								车主姓名
-							</view>
-							<view class="cellR col-2 right">
-								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
-							</view>
-						</view>
-						<view class="cell row">
-							<view class="cellL col-2">
-								车主电话
-							</view>
-							<view class="cellR col-2 right">
-								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
-							</view>
-						</view>
-						<view class="cell row">
-							<view class="cellL col-2">
-								证件类型
-							</view>
-							<view class="cellR col-2 right">
-								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
-							</view>
-						</view>
-						<view class="cell row">
-							<view class="cellL col-2">
-								证件号码
-							</view>
-							<view class="cellR col-2 right">
-								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>
-			
-		</view>
+		 <customerInfor @customerInforValChange="getcustomerInforData"  :modifyInfor="customerInforModifyInfor" :customerTypes="baseinfoDatas.customerTypes" ref="customerInforItem"></customerInfor>
 		<!-- 商品信息 -->
-		<view class="Commodity-infor marB20">
-			<view class="blueline-title row">
-				<view class="col-2 blueline-infor">
-					商品信息
-					<text class="blueline"></text>
-				</view>
-				<view class="col-2 right">
-					<image @click="goshop" class="blueline-icons" src="../../static/images/icons/icon-public-more2.png" mode="widthFix"></image>
-				</view>
-			</view>
-			<!-- hasCommodityInfor -->
-			<view v-if="true" class="commom-content">
-				<view class="content">
-					<view class="optionaltitle">
-						<label>
-							<checkbox value="vehicle"/><text class="txt">整车信息</text>
-						</label>
-					</view>
-					<view class="goodsinfolist">
-						<label class="checkboxs">
-							<checkbox value="vehicle"/>
-						</label>
-						<view class="uni-flex uni-row newcarcell_f">
-							<view class="uni-flex goodavatar marR10" style="">
-								<image src="../../static/images/car.jpg" mode="widthFix"></image>
-							</view>
-							<view class="carinfo">
-								<view class="carname">
-									2020款 改款 1.6L XE 手动舒享版两排效果两 排效果效果两排效果效果两…
-								</view>
-								<view class="listinfo">
-									<text class="title">VIN</text>
-									<text class="value">23189492349285</text>
-								</view>
-								<view class="listinfo">
-									<text class="title">指导价格</text>
-									<text class="value">1,000,000</text>
-								</view>
-								
-							</view>
-						</view>
-					</view>
-					<view class="list">
-						<view class="cell row">
-							<view class="notesL">
-								成交价
-							</view>
-							<view class="notesR right unit">
-								<text class="icon-unit">元</text>
-								<input type="text" value="1,000,000"/>
-							</view>
-						</view>
-						
-						
-						<view class="cell row">
-							<view class="notesL">
-								代<strong>收购置税</strong>
-							</view>
-							<!-- 默认是 -->
-							<view class="notesR right">
-								<button class="yybtn mini-btn on" size="mini" type="default">是</button>
-								<button class="yybtn mini-btn" size="mini" type="default">否</button>
-							</view>
-						</view>
-						<!-- 上面是的时候才出现 -->
-						<view class="cell row">
-							<view class="notesL">
-								收取方式
-							</view>
-							<view class="notesR right">
-								<button class="yybtn mini-btn on" size="mini" type="default">包干</button>
-								<button class="yybtn mini-btn" size="mini" type="default">多退少补</button>
-							</view>
-						</view>
-						<view class="cell row">
-							<view class="notesL">
-								税率
-							</view>
-							<view class="notesR right unit">
-								<text class="icon-unit">%</text>
-								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="请填写" />
-							</view>
-						</view>
-						<view class="cell row">
-							<view class="cellL col-2">
-								税额
-								<view class="remarks">
-									税率以官方收费为准
-								</view>
-							</view>
-							<view class="cellR col-2 right unit">
-								<text class="icon-unit">元</text>
-								<input class="uni-input" value="" placeholder-style="color:#C3C3C3" placeholder="0" />
-							</view>
-						</view>
-						
-					</view>
-				</view>
-			</view>
-		</view>
-		<!-- 商品非整车信息 -->
-		<!-- hasCommodityInfor -->
-		<view  v-if="true" class="Commodity-infor-nonvehical marB20" v-for="(items,x) in followCarinfo" :key="x">
-			<view class="commom-content">
-				<view class="content">
-					<view class="optionaltitle">
-						<label>
-							<checkbox value="vehicle"/><text class="txt">{{items.categoryname}}</text>
-						</label>
-					</view>
-					<view class="" v-for="(item,y) in followCarinfo[x].prolist" :key="y">
-						<view class="goodsinfolist">
-							<label class="checkboxs">
-								<checkbox value="vehicle"/>
-							</label>
-							<view class="uni-flex uni-row newcarcell_f">
-								<view class="uni-flex goodavatar marR10" style="">
-									<image src="../../static/images/car.jpg" mode="widthFix"></image>
-								</view>
-								<view class="carinfo">
-									<view class="carname">
-										 {{item.name}}
-									</view>
-									<view v-if="x===0">
-										<view class="listinfo">
-											<text class="title">产品型号</text>
-											<text class="value"> {{item.proModel}}</text>
-										</view>
-										<view class="listinfo">
-											<text class="title">销售单位</text>
-											<text class="value">{{item.salesUnit}}</text>
-										</view>
-										<view class="listinfo">
-											<text class="title">销售价格</text>
-											<text class="value">{{item.price}}</text>
-										</view>
-									</view>
-									<view v-else-if="x===1">
-										<view class="listinfo">
-											<text class="title">机构来源</text>
-											<text class="value"> {{item.institutionalSources}}</text>
-										</view>
-										<view class="listinfo">
-											<text class="title">延保产品</text>
-											<text class="value">{{item.extendedWarrantyPro}}</text>
-										</view>
-										<view class="listinfo">
-											<text class="title">指导价格</text>
-											<text class="value">{{item.price}}</text>
-										</view>
-									</view>
-									
-									<view v-else-if="x===2">
-										<view class="listinfo">
-											<text class="title">销售价格</text>
-											<text class="value"> {{item.price}}</text>
-										</view>
-									</view>
-									
-									<view v-else-if="x===3">
-										<view class="listinfo">
-											<text class="title">销售价格</text>
-											<text class="value"> {{item.price}}</text>
-										</view>
-									</view>
-									
-									<view v-else-if="x===4">
-										<view class="listinfo">
-											<text class="title">代办金额</text>
-											<text class="value"> {{item.price}}</text>
-										</view>
-									</view>
-									
-									<view v-else-if="x===5">
-										<view class="listinfo">
-											<text class="title">商品面值</text>
-											<text class="value"> {{item.price}}</text>
-										</view>
-										<view class="listinfo">
-											<text class="title">销售价格</text>
-											<text class="value"> {{item.price}}</text>
-										</view>
-									</view>
-								</view>
-							</view>
-						</view>
-						<view class="">
-							<view class="row">
-								<view class="col-2">
-									成交单价
-								</view>
-								<view class="col-2 right">
-									{{item.price}}元
-								</view>
-							</view>
-							<view class="row followCar">
-								<view class="col-2">
-									<text class="followCarbtn">随车</text>
-									
-									
-									<text  v-if="x===0 || x===2" class="stockinfo">库存 {{item.stock}}</text>
-								</view>
-								<view class="col-2 numberright">
-									<view class="number-box row">
-										<view class="reduce" @click="changenumber('reduce',serviceProValue,'serviceProValue')">
-											<text class="iconfont">&#xe603;</text>
-										</view>
-										<view class="numberbox">
-											<text class="number">{{serviceProValue}}</text>
-										</view>
-										<view class="increase"  @click="changenumber('increase',serviceProValue,'serviceProValue')">
-											<text class="iconfont">&#xe602;</text>
-										</view>
-									</view>
-									
-								</view>
-							</view>
-							<view class="row">
-								<view class="subtotal right">
-									<text class="subtotaltxt">小计</text>
-									<text class="subtotalicon">¥</text>
-									<text class="subtotalmoney">2,000</text>
-								</view>
-							</view>
-						</view>
-						
-					</view>
-					
-				</view>
-			</view>
-		</view>
+		<commodityInfor :selectedOK="selectedOK" ref="commodityInforItem"></commodityInfor>
 		
 		<!-- 保险信息 -->
-		<view class="Insurance-infor">
+		<!-- <view class="Insurance-infor">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
 					现保险信息
@@ -563,8 +100,10 @@
 				</view>
 			</view>
 		</view>
+		 -->
+		
 		<!-- 款项信息 -->
-		<view class="payment-infor marB20">
+		<!-- <view class="payment-infor marB20">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
 					款项信息
@@ -664,8 +203,9 @@
 				</view>
 			</view>
 		</view>
+		 -->
 		<!-- 按揭项目 -->
-		<view v-if="paymentMethods==='mortgage'" class="mortgage-pro marB20">
+		<view v-if="baseinfoDatas.paymentMethods==='mortgage'" class="mortgage-pro marB20">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
 					按揭项目
@@ -991,17 +531,50 @@
 </template>
 
 <script>
+	import baseinfo from './components/baseinfo.vue'//基本信息
+	import relatedOldOrder from './components/relatedOldOrder.vue'//关联原有订单
+	import customerInfor from './components/customerInfor.vue'//客户信息
+	import commodityInfor from './components/commodityInfor.vue'//商品信息
+	import insuranceInfor from './components/insuranceInfor.vue'//保险信息
+	import paymentInfor from './components/paymentInfor.vue'//款项信息
+	import mortgagePro from './components/mortgagePro.vue'//按揭项目
+	import deliveryInfor from './components/deliveryInfor.vue'//交付信息
+	import invoiceInfor from './components/invoiceInfor.vue'//发票信息
+	
 	export default {
+		components:{
+			baseinfo,
+			relatedOldOrder,
+			customerInfor,
+			commodityInfor,
+			insuranceInfor,
+			paymentInfor,
+			mortgagePro,
+			deliveryInfor,
+			invoiceInfor,
+		}, 
 		data() {
 			return {
+				baseinfoDatas:{
+					orderTypes:'vehicle',//订单类型（默认值是整车）
+					salesTypeArray:["车辆"],//销售类型
+					salesTypeIndex:0,
+					paymentMethods:'cash',//付款方式（默认现金-cash）
+					vehicleTypes:'conventional',//车辆类型(默认值是常规)
+					orderSources:'offline',//订单来源(默认值是线下)
+					customerTypes:'personal',//客户类型(默认值是个人)
+				},//接受基本信息
+				hasrelatedOldOrder:true,//是否有关联原有订单模块
+				customerInforDatas:{},//接受客户信息
+				customerInforModifyInfor:true,//客户信息是否可编辑
+				selectedOK:true,//商品是否已经选好（默认是false）
+				commodityInforDatas:{},//接受商品信息
+				
 				insurancevalue:'',//保险公司代码
 				insurance:{},//保险信息
 				insuranceBtn:false,//保险按钮
 				hasinsurance:false,
-				relatedOldOrder:false,//关联原有订单
-				customerInfordetail:true,//客户信息
 				title: 'picker',
-				salesTypeArray:[],//销售类型
 				salesTypeIndex: 0,
 				relationshiparray: ['本人','夫妻','亲戚','朋友','同事'],
 				relationshipindex: 0,
@@ -1009,11 +582,6 @@
 				qualificationRequireArray:['身份证','居住证','银行流水','房产'],//资质要求
 				qualificationRequireIndex:0,
 				time: '12:01',
-				paymentMethods:'cash',//付款方式（默认现金-cash）
-				orderTypes:'vehicle',//订单类型（默认值是整车）
-				vehicleTypes:'conventional',//车辆类型(默认值是常规)
-				orderSources:'offline',//订单来源(默认值是线下)
-				customerTypes:'personal',//客户类型(默认值是个人)
 				mortgageTypes:'bank',//按揭类型
 				institutionalSources:"manufactor",//机构来源
 				depositMethods:'deposit1',
@@ -1121,18 +689,6 @@
 				})
 			},
 		    computed: {
-		        // 计算属性的 getter
-		    //         hasinsurance: function () {
-						// // uni.getStorage({
-						// //     key: 'insurancevalue',
-						// //     success: function (res) {
-						// // 		this.insurancevalue = res.data;
-						// // 		this.hasinsurance = true;
-						// // 		this.getInsurance();
-						// //     }
-						// // });
-		    //           // return
-		    //         }
 		    },
 			watch:{
 				insurancevalue(newName, oldName) {
@@ -1142,18 +698,18 @@
 				},
 				carid(){
 					this.hasCommodityInfor = true;
-					// this.getInsurance();
 				}
-				
 			},
 		    methods: {
-				//客户信息
-				selectCustomers(){
-					// 去客户列表页面
-					uni.navigateTo({
-					    url: '../customer-infor/customer-infor'
-					});
+				//接受基本信息
+				getbaseinfoData(val) {
+					this.baseinfoDatas = val;
 				},
+				//接受客户信息
+				getcustomerInforData(val) {
+					console.log("接受客户信息"+JSON.stringify(val))
+					this.customerInforDatas = val;
+				} ,
 				//付款方式
 				paymentMethod(e){
 					console.log(e);//付款方式
@@ -1283,13 +839,15 @@
 				    this.qualificationRequireIndex = e.target.value
 				},
 		    },
-			mounted() {
+			mounted(){
 				
+				// console.log()
 			}
 	}
 </script>
 
 <style lang="scss">
+
 page{
 	background-color: #F5F5F5;
 }
