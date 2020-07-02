@@ -1,15 +1,15 @@
 <template>
 	<view class="custom-header">
 		<view class="uniyy-page-head">
-		<hx-navbar
-		    :back="false" 
-		    :fixed="true"
-			:left-slot="false"
-			:right-slot="false">
-			<view class="ctn4">
-				<uni-search-bar radius="100" v-model="keyword" placeholder="自动显示隐藏" clearButton="auto" cancelButton="auto" @confirm="search" />
-			</view>
-		</hx-navbar>
+			<hx-navbar
+				:back="false" 
+				:fixed="true"
+				:left-slot="false"
+				:right-slot="false">
+				<view class="ctn4">
+					<uni-search-bar radius="100" v-model="keyword" placeholder="自动显示隐藏" clearButton="auto" cancelButton="auto" @confirm="search" />
+				</view>
+			</hx-navbar>
 		</view>
 		<!-- 暂无数据 -->
 		<no-data :nodata="nodata"/>
@@ -50,8 +50,8 @@
 </template>
 
 <script>
-	import consultantslists from '@/utils/mock/consultants-lists.json'
-	import htmlParser from '@/utils/htmlParser.js'
+	import consultantslists from '@/utils/mock/consultants-lists.json'//数据
+	import htmlParser from '@/utils/htmlParser.js'//
 	
 	export default {
 		data() {
@@ -69,44 +69,53 @@
 		},
 		methods: {
 			search() {
-			    if (this.keyword.value == '') {   //如果没有输入内容，不让往下执行
+				var that = this;
+				uni.showToast({
+				    title: '搜索中',
+					icon: 'none'
+				});
+			    if (that.keyword.value == '') {   //如果没有输入内容，不让往下执行
 			      return
 			    }
-				debugger
-				console.log(this.keyword.value)
-			    this.resultList = []   //每次搜索对结果数组做初始化
-				const consultantslist = JSON.parse(JSON.stringify(this.consultantslists)) ;
-			    consultantslist.forEach((item) => {  //把初始数据进行遍历
-			    /**
-			      下面是把初始数据中的每一条数据的四个字段分别去和输入的内容进行匹配，
-			      如果某一字段中包含输入的内容，就往resultList中加
-			    **/
-				console.log(item);
-			      if (item.name.indexOf(this.keyword.value) > -1 ||
-			        item.ordernum.indexOf(this.keyword.value) > -1 ||
-			        item.number.indexOf(this.keyword.value) > -1 ||
-			        item.state.indexOf(this.keyword.value) > -1 ||
-			        item.desc.indexOf(this.keyword.value) > -1 ||
-			        item.time.indexOf(this.keyword.value) > -1 ||
-			        item.sex.indexOf(this.keyword.value) > -1) {
-			        this.resultList.push(item)
-			      }
-			    })
-				console.log(this.resultList)
-				console.log(this.consultantslists)
-				//将得到的每一条数据中的每一个字段进行处理,brightKeyword就是变高亮的方法
-				this.resultList.map((item) => {  //遍历
-				  item.name = this.brightKeyword(item.name)
-				  item.ordernum = this.brightKeyword(item.ordernum)
-				  item.number = this.brightKeyword(item.number)
-				  item.state = this.brightKeyword(item.state)
-				  item.desc = this.brightKeyword(item.desc)
-				  item.time = this.brightKeyword(item.time)
-				  item.sex = this.brightKeyword(item.sex)
-				}) 
-			    if (this.resultList.length == 0) {   //如果没有匹配结果，就显示提示信息
-			      this.nodata = true
-			    }
+				console.log(that.keyword.value)
+			    that.resultList = []   //每次搜索对结果数组做初始化
+				// 模拟异步调用
+				setTimeout(function(){
+					const consultantslist = JSON.parse(JSON.stringify(that.consultantslists)) ;
+					consultantslist.forEach((item) => {  //把初始数据进行遍历
+					/**
+					  下面是把初始数据中的每一条数据的四个字段分别去和输入的内容进行匹配，
+					  如果某一字段中包含输入的内容，就往resultList中加
+					**/
+					console.log(item);
+					  if (item.name.indexOf(that.keyword.value) > -1 ||
+					    item.ordernum.indexOf(that.keyword.value) > -1 ||
+					    item.number.indexOf(that.keyword.value) > -1 ||
+					    item.state.indexOf(that.keyword.value) > -1 ||
+					    item.desc.indexOf(that.keyword.value) > -1 ||
+					    item.time.indexOf(that.keyword.value) > -1 ||
+					    item.sex.indexOf(that.keyword.value) > -1) {
+					    that.resultList.push(item)
+					  }
+					})
+					console.log(that.resultList)
+					console.log(that.consultantslists)
+					//将得到的每一条数据中的每一个字段进行处理,brightKeyword就是变高亮的方法
+					that.resultList.map((item) => {  //遍历
+					  item.name = that.brightKeyword(item.name)
+					  item.ordernum = that.brightKeyword(item.ordernum)
+					  item.number = that.brightKeyword(item.number)
+					  item.state = that.brightKeyword(item.state)
+					  item.desc = that.brightKeyword(item.desc)
+					  item.time = that.brightKeyword(item.time)
+					  item.sex = that.brightKeyword(item.sex)
+					}) 
+					if (that.resultList.length == 0) {   //如果没有匹配结果，就显示提示信息
+					  that.nodata = true
+					}
+					uni.hideToast();
+				},1000)
+				
 			  },
 			  //字体高亮
 			  brightKeyword(val) {
@@ -133,12 +142,9 @@
 .ctn4{
 		border-radius: 40px;
 		padding: 8upx 20upx;
-		// border: 1px solid #e3e3e3;
-		// background-color: #F9F9F9;
 		width: 100%;
 		display: flex;
 		line-height: 44rpx;
-		// margin: 0 10px;
 		.uni-searchbar{
 			width: 100%;
 		}

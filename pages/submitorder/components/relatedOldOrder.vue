@@ -30,6 +30,9 @@
 			</view>
 		</view>
 		
+		
+		
+		
 	</view>
 </template>
 
@@ -41,25 +44,27 @@
 	 * @nodata = [true|false] 是否显示
 	 * @example <no-data text="true"></no-data>
 	 */
-	export default {
-		name: 'relatedOldOrder',
-		props: {
-			hasrelatedOldOrder: {
-				type: Boolean,
-				default: false
-			}
-		},
-		data() {
-			return {
-				// relatedOldOrder:false,//关联原有订单
-			}
-		},
-		methods: {
+		export default {
+			name: 'relatedOldOrder',
+			props: {
+				hasrelatedOldOrder: {
+					type: Boolean,
+					default: false
+				}
+			},
+			data() {
+				return {
+					
+				}
+			},
+			methods: {
 			
+			}
 		}
+	</script>
+
+<style lang="scss" scoped>
+	page{
+		background-color: #F5F5F5;
 	}
-</script>
-
-<style>
-
 </style>

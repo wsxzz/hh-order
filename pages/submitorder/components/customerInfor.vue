@@ -181,6 +181,8 @@
 			
 		</view>
 		
+		
+		
 	</view>
 </template>
 
@@ -194,68 +196,70 @@
 	 */
 	export default {
 		name: 'customerInfor',
-		props: {
-			customerTypes: {//客户类型
-				type: String,
-				default: 'personal'
-			},
-			modifyInfor: {//是否可以修改客户信息
-				type: Boolean,
-				default: true
-			}
-		},
-		watch: {
-		      customerInforDatas: {
-		       handler(newValue, oldValue) {
-		          console.log('我变化了', newValue, oldValue)
-				  this.$emit('customerInforValChange',this.customerInforDatas)
-		        },
-		        deep: true
-		      }
-		},
-		data() {
-			return {
-				customerInforDatas:{
-					img:'../../static/images/icons/character.png',//图标
-					customerName:'',//客户姓名
-					customerPhone:'',//客户电话
-					customerCardNo:'',//身份证号
-					customerSource:'',//客户来源
-					relationshiparray: ['本人','夫妻','亲戚','朋友','同事'],//与车主关系
-					relationshipindex:0,//与车主关系
-					carName:'',//车主姓名
-					carPhone:'',//车主电话
-					cardStyle:'身份证',//证件类型
-					cardNo:'',//证件号码
-					company:'',//公司名称
-					clientName:'',//委托人姓名
-					clientPhone:'',//委托人电话
-					organizationCode:'',//机构代码
-					registeredAddress:"",//注册地址
-					delegationarray: ['员工'],//委托关系
-					delegationindex:0,//委托关系
-					businessLicense:'',//营业执照
+				props: {
+					customerTypes: {//客户类型
+						type: String,
+						default: 'personal'
+					},
+					modifyInfor: {//是否可以修改客户信息
+						type: Boolean,
+						default: true
+					}
 				},
-				
+				watch: {
+				      customerInforDatas: {
+				       handler(newValue, oldValue) {
+				          // console.log('我变化了', newValue, oldValue)
+						  this.$emit('customerInforValChange',this.customerInforDatas)
+				        },
+				        deep: true
+				      }
+				},
+				data() {
+					return {
+						customerInforDatas:{
+							img:'../../static/images/icons/character.png',//图标
+							customerName:'',//客户姓名
+							customerPhone:'',//客户电话
+							customerCardNo:'',//身份证号
+							customerSource:'',//客户来源
+							relationshiparray: ['本人','夫妻','亲戚','朋友','同事'],//与车主关系
+							relationshipindex:0,//与车主关系
+							carName:'',//车主姓名
+							carPhone:'',//车主电话
+							cardStyle:'身份证',//证件类型
+							cardNo:'',//证件号码
+							company:'',//公司名称
+							clientName:'',//委托人姓名
+							clientPhone:'',//委托人电话
+							organizationCode:'',//机构代码
+							registeredAddress:"",//注册地址
+							delegationarray: ['员工'],//委托关系
+							delegationindex:0,//委托关系
+							businessLicense:'',//营业执照
+						},
+						
+					}
+				},
+				methods: {
+					//客户信息
+					selectCustomers(){
+						// 去客户列表页面
+						uni.navigateTo({
+						    url: '../customer-infor/customer-infor'
+						});
+					},
+					//与车主关系
+					bindPickerChange: function(e) {
+					    console.log('picker发送选择改变，携带值为', e.target.value)
+					    this.relationshipindex = e.target.value
+					},
+				}
 			}
-		},
-		methods: {
-			//客户信息
-			selectCustomers(){
-				// 去客户列表页面
-				uni.navigateTo({
-				    url: '../customer-infor/customer-infor'
-				});
-			},
-			//与车主关系
-			bindPickerChange: function(e) {
-			    console.log('picker发送选择改变，携带值为', e.target.value)
-			    this.relationshipindex = e.target.value
-			},
-		}
-	}
-</script>
+		</script>
 
 <style lang="scss" scoped>
-
+	page{
+		background-color: #F5F5F5;
+	}
 </style>

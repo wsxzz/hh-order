@@ -1,5 +1,5 @@
 <template>
-	<view class="pages">
+	<view class="shop-Mall">
 		<view class="vehicle-details-bd">
 			<view class="vehicle-details">
 			<image class="w100" src="../../../static/images/car.jpg" mode="widthFix"></image>
@@ -65,16 +65,26 @@
 		},
 		methods: {
 			// 立即添加
-			handClickgetcarinfo(){
-				// 跳回到信息填写页面
-				// let carinfo = {
-				// 	"carid":"001"
-				// }
-				// uni.$emit("handClickgetcarinfo",carinfo);
-				uni.navigateBack({
-				    delta: 3
+			// handClickgetcarinfo(){
+			// 	// 跳回到信息填写页面
+			// 	// let carinfo = {
+			// 	// 	"carid":"001"
+			// 	// }
+			// 	// uni.$emit("handClickgetcarinfo",carinfo);
+			// 	uni.navigateBack({
+			// 	    delta: 3
+			// 	});
+			// },
+			addcar(){
+				//修改vuex里面的shopId
+				console.log(this.$store.state.shopId);
+				this.$store.state.shopId = "001";
+				// let id = "001";
+				//跳转到订单填写页面，并且把选择的商品id带过去
+				uni.navigateTo({
+				    url: '../../submitorder/submitorder'
 				});
-			},
+			}
 		}
 	}
 </script>
@@ -82,105 +92,5 @@
 <style lang="scss">
 	page{
 		background-color: #F9F9F9;
-	}
-	
-	
-	.vehicle-details-bd{
-		img{
-			display: block;
-		}
-		.vehicle-details{
-			background-color: #FFFFFF;
-			margin-bottom: 24upx;
-			.carname{
-				padding: 0 30upx;
-				font-size: 36upx;
-				color: #2F2F2F;
-				margin-bottom: 22upx;
-				font-family: pingFangSC-Medium;
-			}
-			.proprice{
-				background-color: #FFFFFF;
-					padding: 0 30upx;
-					font-size: 34upx;
-					color: #F57C40;
-					font-family: pingFangSC-Medium;
-					.icon-money,.icon-wanyuan{
-						font-size: 20upx;
-						font-family: pingFangSC-regular;
-					}
-					.delprice{
-						font-size: 20upx;
-						color: #70767F;
-						margin-left: 8upx;
-						font-family: pingFangSC-regular;
-					}
-				}
-				.express-fee{
-					
-					padding: 0 30upx;
-					margin-top: 32upx;
-					margin-bottom: 44upx;
-					font-size: 24upx;
-					color: #70767F;
-					font-family: pingFangSC-regular;
-				}
-		}
-		
-			.tabs{
-				background-color: #FFFFFF;
-				.tabs-nav{
-					border-bottom: 1upx solid #EFEFEF;
-					padding: 0 30upx;
-					.tabs-nav-cell{
-						position: relative;
-						padding: 20upx 0;
-						.line{
-							display: none;
-							width: 60upx;
-							height: 6upx;
-							background-color: #1371F7;
-							border-radius: 4upx;
-							position: absolute;
-							z-index: 1;
-							bottom: 0;
-							left: 50%;
-							margin-left: -30upx;
-						}
-					}
-					.on{
-						.line{
-							display: inline-block;
-						}
-					}
-				}
-				.tabs-content{
-					padding: 0 30upx;
-					box-sizing: border-box;
-					img{
-						border: 1upx solid #F5F5F5;
-						width: 100%;
-						border-radius: 4upx;
-						margin-bottom: 20upx;
-					}
-				}
-				.tabs-btn{
-					padding: 0 30upx;
-					padding-bottom: 20upx;
-					uni-button[type=default]{
-						background-color: #1371F7;
-						color: #FFFFFF;
-						font-size: 34upx;
-						height: 78upx;
-						line-height: 78upx;
-						border-radius: 78upx;
-					}
-					uni-button:after{
-						border: 0;
-					}
-				}
-			}
-			
-	}
-				
+	}			
 </style>

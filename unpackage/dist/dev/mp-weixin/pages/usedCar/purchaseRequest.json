@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "二手车收购申请",
+  "usingComponents": {
+    "hx-navbar": "/components/hx-navbar/hx-navbar",
+    "customer-infor": "/pages/usedCar/components/customerInfor",
+    "vehicle-infor": "/pages/usedCar/components/vehicleInfor",
+    "insurance-infor": "/pages/usedCar/components/insuranceInfor",
+    "price": "/pages/usedCar/components/price"
+  }
+}

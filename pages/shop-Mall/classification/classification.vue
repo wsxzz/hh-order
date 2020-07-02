@@ -1,61 +1,59 @@
 <template>
-	<view>
+	<view class="shop-Mall">
+		<view class="classification">
 		<!-- 搜索 -->
 		<uni-search-bar radius="100" placeholder="请输入" clearButton="auto" cancelButton="auto" @confirm="search" />
 		<!-- 筛选 -->
-		<view class="screen-bd ">
-			<view class="screen-bd-in pad">
-				<view class="row ">
-				<view class="col-2">
-					<text class="screen marR40">
-						品牌<text class="iconfont">&#xe74b;</text>
-					</text>
-					<text class="screen on">
-						价格<text class="iconfont">&#xe760;</text>
-					</text>
+		<view class="sortFilter">
+			<view class="screen-bd ">
+				<view class="screen-bd-in pad">
+					<view class="row ">
+					<view class="col-2">
+						<text class="screen marR40" @click.stop="screenConditionClick('brand')" :class="{'on': screenCondition==='brand'}">
+							品牌 <text class="iconfont"> {{screenCondition==='brand' ? "&#xe74b;" : "&#xe760;"}} </text>
+						</text>
+						<text class="screen" @click.stop="screenConditionClick('price')"  :class="{'on': screenCondition==='price'}">
+							价格<text class="iconfont">{{screenCondition==='price' ? "&#xe74b;" : "&#xe760;"}} </text>
+						</text>	
+					</view>
+					<!-- <view class="col-2 right">
+						<text>筛选</text>
+						<text class="iconfont">&#xe67f;</text>
+					</view> -->
+					</view>
+					
+					<view class="lists"  v-show="screenCondition==='brand'">
+						<!-- 车系，车型，返回初筛选条件-->
+						<view class="list-cell" v-show="currentCondition!=''">
+							<text class="iconfont">&#xe634;</text> 
+							<text class="currentConditionT" @click.stop="goback">{{currentCondition}}</text>
+						</view>
+						<view class="list-cell row" v-for="(item,i) in brandlist" :key="i">
+							<view class="txt" @click.stop="goNextCondition(item.id)">
+								{{item.name}}
+							</view>
+							<view class="iconbtn right"><text class="iconfont">&#xe606;</text> </view>
+						</view>
+					</view>
+					
+					<view class="lists" v-show="screenCondition==='price'">
+						<view class="list-cell center" @click.stop="priceSort('asce')">
+							价格由低到高
+						</view>
+						<view class="list-cell center"  @click.stop="priceSort('desc')">
+							价格由高到低
+						</view>
+					</view>
+					
 				</view>
-				<view class="col-2 right">
-					<text>筛选</text>
-					<text class="iconfont">&#xe67f;</text>
-				</view>
-				</view>
-				
-				<view class="lists" style="display: none;">
-					<view class="list-cell">
-						品牌1
-					</view>
-					<view class="list-cell">
-						品牌1
-					</view>
-					<view class="list-cell">
-						品牌1
-					</view>
-					<view class="list-cell">
-						品牌1
-					</view>
-					<view class="list-cell">
-						品牌1
-					</view>
-				</view>
-				
-				<!-- <view class="lists">
-					<view class="list-cell center">
-						价格由低到高
-					</view>
-					<view class="list-cell center">
-						价格由高到低
-					</view>
-				</view> -->
-				
+				<view class="mask" v-show="maskShow" @click="close"></view>
 			</view>
-			<view class="mask" style="display: none;"></view>
-			</view>
-		
+			
 			<view class="screen-condition">
-				{{screenCondition}}
+				{{screenConditionTxt}}
 			</view>
-			
-			
+		</view>
+	
 			<!-- 新车分类 -->
 			<view class="newcarlist_s" style="display: block;">
 					<view class="uni-gri-s">
@@ -83,15 +81,22 @@
 				
 			</view>
 			
-			
+		</view>		
 	</view>
 </template>
 
 <script>
+	import carBrand from '@/utils/mock/carBrand.json'
 	export default {
 		data() {
 			return {
-				screenCondition:"价格由高到低",
+				screenCondition:'',
+				maskShow:false,
+				screenConditionTxt:'',//筛选之后的条件文本
+				currentCondition:"",
+				brandlist:[],//品牌列表
+				brandId:'',//当前选择的品牌id(用来暂时存储品牌id)
+				carSeriesId:'',//当前选择的车系id(用来暂时存储车系id)
 				url:"../../../static/images/",
 				list:[
 					{
@@ -119,7 +124,89 @@
 				]
 			}
 		},
+		created() {
+			this.brandlist = carBrand.data//获取品牌列表
+		},
 		methods: {
+			//点击页面任意地方，初始化某些状态
+			initpage(){
+				this.screenCondition = "";
+			},
+			//关闭价格和品牌筛选框和遮罩
+			close(){
+				this.maskShow = false;
+				this.brandlist = carBrand.data;
+				this.screenCondition = "";
+			},
+			//品牌与价格条件筛选
+			screenConditionClick(e){
+				this.maskShow = true;//遮罩层
+				this.screenCondition = e;
+			},
+			//价格排序
+			priceSort(e){
+				if(e=='asce'){//升序
+					console.log('升序')
+					this.screenConditionTxt = '价格由低到高'
+				}else if(e=='desc'){//降序
+					console.log('降序')
+					this.screenConditionTxt = '价格由高到低'
+				}
+				this.close();//关闭弹框和筛选框
+			},
+			//跳转车系
+			goNextCondition(id){
+				var that = this;
+				var arr = that.brandlist;
+				if(that.currentCondition==""){
+					that.currentCondition='车系';
+					that.brandId=id;//暂存品牌id
+					 arr.forEach(function (value,index) {
+					 	if(value.id==id){
+					 		that.brandlist = value.carSeries
+					 	}
+					 });
+				}else if(that.currentCondition=='车系'){
+					that.carSeriesId=id;//暂存车系id
+					that.currentCondition='车型';
+					arr.forEach(function (value,index) {
+						if(value.id==id){
+							that.brandlist = value.carModel
+						}
+					});
+				}else if(that.currentCondition=='车型'){
+					that.currentCondition="";
+					that.brandId="";//清空暂存品牌id
+					that.carSeriesId="";//清空暂存车系id
+					that.close();//关闭弹框和筛选框
+					arr.forEach(function (value,index) {
+						if(value.id==id){
+							that.brandlist = carBrand.data;
+							that.screenConditionTxt = value.name;
+							console.log('最终选择的是'+value.name)
+						}
+					});
+				}
+			},
+			//返回上一个筛选列表
+			goback(){
+				var that = this;
+				var arr = carBrand.data;
+				if(that.currentCondition=='车系'){
+					that.brandlist = carBrand.data;
+					that.currentCondition=''//返回到车系
+					console.log(that.currentCondition)
+				}else if(that.currentCondition=='车型'){
+					arr.forEach(function (value,index) {
+						if(value.id==that.brandId){
+							that.brandlist = value.carSeries
+						}
+					});
+					that.currentCondition='车系'//返回到车系
+					
+				}
+				 
+			},
 			search(res) {
 				uni.showToast({
 					title: '搜索：' + res.value,
@@ -137,97 +224,4 @@
 	page{
 		background-color: #F9F9F9;
 	}
-	// 筛选框
-.screen-bd{
-	width: 100%;
-	height: 88upx;
-	position: relative;
-	.screen-bd-in{
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: 2;
-		width: 100%;
-		box-sizing: border-box;
-		background: #ffffff;
-		.lists{
-			background: #FFFFFF;
-			.list-cell{
-				padding: 26upx 30upx;
-				color: #17212E; 	
-				font-size: 34upx;
-				border-bottom:2upx solid #EFEFEF;
-			}
-		}
-		
-	}
-	.mask{
-		position: absolute;
-		width: 100%;
-		height: 90vh;
-		background: #000000;
-		opacity: 0.4;
-		z-index: 1;
-	}
-	.screen{
-		color: #000000;
-		font-size: 26upx;
-		.iconfont{
-			color: #999999;
-			font-size: 24upx;
-		}
-	}
-	.on{
-		color: #1371F7;
-	}
-	
-}
-// 筛选结果标题
-.screen-condition{
-		color: #70767F;
-		font-size: 26upx;
-		padding: 18upx 30upx;
-	}
-	// 精致新车
-	.newcarlist_s{
-		.uni-gri-s{
-			padding-left: 16upx;
-			overflow: hidden;
-			.uni-grid-item-s{
-				width: 350upx;
-				margin-right: 16upx;
-				margin-bottom: 16upx;
-				background: #FFFFFF;
-				border-radius: 8px;
-				float: left;
-				.carinfo{
-					.proname{
-						font-size: 30upx;
-						color: #17212E;
-						line-height: 42upx;
-					}
-					.proprice{
-						font-size: 34upx;
-						color: #F57C40;
-						font-family: pingFangSC-Medium;
-						.icon-money,.icon-wanyuan{
-							font-size: 20upx;
-							font-family: pingFangSC-regular;
-						}
-					}
-					.pronum{
-						font-size: 20upx;
-						color: #70767F;
-					}
-				}
-			}
-			.proImage{
-				width: 100%;
-			}
-		}
-		
-	}
-	
-	
-	
 </style>

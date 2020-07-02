@@ -1,0 +1,15 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "hx-navbar": "/components/hx-navbar/hx-navbar",
+    "baseinfo": "/pages/submitorder/components/baseinfo",
+    "related-old-order": "/pages/submitorder/components/relatedOldOrder",
+    "customer-infor": "/pages/submitorder/components/customerInfor",
+    "commodity-infor": "/pages/submitorder/components/commodityInfor",
+    "insurance-infor": "/pages/submitorder/components/insuranceInfor",
+    "payment-infor": "/pages/submitorder/components/paymentInfor",
+    "mortgage-pro": "/pages/submitorder/components/mortgagePro",
+    "delivery-infor": "/pages/submitorder/components/deliveryInfor",
+    "invoice-infor": "/pages/submitorder/components/invoiceInfor"
+  }
+}

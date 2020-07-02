@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/printContract/printContract",
+    "pages/test/test",
+    "pages/collectionApplication/index",
+    "pages/collectionApplication/details",
+    "pages/submitorder/submitorder",
+    "pages/Insuranceinstitutions/Insuranceinstitutions",
+    "pages/manager-list/manager-list",
+    "pages/manager-list/search/search",
+    "pages/consultants-lists/consultants-lists",
+    "pages/consultants-lists/search/search",
+    "pages/customer-order-details/customer-order-details",
+    "pages/customer-infor/customer-infor",
+    "pages/shop-Mall/shop-Mall",
+    "pages/shop-Mall/classification/classification",
+    "pages/shop-Mall/carlist/carlist",
+    "pages/shop-Mall/detailed/detailed",
+    "pages/usedCar/purchaseRequest",
+    "pages/usedCar/details",
+    "components/screens-Dialog/screens-Dialog"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#000000"
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

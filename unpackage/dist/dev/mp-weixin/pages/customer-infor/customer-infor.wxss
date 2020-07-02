@@ -1,0 +1,2297 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+page {
+  background-color: #FFFFFF;
+}
+/* 设置不可滑动 */
+.nonSliding {
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+}
+.uniyy-page-head {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+/* 自定义头部 */
+.custom-header {
+  padding-top: 90rpx !important;
+  padding-bottom: 140rpx !important;
+  /* padding-bottom: 100upx!important; */
+}
+/* 带底部tabar */
+.takebar {
+  padding-bottom: 140rpx !important;
+}
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+}
+.col {
+  width: 100%;
+}
+.col-2 {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  width: 50%;
+}
+.col-3 {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  width: 33.3%;
+}
+.col-4 {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  width: 25%;
+}
+.col-6 {
+  width: 60%;
+}
+.col-4 {
+  width: 40%;
+}
+.right {
+  text-align: right;
+}
+.numberright {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
+}
+.center {
+  text-align: center;
+}
+.marR40 {
+  margin-right: 40rpx;
+}
+.marB20 {
+  margin-bottom: 20rpx;
+}
+.PadB20 {
+  padding-bottom: 20rpx;
+}
+.h39 {
+  height: 78rpx;
+  line-height: 78rpx;
+}
+.pad {
+  padding: 20rpx 30rpx;
+}
+.w82 {
+  width: 164rpx;
+}
+.fontsize12 {
+  font-size: 24rpx;
+}
+.fillet39 uni-button[type=primary] {
+  border-radius: 78rpx;
+  line-height: 78rpx;
+}
+.fillet39 uni-button[type=default] {
+  border-radius: 78rpx;
+  line-height: 78rpx;
+}
+.marR8 {
+  margin-right: 16rpx;
+}
+.marR10 {
+  margin-right: 16rpx;
+}
+.col-70 {
+  width: 70%;
+}
+.col-15 {
+  width: 15%;
+}
+.col-15 {
+  width: 15%;
+}
+.uni-flex-column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+}
+.w100 {
+  width: 100%;
+}
+/* 占位 */
+.seizeSeat {
+  width: 100%;
+  height: 40rpx;
+  background-color: #FFFFFF;
+}
+.uni-list-reset {
+  background-color: #FFFFFF;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  font-size: 30rpx;
+  line-height: 1.8;
+  /* padding: 0 15upx; */
+}
+.uni-list-reset .uni-list-cell-pd {
+  position: relative;
+  display: block;
+  padding: 22rpx 30rpx;
+  padding-left: 120rpx;
+}
+.footer {
+  width: 100%;
+  height: 120rpx;
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 998;
+}
+.footer .halfline {
+  width: 100%;
+  background: #EFEFEFFF;
+  height: 2rpx;
+  -webkit-transform: scaleY(0.5);
+          transform: scaleY(0.5);
+}
+.borderB {
+  border-bottom: 1rpx solid #EFEFEF;
+}
+/* -----------------------------------订单公共样式---------------------------------- */
+/* 文字尺寸 */
+/* 背景颜色 */
+/* 文字颜色 */
+.pdfbody {
+  width: 100%;
+  height: 300rpx;
+}
+.printbtnbd {
+  width: 100%;
+  box-sizing: border-box;
+  height: 20vh;
+  padding: 0 30rpx;
+}
+.printbtnbd .printbtn {
+  width: 100%;
+  text-align: center;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 70rpx;
+  background: #1371f7;
+  color: #FFFFFF;
+  font-size: 34rpx;
+}
+.printpopup-con {
+  background-color: #FFFFFF;
+}
+.printpopup-con .list {
+  text-align: center;
+  padding: 28rpx 0;
+  font-size: 34rpx;
+  color: #17212E;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.printpopup-con .closeprintpopup {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 34rpx;
+  color: #17212E;
+  border-top: 18rpx solid #F5F5F5;
+}
+.n_customer .n_customerlist {
+  padding: 0 30rpx;
+}
+.n_customer .n_customerlist .n_customercell {
+  color: #17212E;
+  padding: 34rpx 0;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.n_customer .n_customerlist .n_customercell .detials {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+.n_customer .n_customerlist .n_customercell .detials .name {
+  font-family: pingFangSC-Medium;
+  font-size: 34rpx;
+}
+.n_customer .n_customerlist .n_customercell .detials .name .sex {
+  color: #70767F;
+  font-size: 22rpx;
+}
+.n_customer .n_customerlist .n_customercell .detials .phone {
+  font-size: 30rpx;
+}
+.n_customer .n_customerlist .n_customercell .data {
+  width: 130rpx;
+  color: #C3C3C3;
+  font-size: 24rpx;
+}
+.submitorder-content {
+  color: #17212E;
+  font-size: 30rpx;
+}
+.submitorder-content .uni-input {
+  padding: 0;
+  font-size: 30rpx;
+}
+.submitorder-content .blueline-title {
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #EFEFEF;
+  padding: 18rpx 0;
+  padding-left: 50rpx;
+  padding-right: 30rpx;
+  position: relative;
+  color: #17212E;
+  font-family: pingFangSC-Medium;
+}
+.submitorder-content .blueline-title .blueline-infor {
+  font-size: 34rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+}
+.submitorder-content .blueline-title .blueline {
+  position: absolute;
+  top: 24rpx;
+  left: 30rpx;
+  width: 6rpx;
+  height: 33rpx;
+  border-radius: 3rpx;
+  background-color: #1371F7;
+}
+.submitorder-content .blueline-title .blueline-icons {
+  width: 48rpx;
+  height: 48rpx;
+}
+.submitorder-content uni-button[size=mini].yybtn {
+  padding: 0 22rpx;
+  font-size: 30rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 50rpx;
+  background-color: #F9F9F9;
+}
+.submitorder-content uni-button[size=mini].yybtn + uni-button[size=mini].yybtn {
+  margin-left: 20rpx;
+}
+.submitorder-content uni-button[size=mini].yybtn:after {
+  border: none;
+}
+.submitorder-content uni-button[size=mini].on {
+  color: #1371F7;
+  background: rgba(19, 113, 247, 0.08);
+  font-family: pingFangSC-Medium;
+}
+.submitorder-content .bottomgroup .bottom-price {
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #EFEFEF;
+  padding: 20rpx 30rpx;
+}
+.submitorder-content .bottomgroup .bottom-price .total {
+  color: #70767F;
+  font-size: 20rpx;
+}
+.submitorder-content .bottomgroup .bottom-price .total .price-icon {
+  margin-left: 8rpx;
+  color: #F57C40;
+}
+.submitorder-content .bottomgroup .bottom-price .total .price {
+  font-size: 34rpx;
+  color: #F57C40;
+  font-family: pingFangSC-Medium;
+}
+.submitorder-content .bottomgroup .bottom-price .discount {
+  color: #262626;
+}
+.submitorder-content .bottomgroup .bottom-price .category {
+  color: #70767F;
+  font-size: 24rpx;
+}
+.submitorder-content .bottomgroup .bottom-price .category .check {
+  margin-left: 16rpx;
+  color: #1371F7;
+  font-size: 24rpx;
+}
+.submitorder-content .bottomgroup .bottomgroupbtns {
+  background-color: #FFFFFF;
+}
+.submitorder-content .bottomgroup .bottomgroupbtns .selectAllbtn {
+  height: 98rpx;
+  line-height: 98rpx;
+  padding-left: 30rpx;
+  font-size: 30rpx;
+}
+.submitorder-content .bottomgroup .bottomgroupbtns .deletebtn {
+  width: 40%;
+  text-align: center;
+  background-color: #F9F9F9;
+  color: #17212E;
+  font-size: 34rpx;
+  height: 98rpx;
+  line-height: 98rpx;
+}
+.submitorder-content .bottomgroup .bottomgroupbtns .comfirmbtn {
+  width: 60%;
+  text-align: center;
+  background-color: #1371F7;
+  color: #FFFFFF;
+  font-size: 34rpx;
+  height: 98rpx;
+  line-height: 98rpx;
+}
+.submitorder-content .commom-content .content {
+  background-color: #ffffff;
+  padding: 0 30rpx;
+}
+.submitorder-content .commom-content .content .content-title {
+  font-size: 26rpx;
+  color: #70767F;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.submitorder-content .commom-content .content .optionaltitle {
+  padding: 10rpx 0;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.submitorder-content .commom-content .content .optionaltitle .txt {
+  color: #70767F;
+  font-size: 26rpx;
+  margin-left: 32rpx;
+}
+.submitorder-content .commom-content .content .list .split-title {
+  color: #70767F;
+  font-size: 26rpx;
+}
+.submitorder-content .commom-content .content .list .cell {
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.submitorder-content .commom-content .content .list .cell .notesL {
+  width: 22%;
+  font-size: 30rpx;
+}
+.submitorder-content .commom-content .content .list .cell .notesR {
+  font-size: 30rpx;
+  width: 78%;
+}
+.submitorder-content .commom-content .content .list .cell .addressL {
+  width: 24%;
+  font-size: 30rpx;
+}
+.submitorder-content .commom-content .content .list .cell .addressR {
+  width: 76%;
+  box-sizing: border-box;
+  font-size: 30rpx;
+}
+.submitorder-content .commom-content .content .list .cell .Required {
+  position: relative !important;
+}
+.submitorder-content .commom-content .content .list .cell .Required .Required-star {
+  position: absolute !important;
+  top: 0rpx !important;
+  left: -20rpx !important;
+  color: red !important;
+}
+.submitorder-content .commom-content .content .list .cell:last-child {
+  border: none;
+}
+.submitorder-content .commom-content .content .list .remarks {
+  color: #70767F;
+  font-size: 20rpx;
+}
+.submitorder-content .turntootherpage, .submitorder-content .unit {
+  position: relative;
+  padding-right: 46rpx;
+  color: #70767F;
+}
+.submitorder-content .turntootherpage .icon-unit, .submitorder-content .unit .icon-unit {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 30rpx;
+  color: #70767F;
+  width: 40rpx;
+  line-height: 38rpx;
+  height: 38rpx;
+}
+.submitorder-content .turntootherpage .icon-next, .submitorder-content .turntootherpage .icon-unit, .submitorder-content .unit .icon-next, .submitorder-content .unit .icon-unit {
+  display: block;
+  position: absolute;
+  top: 4rpx;
+  right: 0;
+  width: 40rpx;
+  height: 38rpx;
+}
+.submitorder-content .goodsinfolist {
+  background-color: #FFFFFF;
+  padding-top: 24rpx;
+  padding-left: 80rpx;
+  position: relative;
+}
+.submitorder-content .goodsinfolist .checkboxs {
+  position: absolute;
+  left: 0;
+  top: 64rpx;
+  width: 44rpx;
+  height: 44rpx;
+}
+.submitorder-content .goodsinfolist .newcarcell_f {
+  margin-bottom: 26rpx;
+  border-bottom: 1rpx solid #F9F9F9;
+}
+.submitorder-content .goodsinfolist .newcarcell_f .goodavatar {
+  width: 156rpx;
+  height: 116rpx;
+  overflow: hidden;
+  -webkit-justify-content: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+.submitorder-content .goodsinfolist .newcarcell_f .carinfo {
+  width: 610rpx;
+  -webkit-justify-content: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: start;
+          align-items: flex-start;
+}
+.submitorder-content .goodsinfolist .newcarcell_f .carinfo .carname {
+  font-size: 26rpx;
+  color: #17212E;
+  line-height: 36rpx;
+  margin-bottom: 14rpx;
+}
+.submitorder-content .goodsinfolist .newcarcell_f .carinfo .listinfo {
+  font-size: 24rpx;
+  color: #70767F;
+  font-family: pingFangSC-regular;
+  margin-bottom: 6rpx;
+}
+.submitorder-content .goodsinfolist .newcarcell_f .carinfo .listinfo .title {
+  display: inline-block;
+  width: 115rpx;
+  color: #C3C3C3;
+  margin-right: 16rpx;
+}
+.submitorder-content .related-old-order {
+  background-color: #FFFFFF;
+  margin-bottom: 20rpx;
+}
+.submitorder-content .related-old-order .headtitle {
+  padding: 24rpx 30rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+.submitorder-content .related-old-order .headtitle .headtitleL {
+  font-size: 30rpx;
+  color: #17212E;
+  height: 48rpx;
+  line-height: 48rpx;
+}
+.submitorder-content .related-old-order .headtitle .icon-qiehuan {
+  height: 48rpx;
+  width: 48rpx;
+}
+.submitorder-content .related-old-order .old-order-list {
+  color: #17212E;
+}
+.submitorder-content .related-old-order .old-order-list .cell-1 {
+  width: 100%;
+  height: 40rpx;
+  margin-bottom: 24rpx;
+}
+.submitorder-content .related-old-order .old-order-list .cell-1 .ordernum {
+  float: left;
+  font-size: 26rpx;
+}
+.submitorder-content .related-old-order .old-order-list .cell-1 .orderstate {
+  float: right;
+  font-size: 26rpx;
+  color: #F57C40;
+}
+.submitorder-content .related-old-order .old-order-list .name {
+  font-family: pingFangSC-Medium;
+  margin-bottom: 16rpx;
+  font-size: 34rpx;
+}
+.submitorder-content .related-old-order .old-order-list .carinfo {
+  font-size: 30rpx;
+  margin-bottom: 24rpx;
+  line-height: 42rpx;
+}
+.submitorder-content .related-old-order .old-order-list .shopnums {
+  width: 100%;
+  height: 30rpx;
+}
+.submitorder-content .related-old-order .old-order-list .shopnums .nums {
+  float: left;
+  color: #70767F;
+  font-size: 26rpx;
+}
+.submitorder-content .related-old-order .old-order-list .shopnums .nums .num {
+  color: #17212E;
+}
+.submitorder-content .related-old-order .old-order-list .shopnums .date {
+  float: right;
+  font-size: 24rpx;
+  color: #C3C3C3;
+}
+.submitorder-content .customer-Infor {
+  background-color: #FFFFFF;
+  margin-bottom: 20rpx;
+}
+.submitorder-content .customer-Infor .content {
+  padding: 0 30rpx;
+}
+.submitorder-content .customer-Infor .content .cell-headportrait {
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+.submitorder-content .customer-Infor .content .cell-headportrait .character {
+  display: block;
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.submitorder-content .customer-Infor .content .cell-headportrait .name {
+  height: 84rpx;
+  line-height: 84rpx;
+  color: #17212E;
+  font-size: 34rpx;
+  font-family: pingFangSC-Medium;
+}
+.submitorder-content .customer-Infor .content .info {
+  padding-top: 26rpx;
+  padding-bottom: 28rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+.submitorder-content .customer-Infor .content .info .infoL {
+  color: #70767F;
+  font-size: 30rpx;
+}
+.submitorder-content .customer-Infor .content .info .infoR {
+  color: #17212E;
+  font-size: 30rpx;
+}
+.submitorder-content .customer-Infor .content .info .addressL {
+  width: 30%;
+}
+.submitorder-content .customer-Infor .content .info .Required {
+  position: relative !important;
+}
+.submitorder-content .customer-Infor .content .info .Required .Required-star {
+  position: absolute !important;
+  top: 0rpx !important;
+  left: -20rpx !important;
+  color: red !important;
+}
+.submitorder-content .customer-Infor .content .info .addressR {
+  width: 70%;
+}
+.submitorder-content .customer-Infor .content .ownerinfo {
+  color: #17212E;
+  font-size: 26rpx;
+}
+.submitorder-content .customer-Infor .content .ownerinfo .title {
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+.submitorder-content .customer-Infor .content .ownerinfo .list {
+  padding-top: 26rpx;
+}
+.submitorder-content .customer-Infor .content .ownerinfo .list .cell {
+  padding-bottom: 22rpx;
+}
+.submitorder-content .customer-Infor .content .ownerinfo .list .cell .cellL {
+  color: #70767F;
+}
+.submitorder-content .Commodity-infor-nonvehical .followCar {
+  padding-top: 60rpx;
+  padding-bottom: 34rpx;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.submitorder-content .Commodity-infor-nonvehical .followCarbtn {
+  display: inline-block;
+  width: 60rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  color: #C3C3C3;
+  font-size: 22rpx;
+  border-radius: 4rpx;
+  border: 1rpx solid #E1E1E1;
+}
+.submitorder-content .Commodity-infor-nonvehical .stockinfo {
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  color: #70767F;
+}
+.submitorder-content .Commodity-infor-nonvehical .subtotal {
+  width: 100%;
+  padding: 18rpx 0;
+}
+.submitorder-content .Commodity-infor-nonvehical .subtotal .subtotaltxt {
+  color: #70767F;
+  font-size: 20rpx;
+  margin-right: 8rpx;
+}
+.submitorder-content .Commodity-infor-nonvehical .subtotal .subtotalicon {
+  color: #F57C40;
+  font-size: 20rpx;
+}
+.submitorder-content .Commodity-infor-nonvehical .subtotal .subtotalmoney {
+  color: #F57C40;
+  font-size: 34rpx;
+}
+.submitorder-content .Commodity-infor-nonvehical .number-box {
+  width: 170rpx;
+  height: 44rpx;
+  border: 2rpx solid #E1E1E1;
+  border-radius: 2rpx;
+}
+.submitorder-content .Commodity-infor-nonvehical .number-box .reduce, .submitorder-content .Commodity-infor-nonvehical .number-box .increase {
+  width: 50rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+  text-align: center;
+}
+.submitorder-content .Commodity-infor-nonvehical .number-box .reduce .iconfont, .submitorder-content .Commodity-infor-nonvehical .number-box .increase .iconfont {
+  font-size: 30rpx;
+  color: #17212E;
+}
+.submitorder-content .Commodity-infor-nonvehical .number-box .numberbox {
+  font-size: 26rpx;
+  color: #17212E;
+  width: 70rpx;
+  text-align: center;
+  height: 42rpx;
+  line-height: 42rpx;
+  border-left: 2rpx solid #E1E1E1;
+  border-right: 2rpx solid #E1E1E1;
+}
+.submitorder-content .Insurance-infor {
+  background-color: #FFFFFF;
+  margin-bottom: 20rpx;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-title {
+  padding: 22rpx 30rpx;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list {
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .subtotal {
+  width: 100%;
+  padding: 18rpx 0;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .subtotal .subtotaltxt {
+  color: #70767F;
+  font-size: 20rpx;
+  margin-right: 8rpx;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .subtotal .subtotalicon {
+  color: #F57C40;
+  font-size: 20rpx;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .subtotal .subtotalmoney {
+  color: #F57C40;
+  font-size: 34rpx;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .cell {
+  padding: 18rpx 30rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .cell uni-view {
+  font-size: 26rpx;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .cell .cellR {
+  font-size: 30rpx;
+  color: #70767F;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .cell .tax-rate {
+  color: #70767F;
+}
+.submitorder-content .Insurance-infor .Insurance-infor-list .cell .view-policy {
+  color: #1371F7;
+}
+.customerorderdetails .sum {
+  padding: 18rpx 0;
+  color: #70767F;
+  font-size: 20rpx;
+}
+.customerorderdetails .sum .icon-yuan {
+  color: #F57C40;
+}
+.customerorderdetails .sum .money {
+  font-size: 34rpx;
+  color: #F57C40;
+}
+.customerorderdetails .blueline-title {
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #F5F5F5;
+  padding: 24rpx 0;
+  padding-left: 50rpx;
+  position: relative;
+  font-size: 34rpx;
+  color: #17212E;
+  font-family: pingFangSC-Medium;
+}
+.customerorderdetails .blueline-title .blueline {
+  position: absolute;
+  top: 36rpx;
+  left: 30rpx;
+  width: 6rpx;
+  height: 33rpx;
+  border-radius: 3rpx;
+  background-color: #1371F7;
+}
+.customerorderdetails .baseinfo {
+  width: 100%;
+  height: 1220rpx;
+  position: relative;
+  background-color: #FFFFFF;
+  margin-bottom: 20rpx;
+}
+.customerorderdetails .baseinfo .baseinfo-bg {
+  width: 100%;
+  height: 130rpx;
+  background: -webkit-linear-gradient(left, #41C5FF, #1371F7);
+  background: linear-gradient(to right, #41C5FF, #1371F7);
+}
+.customerorderdetails .baseinfo .content {
+  position: absolute;
+  left: 30rpx;
+  top: 24rpx;
+  width: 690rpx;
+  height: 1152rpx;
+  border-radius: 10rpx;
+  background: white;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  box-shadow: 0px 16rpx 80rpx -8rpx #dee5ec;
+}
+.customerorderdetails .baseinfo .content .ordernumT {
+  border-bottom: 1rpx dashed #EFEFEF;
+}
+.customerorderdetails .baseinfo .content .ordernumT .ordernum {
+  padding-top: 30rpx;
+  padding-bottom: 26rpx;
+  width: 80%;
+  color: #17212E;
+}
+.customerorderdetails .baseinfo .content .ordernumT .ordernum .time {
+  display: block;
+  color: #C3C3C3;
+  font-size: 24rpx;
+}
+.customerorderdetails .baseinfo .content .ordernumT .state {
+  padding-top: 30rpx;
+  width: 20%;
+  color: #F57C40;
+  font-size: 26rpx;
+}
+.customerorderdetails .baseinfo .content ._list ._cell {
+  border-bottom: 1rpx solid #EFEFEF;
+  padding: 30rpx 0;
+}
+.customerorderdetails .baseinfo .content ._list ._cell .title {
+  color: #70767F;
+}
+.customerorderdetails .baseinfo .content ._list ._cell .value {
+  color: #17212E;
+}
+.customerorderdetails .baseinfo .content ._list ._cell:last-child {
+  border-bottom: none;
+}
+.customerorderdetails .related-old-order {
+  background-color: #FFFFFF;
+  margin-bottom: 20rpx;
+}
+.customerorderdetails .related-old-order .title {
+  padding: 34rpx 30rpx;
+  border-bottom: 1rpx solid #EFEFEF;
+  color: #17212E;
+  font-size: 30rpx;
+}
+.customerorderdetails .related-old-order .old-order-list {
+  color: #17212E;
+}
+.customerorderdetails .related-old-order .old-order-list .cell-1 {
+  width: 100%;
+  height: 40rpx;
+  margin-bottom: 24rpx;
+}
+.customerorderdetails .related-old-order .old-order-list .cell-1 .ordernum {
+  float: left;
+  font-size: 26rpx;
+}
+.customerorderdetails .related-old-order .old-order-list .cell-1 .orderstate {
+  float: right;
+  font-size: 26rpx;
+  color: #F57C40;
+}
+.customerorderdetails .related-old-order .old-order-list .name {
+  font-family: pingFangSC-Medium;
+  margin-bottom: 16rpx;
+  font-size: 34rpx;
+}
+.customerorderdetails .related-old-order .old-order-list .carinfo {
+  font-size: 30rpx;
+  margin-bottom: 24rpx;
+  line-height: 42rpx;
+}
+.customerorderdetails .related-old-order .old-order-list .shopnums {
+  width: 100%;
+  height: 30rpx;
+}
+.customerorderdetails .related-old-order .old-order-list .shopnums .nums {
+  float: left;
+  color: #70767F;
+  font-size: 26rpx;
+}
+.customerorderdetails .related-old-order .old-order-list .shopnums .nums .num {
+  color: #17212E;
+}
+.customerorderdetails .related-old-order .old-order-list .shopnums .date {
+  float: right;
+  font-size: 24rpx;
+  color: #C3C3C3;
+}
+.customerorderdetails .customer-Infor {
+  background-color: #FFFFFF;
+  margin-bottom: 20rpx;
+}
+.customerorderdetails .customer-Infor .content {
+  padding: 0 30rpx;
+}
+.customerorderdetails .customer-Infor .content .cell-headportrait {
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+.customerorderdetails .customer-Infor .content .cell-headportrait .character {
+  display: block;
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.customerorderdetails .customer-Infor .content .cell-headportrait .name {
+  height: 84rpx;
+  line-height: 84rpx;
+  color: #17212E;
+  font-size: 34rpx;
+  font-family: pingFangSC-Medium;
+}
+.customerorderdetails .customer-Infor .content .info {
+  padding-top: 26rpx;
+  padding-bottom: 28rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+.customerorderdetails .customer-Infor .content .info .infoL {
+  color: #70767F;
+  font-size: 30rpx;
+}
+.customerorderdetails .customer-Infor .content .info .infoR {
+  color: #17212E;
+  font-size: 30rpx;
+}
+.customerorderdetails .customer-Infor .content .info .addressL {
+  width: 30%;
+}
+.customerorderdetails .customer-Infor .content .info .addressR {
+  width: 70%;
+}
+.customerorderdetails .customer-Infor .content .ownerinfo {
+  color: #17212E;
+  font-size: 26rpx;
+}
+.customerorderdetails .customer-Infor .content .ownerinfo .title {
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+.customerorderdetails .customer-Infor .content .ownerinfo .list {
+  padding-top: 26rpx;
+}
+.customerorderdetails .customer-Infor .content .ownerinfo .list .cell {
+  padding-bottom: 22rpx;
+}
+.customerorderdetails .customer-Infor .content .ownerinfo .list .cell .cellL {
+  color: #70767F;
+}
+.customerorderdetails .commodity-Infor .additional_title {
+  background-color: #FFFFFF;
+  padding: 18rpx 30rpx;
+  color: #17212E;
+  font-size: 26rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+.customerorderdetails .commodity-Infor .goodsinfolist {
+  background-color: #FFFFFF;
+}
+.customerorderdetails .commodity-Infor .goodsinfolist .newcarcell_f {
+  margin-bottom: 26rpx;
+  border-bottom: 1rpx solid #F9F9F9;
+}
+.customerorderdetails .commodity-Infor .goodsinfolist .newcarcell_f .goodavatar {
+  width: 156rpx;
+  height: 116rpx;
+  overflow: hidden;
+  -webkit-justify-content: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+.customerorderdetails .commodity-Infor .goodsinfolist .newcarcell_f .carinfo {
+  width: 610rpx;
+  -webkit-justify-content: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: start;
+          align-items: flex-start;
+}
+.customerorderdetails .commodity-Infor .goodsinfolist .newcarcell_f .carinfo .carname {
+  font-size: 26rpx;
+  color: #17212E;
+  line-height: 36rpx;
+  margin-bottom: 14rpx;
+}
+.customerorderdetails .commodity-Infor .goodsinfolist .newcarcell_f .carinfo .listinfo {
+  font-size: 24rpx;
+  color: #70767F;
+  font-family: pingFangSC-regular;
+  margin-bottom: 6rpx;
+}
+.customerorderdetails .commodity-Infor .goodsinfolist .newcarcell_f .carinfo .listinfo .title {
+  display: inline-block;
+  width: 115rpx;
+  color: #C3C3C3;
+  margin-right: 16rpx;
+}
+.customerorderdetails .commodity-Infor .list {
+  background-color: #FFFFFF;
+  padding: 0 30rpx;
+  margin-bottom: 20rpx;
+}
+.customerorderdetails .commodity-Infor .list .cell {
+  font-size: 30rpx;
+  color: #70767F;
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+.customerorderdetails .commodity-Infor .list .cell .cellR {
+  color: #17212E;
+}
+.customerorderdetails .commodity-Infor .list .cell .check_ {
+  display: block;
+  color: #1371F7;
+  font-size: 26rpx;
+}
+.customerorderdetails .commodity-Infor .list .cell .price {
+  color: #F57C40;
+  font-size: 34rpx;
+}
+.customerorderdetails .commodity-Infor .list .cell .icon-yuan {
+  font-size: 20rpx;
+}
+.customerorderdetails .commodity-Infor .list .cell .tips {
+  display: block;
+  font-size: 20rpx;
+}
+.customerorderdetails .commodity-Infor .list .cell:last-child {
+  border: none;
+}
+.customerorderdetails .commodity-Infor .additional {
+  margin-bottom: 20rpx;
+}
+.customerorderdetails .commodity-Infor .additional .additional-cell {
+  margin-bottom: 20rpx;
+  background-color: #FFFFFF;
+}
+.customerorderdetails .commodity-Infor .additional .actual-price {
+  padding: 0 30rpx;
+}
+.customerorderdetails .commodity-Infor .additional .actual-price .actual-price-cell {
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+.customerorderdetails .commodity-Infor .additional .actual-price .actual-price-cell .cellL {
+  color: #70767F;
+}
+.customerorderdetails .commodity-Infor .additional .actual-price .actual-price-cell .cellL .check_ {
+  display: block;
+  font-size: 26rpx;
+  color: #1371F7;
+}
+.customerorderdetails .commodity-Infor .additional .actual-price .actual-price-cell .cellR {
+  color: #17212E;
+}
+.customerorderdetails .commodity-Infor .additional .actual-price .actual-price-cell .cellR .on-board-btn {
+  display: inline-block;
+  font-size: 22rpx;
+  padding: 2rpx 8rpx;
+  border-radius: 4rpx;
+  border: 1rpx solid #E1E1E1;
+}
+.customerorderdetails .Insurance-infor .content {
+  background-color: #FFFFFF;
+}
+.customerorderdetails .Insurance-infor .content .list .cell {
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.customerorderdetails .Insurance-infor .content .list .cell .cellL {
+  font-size: 26rpx;
+  color: #70767F;
+}
+.customerorderdetails .Insurance-infor .content .list .cell .cellR {
+  font-size: 30rpx;
+  color: #17212E;
+}
+.customerorderdetails .Insurance-infor .content .list .cell .policy {
+  font-size: 20rpx;
+  display: block;
+}
+.customerorderdetails .Insurance-infor .content .list .cell .policybtn {
+  color: #1371F7;
+  display: block;
+}
+.customerorderdetails .Payment-infor {
+  margin-bottom: 20rpx;
+}
+.customerorderdetails .Payment-infor .content {
+  background-color: #FFFFFF;
+}
+.customerorderdetails .Payment-infor .content .list .cell {
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.customerorderdetails .Payment-infor .content .list .cell .cellL {
+  font-size: 30rpx;
+  color: #70767F;
+}
+.customerorderdetails .Payment-infor .content .list .cell .cellR {
+  font-size: 30rpx;
+  color: #17212E;
+}
+.customerorderdetails .Payment-infor .content .list .cell:last-child {
+  border: none;
+}
+.customerorderdetails .commom-content .notesL {
+  width: 30%;
+}
+.customerorderdetails .commom-content .notesR {
+  width: 70%;
+}
+.customerorderdetails .commom-content .content {
+  background-color: #FFFFFF;
+  padding: 0 30rpx;
+}
+.customerorderdetails .commom-content .content .list .cell {
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.customerorderdetails .commom-content .content .list .cell .cellL {
+  font-size: 30rpx;
+  color: #70767F;
+}
+.customerorderdetails .commom-content .content .list .cell .cellR {
+  font-size: 30rpx;
+  color: #17212E;
+}
+.customerorderdetails .commom-content .content .list .cell:last-child {
+  border: none;
+}
+.customerorderdetails .mortgage-pro {
+  margin-bottom: 20rpx;
+}
+.customerorderdetails .mortgage-pro .loan-infor {
+  margin-top: 20rpx;
+  padding: 18rpx 30rpx;
+  color: #17212E;
+  font-size: 26rpx;
+  border-bottom: 1rpx solid #EFEFEF;
+  background-color: #FFFFFF;
+}
+.customerorderdetails .delivery-infor {
+  margin-bottom: 20rpx;
+}
+.customerorderdetails .other-conventions {
+  margin-bottom: 20rpx;
+}
+.customerorderdetails .other-conventions .other-conventions-title {
+  color: #17212E;
+  font-size: 26rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+  padding: 18rpx 30rpx;
+  background-color: #FFFFFF;
+}
+.customerorderdetails .remarks-infor, .customerorderdetails .Invoice-infor {
+  margin-bottom: 20rpx;
+}
+.customerorderdetails .button-group {
+  box-sizing: border-box;
+  border-top: 1rpx solid #EFEFEF;
+  background-color: #FFFFFF;
+}
+.customerorderdetails .button-group .button-group-btn {
+  padding: 24rpx 0;
+  color: #1371F7;
+  font-size: 34rpx;
+  border-right: 1rpx solid #EFEFEF;
+}
+.customerorderdetails .button-group .button-group-btn:last-child {
+  border-right: 0;
+}
+.customerorderdetails .bottom-price {
+  background-color: #FFFFFF;
+  padding: 20rpx 30rpx;
+}
+.customerorderdetails .bottom-price .total {
+  color: #70767F;
+  font-size: 20rpx;
+}
+.customerorderdetails .bottom-price .total .price-icon {
+  margin-left: 8rpx;
+  color: #F57C40;
+}
+.customerorderdetails .bottom-price .total .price {
+  font-size: 34rpx;
+  color: #F57C40;
+  font-family: pingFangSC-Medium;
+}
+.customerorderdetails .bottom-price .discount {
+  color: #262626;
+}
+.customerorderdetails .bottom-price .category {
+  color: #70767F;
+  font-size: 24rpx;
+}
+.customerorderdetails .bottom-price .category .check {
+  margin-left: 16rpx;
+  color: #1371F7;
+  font-size: 24rpx;
+}
+.customerorderdetails .popupbd .popup-content {
+  background-color: #fff;
+  padding-bottom: 30rpx;
+  color: #17212E;
+  font-size: 30rpx;
+}
+.customerorderdetails .popupbd .popup-content .popup-title {
+  padding: 0 30rpx;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.customerorderdetails .popupbd .popup-content .popup-title .popup-title-name {
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 34rpx;
+  font-family: pingFangSC-Medium;
+}
+.customerorderdetails .popupbd .popup-content .popup-title .popup-title-icon {
+  height: 90rpx;
+}
+.customerorderdetails .popupbd .popup-content .content {
+  padding: 0 30rpx;
+  padding-bottom: 60rpx;
+}
+.customerorderdetails .popupbd .popup-content .content .content-title .icon-choiceO {
+  color: #1371F7;
+  font-size: 20rpx;
+  margin-left: -6rpx;
+}
+.customerorderdetails .popupbd .popup-content .content .content-title .time {
+  display: inline-block;
+  padding-left: 20rpx;
+  font-size: 24rpx;
+  color: #C3C3C3;
+}
+.customerorderdetails .popupbd .popup-content .content .remarks {
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.customerorderdetails .popupbd .popup-content .content .textarea {
+  padding: 18rpx 0;
+}
+.customerorderdetails .popupbd .popup-content .content .textarea textarea {
+  height: 260rpx;
+}
+.customerorderdetails .popupbd .popup-content .content .content-contaner {
+  border-left: 1rpx solid #EFEFEF;
+}
+.customerorderdetails .popupbd .popup-content .content .content-contaner .content-contaner-tlt {
+  font-size: 30rpx;
+  padding: 20rpx 0 16rpx 32rpx;
+}
+.customerorderdetails .popupbd .popup-content .content .content-contaner .content-contaner-con {
+  font-size: 26rpx;
+  color: #70767F;
+  padding-left: 32rpx;
+  line-height: 42rpx;
+}
+.customerorderdetails .popupbd .popup-content .content .comfirmbtns {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.customerorderdetails .popupbd .popup-content .content .comfirmbtns uni-button[type=default] {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  text-align: center;
+  width: 690rpx;
+  height: 78rpx;
+  line-height: 78rpx;
+  border-radius: 78rpx;
+  padding: 0;
+  background-color: #1371F7;
+  color: #FFFFFF;
+  font-size: 34rpx;
+}
+.customerorderdetails .popupbd .popup-content .content .comfirmbtns uni-button[disabled][type=default] {
+  width: 690rpx;
+  height: 78rpx;
+  line-height: 78rpx;
+  border-radius: 78rpx;
+  padding: 0;
+  background-color: #E1E1E1;
+  color: #FFFFFF;
+  font-size: 34rpx;
+}
+.shop-Mall .screen-bd .screen-bd-in {
+  background-color: #FFFFFF;
+  position: relative;
+}
+.shop-Mall .screen-bd .screen-bd-in .screen-btn {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  padding: 26rpx 30rpx;
+  color: #000000;
+  background: #FFFFFF;
+}
+.shop-Mall .screen-bd .screen-bd-in .screen-lists .screen-list-cell {
+  display: inline-block;
+  padding: 26rpx 0;
+  margin: 0 20rpx;
+  color: #70767F;
+  font-size: 30rpx;
+}
+.shop-Mall .screen-bd .screen-bd-in .screen-lists .screen-list-cell-on {
+  color: #2F2F2F;
+  font-family: pingFangSC-Medium;
+  border-bottom: 4rpx solid #1371F7;
+}
+.shop-Mall .screen-bd .screen-bd-in .screen-lists .Noactive {
+  color: #C3C3C3;
+}
+.shop-Mall .goods-lists .goods-titles {
+  font-size: 26rpx;
+  color: #70767F;
+}
+.shop-Mall .goods-lists .newcarlist_c .uni-gri-s {
+  padding-left: 16rpx;
+  overflow: hidden;
+}
+.shop-Mall .goods-lists .newcarlist_c .uni-gri-s .uni-grid-item-s {
+  width: 350rpx;
+  margin-right: 16rpx;
+  background: #FFFFFF;
+  border-radius: 8px;
+  float: left;
+}
+.shop-Mall .goods-lists .newcarlist_c .uni-gri-s .uni-grid-item-s .carinfo .proname {
+  text-align: center;
+  font-size: 26rpx;
+  color: #17212E;
+  line-height: 42rpx;
+  padding: 14px 0;
+}
+.shop-Mall .goods-lists .newcarlist_c .uni-gri-s .proImage {
+  width: 100%;
+}
+.shop-Mall .sortFilter .screen-bd {
+  width: 100%;
+  height: 88rpx;
+  position: relative;
+}
+.shop-Mall .sortFilter .screen-bd .screen-bd-in {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+.shop-Mall .sortFilter .screen-bd .screen-bd-in .lists {
+  background: #FFFFFF;
+}
+.shop-Mall .sortFilter .screen-bd .screen-bd-in .lists .list-cell {
+  padding: 20rpx 0;
+  color: #17212E;
+  font-size: 34rpx;
+  border-bottom: 2rpx solid #EFEFEF;
+}
+.shop-Mall .sortFilter .screen-bd .screen-bd-in .lists .list-cell .txt {
+  width: 90%;
+  padding-right: 20rpx;
+}
+.shop-Mall .sortFilter .screen-bd .screen-bd-in .lists .list-cell .iconbtn {
+  width: 10%;
+}
+.shop-Mall .sortFilter .screen-bd .screen-bd-in .lists .list-cell .iconbtn .iconfont {
+  color: #17212E;
+}
+.shop-Mall .sortFilter .screen-bd .screen-bd-in .lists .list-cell .currentConditionT {
+  font-size: 34rpx;
+}
+.shop-Mall .sortFilter .screen-bd .mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  opacity: 0.4;
+  z-index: 10;
+}
+.shop-Mall .sortFilter .screen-bd .screen {
+  color: #000000;
+  font-size: 26rpx;
+}
+.shop-Mall .sortFilter .screen-bd .screen .iconfont {
+  color: #999999;
+  font-size: 24rpx;
+}
+.shop-Mall .sortFilter .screen-bd .on {
+  color: #1371F7;
+}
+.shop-Mall .sortFilter .screen-condition {
+  color: #70767F;
+  font-size: 26rpx;
+  padding: 18rpx 30rpx;
+}
+.shop-Mall .classification .newcarlist_s .uni-gri-s {
+  padding-left: 16rpx;
+  overflow: hidden;
+}
+.shop-Mall .classification .newcarlist_s .uni-gri-s .uni-grid-item-s {
+  width: 350rpx;
+  margin-right: 16rpx;
+  margin-bottom: 16rpx;
+  background: #FFFFFF;
+  border-radius: 8px;
+  float: left;
+}
+.shop-Mall .classification .newcarlist_s .uni-gri-s .uni-grid-item-s .carinfo .proname {
+  font-size: 30rpx;
+  color: #17212E;
+  line-height: 42rpx;
+}
+.shop-Mall .classification .newcarlist_s .uni-gri-s .uni-grid-item-s .carinfo .proprice {
+  font-size: 34rpx;
+  color: #F57C40;
+  font-family: pingFangSC-Medium;
+}
+.shop-Mall .classification .newcarlist_s .uni-gri-s .uni-grid-item-s .carinfo .proprice .icon-money, .shop-Mall .classification .newcarlist_s .uni-gri-s .uni-grid-item-s .carinfo .proprice .icon-wanyuan {
+  font-size: 20rpx;
+  font-family: pingFangSC-regular;
+}
+.shop-Mall .classification .newcarlist_s .uni-gri-s .uni-grid-item-s .carinfo .pronum {
+  font-size: 20rpx;
+  color: #70767F;
+}
+.shop-Mall .classification .newcarlist_s .uni-gri-s .proImage {
+  width: 100%;
+}
+.shop-Mall .carlist .newcarlist_f {
+  background-color: #FFFFFF;
+}
+.shop-Mall .carlist .newcarlist_f .newcarcell_f {
+  margin-bottom: 26rpx;
+  border-bottom: 1rpx solid #F9F9F9;
+}
+.shop-Mall .carlist .newcarlist_f .newcarcell_f .carinfo .proname {
+  font-size: 30rpx;
+  color: #17212E;
+  height: 80rpx;
+  line-height: 42rpx;
+}
+.shop-Mall .carlist .newcarlist_f .newcarcell_f .carinfo .proprice {
+  font-size: 34rpx;
+  color: #F57C40;
+  font-family: pingFangSC-Medium;
+}
+.shop-Mall .carlist .newcarlist_f .newcarcell_f .carinfo .proprice .icon-money, .shop-Mall .carlist .newcarlist_f .newcarcell_f .carinfo .proprice .icon-wanyuan {
+  font-size: 20rpx;
+  font-family: pingFangSC-regular;
+}
+.shop-Mall .carlist .newcarlist_f .newcarcell_f .carinfo .pronum {
+  font-size: 20rpx;
+  color: #70767F;
+}
+.shop-Mall .vehicle-details-bd ._img {
+  display: block;
+}
+.shop-Mall .vehicle-details-bd .vehicle-details {
+  background-color: #FFFFFF;
+  margin-bottom: 24rpx;
+}
+.shop-Mall .vehicle-details-bd .vehicle-details .carname {
+  padding: 0 30rpx;
+  font-size: 36rpx;
+  color: #2F2F2F;
+  margin-bottom: 22rpx;
+  font-family: pingFangSC-Medium;
+}
+.shop-Mall .vehicle-details-bd .vehicle-details .proprice {
+  background-color: #FFFFFF;
+  padding: 0 30rpx;
+  font-size: 34rpx;
+  color: #F57C40;
+  font-family: pingFangSC-Medium;
+}
+.shop-Mall .vehicle-details-bd .vehicle-details .proprice .icon-money, .shop-Mall .vehicle-details-bd .vehicle-details .proprice .icon-wanyuan {
+  font-size: 20rpx;
+  font-family: pingFangSC-regular;
+}
+.shop-Mall .vehicle-details-bd .vehicle-details .proprice .delprice {
+  font-size: 20rpx;
+  color: #70767F;
+  margin-left: 8rpx;
+  font-family: pingFangSC-regular;
+}
+.shop-Mall .vehicle-details-bd .vehicle-details .express-fee {
+  padding: 0 30rpx;
+  margin-top: 32rpx;
+  margin-bottom: 44rpx;
+  font-size: 24rpx;
+  color: #70767F;
+  font-family: pingFangSC-regular;
+}
+.shop-Mall .vehicle-details-bd .tabs {
+  background-color: #FFFFFF;
+}
+.shop-Mall .vehicle-details-bd .tabs .tabs-nav {
+  border-bottom: 1rpx solid #EFEFEF;
+  padding: 0 30rpx;
+}
+.shop-Mall .vehicle-details-bd .tabs .tabs-nav .tabs-nav-cell {
+  position: relative;
+  padding: 20rpx 0;
+}
+.shop-Mall .vehicle-details-bd .tabs .tabs-nav .tabs-nav-cell .line {
+  display: none;
+  width: 60rpx;
+  height: 6rpx;
+  background-color: #1371F7;
+  border-radius: 4rpx;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 50%;
+  margin-left: -30rpx;
+}
+.shop-Mall .vehicle-details-bd .tabs .tabs-nav .on .line {
+  display: inline-block;
+}
+.shop-Mall .vehicle-details-bd .tabs .tabs-content {
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.shop-Mall .vehicle-details-bd .tabs .tabs-content ._img {
+  border: 1rpx solid #F5F5F5;
+  width: 100%;
+  border-radius: 4rpx;
+  margin-bottom: 20rpx;
+}
+.shop-Mall .vehicle-details-bd .tabs .tabs-btn {
+  padding: 0 30rpx;
+  padding-bottom: 20rpx;
+}
+.shop-Mall .vehicle-details-bd .tabs .tabs-btn uni-button[type=default] {
+  background-color: #1371F7;
+  color: #FFFFFF;
+  font-size: 34rpx;
+  height: 78rpx;
+  line-height: 78rpx;
+  border-radius: 78rpx;
+}
+.shop-Mall .vehicle-details-bd .tabs .tabs-btn uni-button:after {
+  border: 0;
+}
+.consultants .mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #000000;
+  opacity: 0.4;
+  z-index: 1;
+}
+.consultants .screen-bd {
+  width: 100%;
+  height: 110rpx;
+  position: relative;
+}
+.consultants .screen-bd .screen-bd-in {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
+  margin-bottom: 20rpx;
+}
+.consultants .screen-bd .screen-bd-in .dialogcontent {
+  background: #FFFFFF;
+}
+.consultants .screen-bd .screen-bd-in .dialogcontent .tlt {
+  font-size: 30rpx;
+  color: #17212E;
+  font-family: pingFangSC-Medium;
+  padding: 28rpx 30rpx;
+}
+.consultants .screen-bd .screen-bd-in .dialogcontent .controw {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.consultants .screen-bd .screen-bd-in .dialogcontent .cont .separator {
+  display: inline-block;
+  padding: 0 20rpx;
+}
+.consultants .screen-bd .screen-bd-in .dialogcontent .cont .filterperiod {
+  width: 230rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  color: #70767F;
+  display: block;
+  padding-right: 62rpx;
+  background: #f9f9f9;
+  border-radius: 8rpx;
+  position: relative;
+}
+.consultants .screen-bd .screen-bd-in .dialogcontent .cont .filterperiod .iconcalendar {
+  position: absolute;
+  right: 20rpx;
+  width: 36rpx;
+  height: 36rpx;
+  top: 12rpx;
+}
+.consultants .screen-bd .screen-bd-in .dialogcontent .cont .btns {
+  display: inline-block;
+  background: #f9f9f9;
+  color: #70767F;
+  font-size: 26rpx;
+  border-radius: 8rpx;
+  padding: 12rpx 0;
+  margin-left: 20rpx;
+  margin-bottom: 20rpx;
+}
+.consultants .screen-bd .screen-bd-in .dialogcontent .cont .btnsActive {
+  background: #c1d6f5;
+  color: #1371F7;
+}
+.consultants .screen-bd .screen-bd-in .dialogcontent .cont .btnsSm {
+  width: 160rpx;
+  text-align: center;
+}
+.consultants .screen-bd .screen-bd-in .dialogcontent .cont .btnsMm {
+  width: 336rpx;
+  text-align: center;
+}
+.consultants .screen-bd .screen-bd-in .dialogcontent .cont .btnsLm {
+  width: 690rpx;
+  text-align: center;
+}
+.consultants .screen-bd .screen-bd-in .btns {
+  font-size: 34rpx;
+  border-top: 1rpx solid #EFEFEF;
+}
+.consultants .screen-bd .screen-bd-in .btns .resetBtn {
+  width: 50%;
+  height: 97rpx;
+  line-height: 97rpx;
+  text-align: center;
+  color: #17212E;
+  background-color: #FFFFFF;
+}
+.consultants .screen-bd .screen-bd-in .btns .comfirmBtn {
+  width: 50%;
+  height: 97rpx;
+  line-height: 97rpx;
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #1371F7;
+}
+.consultants .screen-bd .screen {
+  display: inline-block;
+}
+.consultants .screen-bd .screen uni-button[size=mini] {
+  color: #17212E;
+  font-size: 26rpx;
+  padding: 6rpx 30rpx;
+  border-radius: 52rpx;
+  background: #F9F9F9;
+}
+.consultants .screen-bd .screen uni-button:after {
+  border: 0;
+}
+.consultants .screen-bd .on uni-button[size=mini] {
+  background: #1371F7;
+  color: #FFFFFF;
+}
+.consultants .screen-bd .screen-condition {
+  color: #70767F;
+  font-size: 26rpx;
+  padding: 18rpx 0;
+}
+.consultants .consultants-lists {
+  background-color: #F5F5F5;
+  padding: 0 30rpx;
+  padding-top: 20rpx;
+  box-sizing: border-box;
+}
+.consultants .consultants-lists .consultants-lists-cell {
+  box-sizing: border-box;
+  margin-top: 20rpx;
+  background-color: #FFFFFF;
+  border-radius: 8rpx;
+  width: 100%;
+  padding: 0 30rpx;
+  color: #17212E;
+  font-size: 26rpx;
+}
+.consultants .consultants-lists .consultants-lists-cell .ordernum {
+  padding-top: 24rpx;
+}
+.consultants .consultants-lists .consultants-lists-cell .ordernum .ordernumL {
+  width: 75%;
+}
+.consultants .consultants-lists .consultants-lists-cell .ordernum .ordernumR {
+  width: 25%;
+}
+.consultants .consultants-lists .consultants-lists-cell .ordernum .date {
+  color: #C3C3C3;
+  font-size: 24rpx;
+  display: block;
+}
+.consultants .consultants-lists .consultants-lists-cell .ordernum .attribute {
+  color: #262626;
+  font-size: 22rpx;
+  padding: 0rpx 8rpx;
+  border-radius: 4rpx;
+  border: 1px solid #E1E1E1;
+  margin-left: 6rpx;
+  display: inline-block;
+}
+.consultants .consultants-lists .consultants-lists-cell .ordernum .state {
+  color: #F57C40;
+}
+.consultants .consultants-lists .consultants-lists-cell .ordercontant {
+  padding-top: 20rpx;
+  color: #70767F;
+  font-size: 22rpx;
+}
+.consultants .consultants-lists .consultants-lists-cell .ordercontant .ordername {
+  font-family: pingFangSC-Medium;
+  color: #17212E;
+  font-size: 34rpx;
+}
+.consultants .consultants-lists .consultants-lists-cell .ordercontant .orderphone {
+  width: 48rpx;
+}
+.consultants .consultants-lists .consultants-lists-cell .carinfo {
+  padding-top: 16rpx;
+  display: block;
+  width: 630rpx;
+  overflow: hidden;
+  /*超出部分隐藏*/
+  white-space: nowrap;
+  /*不换行*/
+  text-overflow: ellipsis;
+  /*超出部分文字以...显示*/
+  font-size: 30rpx;
+}
+.consultants .consultants-lists .consultants-lists-cell .detailslist {
+  padding-bottom: 14rpx;
+}
+.consultants .consultants-lists .consultants-lists-cell .detailslist .text {
+  display: inline-block;
+  color: #70767F;
+  width: 140rpx;
+}
+.consultants .consultants-lists .consultants-lists-cell .detailslist .value {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  display: inline-block;
+  color: #17212E;
+}
+.consultants .consultants-lists .consultants-lists-cell .detailslist .value .position {
+  display: block;
+  font-size: 20rpx;
+  color: #70767F;
+}
+.consultants .consultants-lists .consultants-lists-cell .detailslist .edit-more-btn {
+  position: relative;
+}
+.consultants .consultants-lists .consultants-lists-cell .detailslist .edit-more-btn .icon-more {
+  width: 40rpx;
+}
+.consultants .consultants-lists .consultants-lists-cell .detailslist .edit-more-btn .edit-lists {
+  position: absolute;
+  z-index: 10;
+  top: 56rpx;
+  right: 0;
+  background-color: #FFFFFF;
+  padding-top: 34rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 8px 40px -4px #dee5ec;
+}
+.consultants .consultants-lists .consultants-lists-cell .detailslist .edit-more-btn .edit-lists text {
+  text-align: center;
+  display: block;
+  padding: 0 32rpx;
+  padding-bottom: 36rpx;
+  font-size: 30rpx;
+}
+.consultants .consultants-lists .consultants-lists-cell .shopnumber {
+  padding-top: 16rpx;
+}
+.consultants .consultants-lists .consultants-lists-cell .shopnumber .text {
+  margin-top: 8rpx;
+  color: #70767F;
+}
+.consultants .consultants-lists .consultants-lists-cell .shopnumber .value {
+  margin-top: 8rpx;
+  font-family: pingFangSC-Medium;
+}
+.consultants .consultants-lists .consultants-lists-cell .shopnumber .edit-more-btn {
+  position: relative;
+}
+.consultants .consultants-lists .consultants-lists-cell .shopnumber .edit-more-btn .icon-more {
+  width: 40rpx;
+}
+.consultants .consultants-lists .consultants-lists-cell .shopnumber .edit-more-btn .edit-lists {
+  position: absolute;
+  z-index: 10;
+  top: 56rpx;
+  right: 0;
+  background-color: #FFFFFF;
+  padding-top: 34rpx;
+  box-shadow: 0px 8px 40px -4px #dee5ec;
+}
+.consultants .consultants-lists .consultants-lists-cell .shopnumber .edit-more-btn .edit-lists text {
+  text-align: center;
+  display: block;
+  padding: 0 32rpx;
+  padding-bottom: 36rpx;
+  font-size: 30rpx;
+}
+.consultants .uniyy-page-head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.consultants .uniyy-page-head .hx-navbarr .ctn5 {
+  border-radius: 40px;
+  padding: 10rpx 20rpx;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  line-height: 44rpx;
+  margin: 8rpx 30rpx;
+  background-color: #F9F9F9;
+  background-color: #FFFFFF;
+}
+.consultants .uniyy-page-head .hx-navbarr .ctn5 .txt {
+  color: #C3C3C3;
+}
+.consultants .uniyy-page-head .hx-navbarr .add {
+  padding-right: 10rpx;
+}
+.consultants .uniyy-page-head .hx-navbarr .add .iconfont {
+  font-size: 40rpx;
+}
+.consultants .uniyy-page-head .dropdown {
+  position: fixed;
+  top: 88rpx;
+  right: 30rpx;
+  width: 310rpx;
+  background-color: #FFFFFF;
+  box-shadow: 10rpx 5rpx 5rpx #F5F5F5;
+  border-radius: 10rpx;
+  z-index: 10000;
+}
+.consultants .uniyy-page-head .dropdown .options {
+  color: #17212E;
+  font-size: 30rpx;
+  padding: 18rpx 30rpx;
+  font-family: pingFangSC-regular;
+}
+.consultants .uni-navbar__header-btns-left {
+  display: none;
+}
+.consultants .renavbar {
+  width: 100% !important;
+}
+.consultants .renavbar .iconfont {
+  font-size: 30rpx;
+  color: #000000;
+}
+.manager .manager-hx-navbar .managerorderlist-nav {
+  width: 100%;
+}
+.manager .manager-hx-navbar .navbar {
+  position: relative;
+  padding-bottom: 15rpx;
+  color: #70767F;
+  font-size: 30rpx;
+}
+.manager .manager-hx-navbar .navbar .line {
+  position: absolute;
+  display: none;
+  width: 32rpx;
+  height: 10rpx;
+  background-color: #1371F7;
+  border-radius: 5rpx;
+  bottom: 0;
+  left: 50%;
+  z-index: 15;
+  margin-left: -16rpx;
+}
+.manager .manager-hx-navbar .on {
+  color: #2F2F2F;
+  font-size: 36rpx;
+  font-family: pingFangSC-Medium;
+}
+.manager .manager-hx-navbar .on .line {
+  z-index: 15;
+  display: inline-block;
+}
+.manager .manager-hx-navbar .iconfont {
+  font-size: 40rpx;
+}
+.manager .manager-hx-navbar .search_icon {
+  margin-right: 30rpx;
+}
+.manager .manager-list {
+  background-color: #F5F5F5;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.manager .manager-list .Checkpopup .popup-content {
+  width: 690rpx;
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  padding-bottom: 48rpx;
+}
+.manager .manager-list .Checkpopup .popup-content .toptitle {
+  padding: 20rpx;
+}
+.manager .manager-list .Checkpopup .popup-content .checkList {
+  padding-left: 48rpx;
+  font-size: 30rpx;
+}
+.manager .manager-list .Checkpopup .popup-content .checkList .title {
+  color: #C3C3C3;
+  margin-right: 20rpx;
+}
+.manager .manager-list .Checkpopup .popup-content .checkList .value {
+  color: #17212E;
+}
+.manager .manager-list .manager-lists-cell {
+  box-sizing: border-box;
+  margin-top: 20rpx;
+  background-color: #FFFFFF;
+  border-radius: 8rpx;
+  width: 100%;
+  padding: 0 30rpx;
+  color: #17212E;
+  font-size: 26rpx;
+}
+.manager .manager-list .manager-lists-cell .ordernum {
+  padding-top: 24rpx;
+}
+.manager .manager-list .manager-lists-cell .ordernum .date {
+  color: #C3C3C3;
+  font-size: 24rpx;
+  display: block;
+}
+.manager .manager-list .manager-lists-cell .ordernum .state {
+  color: #F57C40;
+}
+.manager .manager-list .manager-lists-cell .name {
+  color: #17212E;
+  font-family: pingFangSC-Medium;
+}
+.manager .manager-list .manager-lists-cell .ordercontant {
+  padding-top: 20rpx;
+  color: #70767F;
+  font-size: 22rpx;
+}
+.manager .manager-list .manager-lists-cell .ordercontant .ordername {
+  font-family: pingFangSC-Medium;
+  color: #17212E;
+  font-size: 34rpx;
+}
+.manager .manager-list .manager-lists-cell .carinfo {
+  padding-top: 16rpx;
+  display: block;
+  width: 630rpx;
+  overflow: hidden;
+  /*超出部分隐藏*/
+  white-space: nowrap;
+  /*不换行*/
+  text-overflow: ellipsis;
+  /*超出部分文字以...显示*/
+  font-size: 30rpx;
+}
+.manager .manager-list .manager-lists-cell .shopnumber {
+  padding-top: 16rpx;
+}
+.manager .manager-list .manager-lists-cell .shopnumber .text {
+  margin-top: 8rpx;
+  color: #70767F;
+}
+.manager .manager-list .manager-lists-cell .shopnumber .value {
+  margin-top: 8rpx;
+  font-family: pingFangSC-Medium;
+}
+.manager .manager-list .manager-lists-cell .shopnumber .consult-btn {
+  color: #1371F7;
+  margin-left: 32rpx;
+}
+.manager .screenBD .mask {
+  position: fixed;
+  z-index: 10;
+  background-color: #000000;
+  opacity: 0.4;
+  width: 100%;
+  height: 100vh;
+}
+.manager .screenBD .screenbody {
+  position: fixed;
+  z-index: 11;
+  background-color: #FFFFFF;
+  width: 100%;
+  box-sizing: border-box;
+  top: 88rpx;
+  left: 0;
+  max-height: 800rpx;
+}
+.manager .screenBD .screenbody .screencontent {
+  height: 700rpx;
+}
+.manager .screenBD .screenbody .screencontent .contentin {
+  height: 700rpx;
+  overflow: scroll;
+  padding: 0 30rpx;
+}
+.manager .screenBD .screenbody .screencontent .contentin .title {
+  font-size: 30rpx;
+  color: #17212E;
+  font-family: pingFangSC-Medium;
+  padding: 28rpx 0;
+}
+.manager .screenBD .screenbody .screencontent .contentin .date {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  padding-bottom: 20rpx;
+}
+.manager .screenBD .screenbody .screencontent .contentin .date .line {
+  padding: 0 20rpx;
+}
+.manager .screenBD .screenbody .screencontent .contentin .date .starttime {
+  width: 230rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  color: #70767F;
+  display: block;
+  padding-right: 62rpx;
+  background: #f9f9f9;
+  border-radius: 8rpx;
+  position: relative;
+}
+.manager .screenBD .screenbody .screencontent .contentin .date .starttime .iconcalendar {
+  float: right;
+  position: absolute !important;
+  right: 20rpx;
+  width: 36rpx;
+  height: 36rpx;
+  top: 12rpx;
+}
+.manager .screenBD .screenbody .screencontent .contentin .date .endtime {
+  width: 230rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  color: #70767F;
+  display: block;
+  padding-right: 62rpx;
+  background: #f9f9f9;
+  border-radius: 8rpx;
+  position: relative;
+}
+.manager .screenBD .screenbody .screencontent .contentin .date .endtime .iconcalendar {
+  position: absolute !important;
+  float: right;
+  z-index: 10000;
+  right: 20rpx;
+  width: 36rpx;
+  height: 36rpx;
+  top: 12rpx;
+}
+.manager .screenBD .screenbody .screencontent .contentin .choices .lists {
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.manager .screenBD .screenbody .screencontent .contentin .choices .lists .cell {
+  width: 150rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #F9F9F9;
+  color: #70767F;
+  font-size: 26rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+  text-align: center;
+  margin-bottom: 22rpx;
+  overflow: hidden;
+}
+.manager .screenBD .screenbody .screencontent .contentin .choices .lists .on {
+  background: #dcf1fb;
+  color: #1371F7;
+}
+.manager .screenBD .screenbody .buttons {
+  width: 100%;
+  height: 100rpx;
+  background-color: #FFFFFF;
+  border-top: 1rpx solid #EFEFEF;
+}
+.manager .screenBD .screenbody .buttons .reset {
+  width: 50%;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 34rpx;
+  color: #17212E;
+}
+.manager .screenBD .screenbody .buttons .confirm {
+  background-color: #1371F7;
+  width: 50%;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 34rpx;
+  color: #FFFFFF;
+}
+.usedCar .baseinfo {
+  height: 190rpx;
+  margin: 0;
+}
+.usedCar .baseinfo .content {
+  height: 140rpx;
+}
+.usedCar .baseinfo .content .ordernumT {
+  border: 0px;
+}
+.usedCar .bottomgroup .bottomgroupbtn {
+  height: 98rpx;
+  line-height: 98rpx;
+  text-align: center;
+}
+.usedCar .bottomgroup .save {
+  background-color: #ffffff;
+  color: #17212E;
+  font-size: 34rpx;
+}
+.usedCar .bottomgroup .submitb {
+  background-color: #1371F7;
+  color: #FFFFFF;
+  font-size: 34rpx;
+}
+.usedCar .content {
+  background-color: #FFFFFF;
+}
+.usedCar .content .list {
+  padding: 0 30rpx;
+}
+.usedCar .content .list .cell {
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+.usedCar .content .list .cell .notesL {
+  width: 50%;
+  font-size: 30rpx;
+  color: #70767F;
+}
+.usedCar .content .list .cell .notesR {
+  width: 50%;
+  font-size: 30rpx;
+  color: #17212E;
+}
+.usedCar .content .list .cell:last-child {
+  border: 0;
+}
+.usedCar .content .list .ownertitle {
+  padding: 16rpx 0;
+  color: #17212E;
+  font-size: 26rpx;
+  margin-bottom: 30rpx;
+}
+.usedCar .content .list .ownerconcell {
+  padding-bottom: 22rpx;
+}
+.usedCar .content .list .ownerconcell .notesL {
+  width: 50%;
+  font-size: 26rpx;
+  color: #70767F;
+}
+.usedCar .content .list .ownerconcell .notesR {
+  width: 50%;
+  font-size: 26rpx;
+  color: #17212E;
+}
+.ctn4 {
+  border-radius: 40px;
+  padding: 8rpx 20rpx;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  line-height: 44rpx;
+}
+.ctn4 .uni-searchbar {
+  width: 100%;
+}
+.newcarlist_fv .newcarcell_f {
+  margin-bottom: 26rpx;
+  border-bottom: 1rpx solid #F9F9F9;
+}
+.newcarlist_fv .newcarcell_f .useravatar {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.newcarlist_fv .newcarcell_f .userinfo {
+  width: 610rpx;
+  -webkit-justify-content: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: start;
+          align-items: flex-start;
+}
+.newcarlist_fv .newcarcell_f .userinfo .username {
+  font-size: 34rpx;
+  color: #17212E;
+  line-height: 48rpx;
+  margin-bottom: 14rpx;
+  font-family: pingFangSC-Medium;
+}
+.newcarlist_fv .newcarcell_f .userinfo .listinfo {
+  font-size: 26rpx;
+  color: #17212E;
+  font-family: pingFangSC-regular;
+  margin-bottom: 14rpx;
+}
+.newcarlist_fv .newcarcell_f .userinfo .listinfo .title {
+  color: #70767F;
+  margin-right: 18rpx;
+  display: inline-block;
+}
+.newcarlist_fv .newcarcell_f .userinfo .listinfo .intendedModelvalue {
+  display: inline-block;
+  width: 400rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.Finished-loading {
+  text-align: center;
+  padding: 14rpx 0;
+  color: #70767F;
+  font-size: 26rpx;
+}
+

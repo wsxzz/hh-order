@@ -1,5 +1,6 @@
 <template>
 	<view class="custom-header">
+		<view class="n_customer">
 		<view class="uniyy-page-head">
 		<hx-navbar
 		    :back="false" 
@@ -13,43 +14,29 @@
 		</view>
 		<!-- 暂无数据 -->
 		<no-data :nodata="nodata"/>
-		<!-- 顾问列表 -->
-			<view v-if="!nodata">
-				<view class="newcarlist_fv pad">
-					<view  v-for="(item,i) in resultList" :key="i">
-						<view class="uni-flex uni-row newcarcell_f" @click="godetails(item.id)">
-							<view class="uni-flex useravatar marR10" style="">
-								<image src="../../static/images/car.jpg" mode="widthFix"></image>
-							</view>
-							<view class="userinfo">
-								<view class="username">
-									<text v-html="item.name"></text>
-								</view>
-								<view class="listinfo row">
-									<text class="title">意向车型</text>
-									<text class="value intendedModelvalue" v-html="item.intendedModel"></text>
-								</view>
-								<view class="listinfo row">
-									<text class="title">无效原因</text>
-									<text class="value" v-html="item.invalidReason"></text>
-								</view>
-								<view class="listinfo row">
-									<text class="title">战败城市</text>
-									<text class="value"  v-html="item.defeatedCity"></text>
-								</view>
-								<view class="listinfo row">
-									<text class="title">申请时间</text>
-									<text class="value"  v-html="item.applicationTime"></text>
-								</view>
-							</view>
+		<!-- 客户列表 -->
+		<view  v-if="!nodata" class="n_customerlist">
+			<view  v-for="(item,i) in resultList" :key="i">
+				<view class="n_customercell row" @click="gobackorder(item.id)">
+					<view class="detials">
+						<view class="name">
+							<text  v-html="item.name">谢宝新</text>
+							<text class="sex">/女士</text>
+						</view>
+						<view class="phone" v-html="item.phone">
+							18930988827
 						</view>
 					</view>
-				</view>
-				<view v-if="loadall" class="Finished-loading">
-					已全部加载完毕
+					<view class="data" v-html="item.applicationTime">
+						2019-7-21
+					</view>
 				</view>
 			</view>
-	
+			<view v-if="loadall" class="Finished-loading">
+				已全部加载完毕
+			</view>
+		</view>
+	</view>
 		
 	</view>
 </template>
@@ -74,6 +61,14 @@
 			this.consultantslists = consultantslists.data;//数据
 		},
 		methods: {
+			//回到订单填写页面并且把客户id传过去
+			gobackorder(cusId){
+				console.log(cusId);
+				//修改vuex里面的cusId
+				// console.log("修改前"+this.$store.state.cusId);
+				this.$store.state.cusId = cusId;
+				// 跳转
+			},
 			search() {
 			    if (this.keyword.value == '') {   //如果没有输入内容，不让往下执行
 			      return
@@ -89,9 +84,7 @@
 			    **/
 				console.log(item);
 			      if (item.name.indexOf(this.keyword.value) > -1 ||
-					item.intendedModel.indexOf(this.keyword.value) > -1 ||
-					item.invalidReason.indexOf(this.keyword.value) > -1 ||
-					item.defeatedCity.indexOf(this.keyword.value) > -1 ||
+					item.phone.indexOf(this.keyword.value) > -1 ||
 					item.applicationTime.indexOf(this.keyword.value) > -1 
 				   ) {
 			        this.resultList.push(item)
@@ -102,9 +95,7 @@
 				//将得到的每一条数据中的每一个字段进行处理,brightKeyword就是变高亮的方法
 				this.resultList.map((item) => {  //遍历
 				  item.name = this.brightKeyword(item.name)
-				  item.intendedModel = this.brightKeyword(item.intendedModel)
-				  item.invalidReason = this.brightKeyword(item.invalidReason)
-				  item.defeatedCity = this.brightKeyword(item.defeatedCity)
+				  item.phone = this.brightKeyword(item.phone)
 				  item.applicationTime = this.brightKeyword(item.applicationTime)
 				}) 
 			    if (this.resultList.length == 0) {   //如果没有匹配结果，就显示提示信息

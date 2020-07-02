@@ -15,7 +15,7 @@
 		<no-data :nodata="nodata"/>
 		<!-- 顾问列表 -->
 			<view v-if="!nodata" class="consultants-lists">
-				<view class="consultants-lists-cell" v-for="(item,i) in resultList" :key="i">
+				<view class="consultants-lists-cell" v-for="(item,i) in resultList" :key="i" @click="godetails">
 					<view class="row ordernum">
 						<view class="col-2">
 							<text v-html="item.ordernum"></text>
@@ -68,11 +68,16 @@
 			this.consultantslists = consultantslists.data;//数据
 		},
 		methods: {
+			godetails(){
+				uni.navigateTo({
+					url: '../../customer-order-details/customer-order-details'
+				});
+			},
 			search() {
 			    if (this.keyword.value == '') {   //如果没有输入内容，不让往下执行
 			      return
 			    }
-				debugger
+				// debugger
 				console.log(this.keyword.value)
 			    this.resultList = []   //每次搜索对结果数组做初始化
 				const consultantslist = JSON.parse(JSON.stringify(this.consultantslists)) ;

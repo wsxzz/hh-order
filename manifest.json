@@ -52,7 +52,7 @@
     "h5" : {
         "router" : {
             "mode" : "hash",
-            "base" : "/yyorder"
+            "base" : "/app/"
         },
         "devServer" : {
             "https" : false,

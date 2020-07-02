@@ -11,8 +11,7 @@
 					<image @click="goInsurance" class="blueline-icons" src="../../../static/images/icons/icon-public-more2.png" mode="widthFix"></image>
 				</view>
 			</view>
-			
-			<view v-show="hasinsurance" class="">
+			<view v-show="hasinsurance">
 				<view class="Insurance-infor-title">	
 							{{insurance.name}}
 				</view>
@@ -56,9 +55,14 @@
 							<view class="tax-rate">
 								税率以官方收费为准
 							</view>
-							<view class="view-policy" @click="checkpolicy(insurance.policy)">
+							<view class="view-policy" @click="checkpolicy">
 								查看政策
 							</view>
+							<uni-popup ref="insurancePolicyPopup" type="center" :animation="true">
+								<view class="insurancePolicyPopup-content">
+									{{insurance.otherPrice}}
+								</view>
+							</uni-popup>
 						</view>
 						<view class="cellR col-2 right">
 							{{insurance.discount}}  <text>元</text>
@@ -76,58 +80,69 @@
 						<view class="subtotal right">
 							<text class="subtotaltxt">小计</text>
 							<text class="subtotalicon">¥</text>
-							<text class="subtotalmoney">2,000</text>
+							<text class="subtotalmoney">{{insurance.subtotal}}</text>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
 		
+		
+		
 	</view>
 </template>
 
 <script>
-	/*
+/*
 	*
 	 * insuranceInfor 保险信息
 	 * @description 保险信息组件
-	 * @nodata = [true|false] 是否显示
-	 * @example <no-data text="true"></no-data>
+	 * hasinsurance = [true|false] 是否显示
+	 * @example <insuranceInfor @insuranceInforValChange="getinsuranceInforData"  ref="insuranceInforItem"></insuranceInfor>
 	 */
 	export default {
 		name: 'insuranceInfor',
-		props: {
-			// nodata: {
-			// 	type: Boolean,
-			// 	default: true
-			// }
-		},
 		data() {
 			return {
-				
-				hasinsurance:false,//保险信息
-				insurance:{},//保险信息
+				hasinsurance:false,//保险信息是否已经选好
+				insurancevalue:'',//保险机构的机构code
+				insurance:{
+					name:"",// 机构名称
+					source:"",// 机构来源
+					compulsoryInsurance:"",// 交强险
+					vehicleAndVesselTax:"",// 车船税
+					commercialInsurance:"",// 商业险
+					otherPrice:"",// 其他
+					discount:'',// 保险优惠
+					remarks:'',// 备注
+					subtotal:''// 小计
+				},//保险信息
 			}
 		},
-		onShow(object){
+		created() {
 			//去保险页面获取选择的保险信息
 			uni.$on("handClickgetInsurance", res => {
-			    console.log(res.insurancevalue);
+			    console.log("你选择的保险公司code是"+res.insurancevalue);
 				this.insurancevalue = res.insurancevalue;
-				console.log(this.insurancevalue)
 				// 无法操作data的数据，用缓存代替
 			    // 清除监听
 			    uni.$off('handClickgetInsurance');
 			})
-			
 		},
 		watch:{
+			//保险code改变
 			insurancevalue(newName, oldName) {
 				this.hasinsurance = true;
-				this.getInsurance();
-				
+				this.getInsurance();//通过保险代码回填保险具体信息
 			},
-			
+			//保险具体信息改变
+			insurance: {
+			 handler(newValue, oldValue) {
+				 // console.log('保险信息变化了', newValue, oldValue)
+				this.$emit('insuranceInforValChange',this.insurance)
+			  },
+			  deep: true
+			}
 		},
 		methods: {
 			//去选择保险
@@ -140,20 +155,27 @@
 			getInsurance(){
 				if(this.insurancevalue!=""){
 					this.insurance = {//测试
-						name:"华安保险股份有限公陪你公司",
-						compulsoryInsurance:"300",
-						vehicleAndVesselTax:"400",
-						commercialInsurance:"500",
-						otherPrice:"600",
-						policy:["政策01","政策02"],
-						discount:'300'
+						name:"华安保险股份有限公陪你公司",// 机构名称
+						source:"子公司/集团",// 机构来源
+						compulsoryInsurance:"300",// 交强险
+						vehicleAndVesselTax:"400",// 车船税
+						commercialInsurance:"500",// 商业险
+						otherPrice:"600",// 其他
+						discount:'300',// 保险优惠
+						remarks:'',// 备注
+						subtotal:'2100'// 小计
 					}
 				}
 			},
+			//查看政策
+			checkpolicy(){
+				this.$refs.insurancePolicyPopup.open()
+			}
 		}
 	}
-</script>
-
-<style>
-
+	</script>
+<style lang="scss" scoped>
+	page{
+		background-color: #F5F5F5;
+	}
 </style>
