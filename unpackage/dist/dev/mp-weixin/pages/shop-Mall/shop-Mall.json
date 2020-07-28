@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "商品",
-  "usingComponents": {
-    "uni-search-bar": "/components/uni-search-bar/uni-search-bar"
-  }
-}

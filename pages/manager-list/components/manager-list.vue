@@ -11,7 +11,7 @@
 							{{item.ordernum}}
 							<text class="date">{{item.time}}</text>
 						</view>
-						<view v-if="!selState" class="col-2 right state">
+						<view v-if="selState=='customerorder'" class="col-2 right state">
 							{{item.state}}
 						</view>
 						<view v-else class="col-2 right name">
@@ -23,7 +23,7 @@
 						<view class="col-2">
 							<text class="ordername">{{item.name}}</text>/{{item.sex == "女" ? "女士" : "男士"}}
 						</view>
-						<view  v-if="!selState" class="col-2 right name">
+						<view  v-if="selState=='customerorder'" class="col-2 right name">
 							李销售
 						</view>
 					</view>
@@ -56,12 +56,18 @@
 </template>
 
 <script>
-	import managerlist from '@/utils/mock/manager-list.json'//数据
+	// import '@/utils/mock/index.js'//数据
+	import managerlists from '@/utils/mock/manager-list.json'//数据
 		export default {
+			props:{
+				selState:{
+					type: String,
+					default: "orderapproval"
+				},
+			},
 			data() {
 				return {
 					nodata:false,//暂无数据
-					selState:true,
 					screenDialog:false,
 					msg:"1111",
 					Checklist:["GP1","GP2","GP3","GP4"],
@@ -69,7 +75,17 @@
 				}
 			},
 			created() {
-				this.managerlists = managerlist.data;//数据列表
+				// uni.request({ 
+				//     url: '/api/managelists', //仅为示例，并非真实接口地址。
+				// 	method:'GET',
+				//     data: {
+				//         username: 'test',
+				//     },
+				//     success: function(res) {
+				//         console.log(res.data);
+				//     }
+				// });
+				this.managerlists = managerlists.data;//数据列表
 				console.log(this.managerlists)
 			},
 			methods: {

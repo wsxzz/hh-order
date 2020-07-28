@@ -265,7 +265,7 @@
 			godetails(){
 				this.restoreInit();
 				uni.navigateTo({
-				    url: "../customer-order-details/customer-order-details?jiaose='1'",
+				    url: "../customer-order-details/customer-order-details?id=1&isReview=false",
 					// jiaose='1'顾问
 					// jiaose='0'经理
 				});

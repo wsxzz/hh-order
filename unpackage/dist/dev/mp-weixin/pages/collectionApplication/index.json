@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "收款申请",
-  "usingComponents": {
-    "hx-navbar": "/components/hx-navbar/hx-navbar"
-  }
-}

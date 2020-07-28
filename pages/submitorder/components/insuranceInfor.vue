@@ -4,7 +4,7 @@
 		<view class="Insurance-infor">
 			<view class="blueline-title row">
 				<view class="col-2 blueline-infor">
-					现保险信息
+					保险信息
 					<text class="blueline"></text>
 				</view>
 				<view class="col-2 right">

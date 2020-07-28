@@ -67,7 +67,13 @@
 				//修改vuex里面的cusId
 				// console.log("修改前"+this.$store.state.cusId);
 				this.$store.state.cusId = cusId;
-				// 跳转
+				// 跳转回订单页面
+				// 此处是B页面
+				uni.navigateTo({
+				    url: '../submitorder/submitorder'
+				});
+				
+				
 			},
 			search() {
 			    if (this.keyword.value == '') {   //如果没有输入内容，不让往下执行
@@ -100,7 +106,9 @@
 				}) 
 			    if (this.resultList.length == 0) {   //如果没有匹配结果，就显示提示信息
 			      this.nodata = true
-			    }
+			    }else{
+					this.nodata = false
+				}
 			  },
 			  //字体高亮
 			  brightKeyword(val) {

@@ -58,7 +58,7 @@
 						<view class="deletebtn">
 							删除
 						</view>
-						<view class="comfirmbtn">
+						<view class="comfirmbtn" @click="gobacklist">
 							确定
 						</view>
 					</view>
@@ -79,7 +79,7 @@
 	import mortgagePro from './components/mortgagePro.vue'//按揭项目
 	import deliveryInfor from './components/deliveryInfor.vue'//交付信息
 	import invoiceInfor from './components/invoiceInfor.vue'//发票信息
-	
+	import filter from '../../utils/filter.js'//基本信息
 	export default {
 		components:{
 			baseinfo,
@@ -110,6 +110,7 @@
 			},
 			created() {
 				var that = this;
+				filter.tabbarRequired("false");
 				that.ordereeditType = that.$store.state.submitorderOps.edit+'订单';
 				that.shopId = that.$store.state.shopId;
 				// 需要关联原有订单
@@ -119,6 +120,12 @@
 				//商品是否已经选好
 				if(that.shopId!==""&&that.shopId!==null&&that.shopId!==undefined){
 					that.selectedOK = true;
+				}
+				
+				//客户信息是否选择好
+				if(that.$store.state.cusId!==""){
+					// that.selectedOK = true;
+					that.baseinfoDatas.customerTypes = 'personal'
 				}
 			},
 		    methods: {
@@ -164,6 +171,12 @@
 					    url: '../consultants-lists/consultants-lists'
 					});
 				},
+				//返回列表信息页面
+				gobacklist(){
+					uni.navigateTo({
+					    url: '../consultants-lists/consultants-lists'
+					});
+				}
 		    },
 			mounted(){
 				

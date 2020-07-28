@@ -1,1 +1,0 @@
-<block wx:if="{{nodata}}"><view class="no-data data-v-1a4b7c72"><image class="no-data-img data-v-1a4b7c72" src="../../static/images/icons/bg_No_record.png" mode="widthFix"></image><view class="no-data-text data-v-1a4b7c72">暂无记录</view></view></block>

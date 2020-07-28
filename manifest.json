@@ -52,13 +52,13 @@
     "h5" : {
         "router" : {
             "mode" : "hash",
-            "base" : "/app/"
+            "base" : "/yyorder"
         },
         "devServer" : {
             "https" : false,
             "port" : 80
         },
-        "title" : "用友订单",
-        "domain" : "www.yy.com"
+        "title" : "test",
+        "domain" : "http://172.16.0.203"
     }
 }

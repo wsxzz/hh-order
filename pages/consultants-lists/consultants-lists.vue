@@ -30,7 +30,7 @@
 			<!-- 顾问列表 -->
 			<consultantsLists :screen="subStatus" @click="gocustodetail" />
 		</view>
-		<tabbar></tabbar>
+		<!-- <tabbar></tabbar> -->
 	</view>
 </template>
 
@@ -38,6 +38,7 @@
 	import consultantsLists from './components/consultants-lists.vue' //列表
 	import screen from './components/screen.vue' //筛选框
 	import collectionApplication from '@/utils/mock/collectionApplication.json' //数据
+	import filter from '../../utils/filter.js'//基本信息
 	export default {
 		components: {
 			consultantsLists,
@@ -50,6 +51,9 @@
 				screendates: {}, //筛选条件
 				currentTabIndex: 1
 			}
+		},
+		created() {
+			filter.tabbarRequired("true");
 		},
 		methods: {
 			// 提交与已提交状态切换,重新触发列表更新

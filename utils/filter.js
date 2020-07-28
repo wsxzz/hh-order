@@ -135,7 +135,51 @@ module.exports = {
 		};
 		return result;
 	},
-	
+	CurentTime() { 
+	        var now = new Date();
+	        
+	        var year = now.getFullYear();       //年
+	        var month = now.getMonth() + 1;     //月
+	        var day = now.getDate();            //日
+	        
+	        var hh = now.getHours();            //时
+	        var mm = now.getMinutes();          //分
+	        var ss = now.getSeconds();           //秒
+	        
+	        var clock = year + "-";
+	        
+	        if(month < 10)
+	            clock += "0";
+	        
+	        clock += month + "-";
+	        
+	        if(day < 10)
+	            clock += "0";
+	         clock += day;
+	        
+	        return(clock); 
+	},
+	tabbarRequired(flag){
+	      let isapp = true//当前是否是app
+		  if(isapp){
+			  const u = navigator.userAgent;
+			        const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+			        if (isiOS) {
+			          isapp = "ios";
+			        } else {
+			          isapp = "Android";
+			        }
+			        let data = {}
+			        data.body = flag
+			      // 根据ios和Android采用不同的方法
+			        if (isapp == "ios") {
+			          window.webkit.messageHandlers.tabbarRequired.postMessage(data);
+			        } else if (isapp == "Android") {
+			          window.Android.tabbarRequired(flag);
+			        }
+		  }
+	      
+	},
 	//
 	// const hide = (el) => Array.from(el).forEach(e => (e.style.display = 'none'))
 }

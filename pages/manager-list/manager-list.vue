@@ -41,16 +41,17 @@
 		<!-- 筛选框 -->
 			<screen :screenShow="screenShow" @closeScreen="closeScreen" @comfirm="comfirm"></screen>
 		<!-- 列表 -->
-			<managerList  @click="gocustodetail" />
+			<managerList :selState="selState" @click="gocustodetail" />
 		</view>
 		<!-- 底部导航 -->
-		<tabbar></tabbar>
+		<!-- <tabbar></tabbar> -->
 	</view>
 </template>
 
 <script>
 	import managerList from './components/manager-list.vue'//基本信息
 	import screen from './components/screen.vue'//基本信息
+	import filter from '../../utils/filter.js'//基本信息
 	export default {
 		components:{
 			managerList,
@@ -62,6 +63,10 @@
 					screenDialog:false,
 					screenShow:false,//筛选框
 				}
+		},
+		created() {
+			// debugger
+			filter.tabbarRequired("false");
 		},
 		methods: {
 			// 切换订单审核和客户信息状态

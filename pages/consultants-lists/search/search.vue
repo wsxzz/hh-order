@@ -16,31 +16,36 @@
 		<!-- 顾问列表 -->
 			<view v-if="!nodata" class="consultants-lists">
 				<view class="consultants-lists-cell" v-for="(item,i) in resultList" :key="i">
-					<view class="row ordernum">
-						<view class="col-2">
-							<text v-html="item.ordernum"></text>
-							<text class="date" v-html="item.time"></text>
+					<view class="" @click="gotodetails">
+						<view class="row ordernum">
+							<view class="col-2">
+								<text v-html="item.ordernum"></text>
+								<text class="date" v-html="item.time"></text>
+							</view>
+							<view class="col-2 right state" v-html="item.state"></view>
 						</view>
-						<view class="col-2 right state" v-html="item.state"></view>
+						<view class="ordercontant row">
+							<view class="col-2">
+								<text v-html="item.name" class="ordername"></text>/{{item.sex == "女" ? "女士" : "男士"}}
+								
+							</view>
+							<view class="col-2 right">
+								<image class="orderphone" src="../../../static/images/icons/icon-phone.png" mode="widthFix"></image>
+							</view>
+						</view>
+						<view class="carinfo" v-html="item.desc"></view>
+						<view class="row shopnumber">
+							<view class="col-2">
+								<text class="text">商品数量</text>
+								<text class="value"  v-html="item.number"></text>
+							</view>
+						</view>
 					</view>
 					
 					
-					<view class="ordercontant row">
-						<view class="col-2">
-							<text v-html="item.name" class="ordername"></text>/{{item.sex == "女" ? "女士" : "男士"}}
-							
-						</view>
-						<view class="col-2 right">
-							<image class="orderphone" src="../../../static/images/icons/icon-phone.png" mode="widthFix"></image>
-						</view>
-					</view>
-					<view class="carinfo" v-html="item.desc"></view>
-					<view class="row shopnumber">
-						<view class="col-2">
-							<text class="text">商品数量</text>
-							<text class="value"  v-html="item.number"></text>
-						</view>
-					</view>
+					
+					
+					
 				</view>
 				
 			</view>
@@ -112,6 +117,8 @@
 					}) 
 					if (that.resultList.length == 0) {   //如果没有匹配结果，就显示提示信息
 					  that.nodata = true
+					}else{
+						that.nodata = false
 					}
 					uni.hideToast();
 				},1000)
@@ -130,6 +137,12 @@
 				  } else {
 					return val
 				  }
+				},
+				gotodetails(){
+					// 跳转到详情
+					uni.navigateTo({
+					    url: '../../customer-order-details/customer-order-details?id=1&isReview=false'
+					});
 				}
 		}
 	}

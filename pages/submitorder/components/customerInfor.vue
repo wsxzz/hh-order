@@ -199,7 +199,7 @@
 				props: {
 					customerTypes: {//客户类型
 						type: String,
-						default: 'personal'
+						default: ''
 					},
 					modifyInfor: {//是否可以修改客户信息
 						type: Boolean,

@@ -1057,6 +1057,7 @@
 </template>
 
 <script>
+	import filter from '../../utils/filter.js'//基本信息
 	export default {
 		data() {
 			return {
@@ -1081,6 +1082,7 @@
 		},
 		onLoad: (ops) => {
 			console.log(ops);
+			filter.tabbarRequired("false");
 			const isReview = (ops.isReview=='true'? true : false);
 			// 无法操作data的数据，用缓存代替
 			uni.setStorage({

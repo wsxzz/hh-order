@@ -11,7 +11,7 @@
 								<view class="starttime">
 									<biaofun-datetime-picker
 										placeholder="开始日期"
-										defaultValue=""
+										:defaultValue="screendates.starttime"
 										start="2000-02-03"
 										end="2100-10-28"
 										fields="day"
@@ -25,9 +25,9 @@
 								<view class="endtime">
 									<biaofun-datetime-picker
 										placeholder="开始日期"
-										defaultValue=""
+										:defaultValue="screendates.endtime"
 										start="2000-02-03"
-										end="2100-10-28"
+										:end="CurentTime"
 										fields="day"
 										@change="changeDatetimePicker('endtime')"
 									></biaofun-datetime-picker>
@@ -71,12 +71,13 @@
 <script>
 	/*
 	*
-	 * screen 经理列表筛选框
+	 * screen 经理列表筛选框     
 	 * @description 经理列表筛选框
 	 * @nodata = [true|false] 是否显示
 	 * @example <no-data text="true"></no-data>
 	 */
 	import biaofunDatetimePicker from '@/components/biaofun-datetime-picker/biaofun-datetime-picker.vue';//时间组件
+	import filter from '@/utils/filter.js'
 	export default {
 		name: 'screen',
 		props: {
@@ -92,6 +93,7 @@
 				return {
 					consultantlist:[],//选择顾问
 					choiceConsultantindex:0,
+					CurentTime:filter.CurentTime(),
 					screendates:{
 						starttime:'',
 						endtime:'',
@@ -102,6 +104,7 @@
 		},
 		created() {
 			var that = this;
+			//模拟顾问列表
 			let arr = ["吴晓婷","王芳","王芳","王芳","王芳","王芳","王东城","艾吴克热艾吴克热","艾吴克热艾吴克热","艾吴克热艾吴克热","艾吴克热艾吴克热"]
 			arr.forEach(function(val, index, arr){
 				if(val.length>4){
@@ -109,6 +112,9 @@
 				}
 				that.consultantlist.push(val)
 			});
+			//当前时间
+			this.screendates.endtime = filter.CurentTime();
+			
 		},
 		methods: {
 			/**
